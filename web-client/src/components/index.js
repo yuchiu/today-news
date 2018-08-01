@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Home, About, NotFound } from "./allRoutes";
+import { Testing, Landing, NotFound } from "./allRoutes";
 
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/about" component={About} />
+      <Route exact path="/" component={Landing} />
+      <Route exact path="/testing" component={Testing} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>

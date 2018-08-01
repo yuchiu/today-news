@@ -1,8 +1,8 @@
 import React from "react";
 import { TextChanger } from "./containers";
-import { Logo, NavBar } from "../global";
+import { Logo, NavBar } from "../Global";
 
-const Home = () => (
+const Testing = () => (
   <div>
     <NavBar />
     <Logo />
@@ -10,4 +10,4 @@ const Home = () => (
   </div>
 );
 
-export default Home;
+export default Testing;

@@ -1,7 +1,17 @@
 @import "var";
 @import "mixins";
 @import "base";
-@import "components/home";
-@import "components/nav";
-@import "components/logo";
-@import "components/about";
+@import "components/Landing/index";
+@import "components/Global/navBar";
+
+#logo {
+  height: 100px;
+  width: 110px;
+  display: block;
+  margin: auto;
+}
+#about {
+  text-align: center;
+  padding: 30px;
+  font-size: 30px;
+}
