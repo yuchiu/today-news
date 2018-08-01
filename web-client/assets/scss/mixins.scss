@@ -1,0 +1,20 @@
+/* responsive layout */
+
+@mixin maxMediaQueries($arg...) {
+  @if length($arg) ==1 {
+    @media screen and (max-width: nth($arg, 1)) {
+      @content;
+    }
+  }
+  @if length($arg) ==2 {
+    @media screen and (max-width: nth($arg, 1)) and (min-width: nth($arg, 2)) {
+      @content;
+    }
+  }
+}
+
+@mixin minMediaQueries($arg) {
+  @media screen and (min-width: $arg) {
+    @content;
+  }
+}
