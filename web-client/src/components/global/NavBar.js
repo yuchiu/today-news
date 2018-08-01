@@ -1,23 +1,17 @@
 import React from "react";
+import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-class NavBar extends React.Component {
-  render() {
-    return (
-      <nav className="navbar">
-        <ul>
-          <li>
-            <Link to="/">Redux Boilerplate</Link>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
-    );
-  }
-}
+const NavBar = () => (
+  <Menu>
+    <Menu.Item>
+      <Link to="/">Latest News</Link>
+    </Menu.Item>
+
+    <Menu.Item position="right">
+      <Link to="/about">About</Link>
+    </Menu.Item>
+  </Menu>
+);
 
 export default NavBar;
