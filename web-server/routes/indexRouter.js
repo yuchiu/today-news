@@ -4,7 +4,8 @@ import path from "path";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("ok");
+  res.sendFile("index.html", {
+    root: path.join(__dirname, "../../web-client/dist")
+  });
 });
-
 export default router;

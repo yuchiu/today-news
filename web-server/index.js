@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import path from "path";
 import cookieParser from "cookie-parser";
 
-import { restRouter, indexRouter } from "./routes";
+import { newsRouter, indexRouter } from "./routes";
 
 mongoose.connect(
   "mongodb://user01:user01@ds163781.mlab.com:63781/latest-news",
@@ -12,8 +12,11 @@ mongoose.connect(
 
 const app = express();
 
-app.use("/", indexRouter).use("/api/v1", restRouter);
+app.use(express.static(path.join(__dirname, "../web-client/dist")));
+app.use("/", indexRouter);
+app.use("/api/v1", newsRouter);
 app.use(cookieParser());
+
 app.listen(3200, () => {
   console.log("app listening on PORT 3200");
 });

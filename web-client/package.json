@@ -21,7 +21,8 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "semantic-ui-react": "^0.82.1"
+    "semantic-ui-react": "^0.82.1",
+    "uglifyjs-webpack-plugin": "^1.2.7"
   },
   "devDependencies": {
     "babel": "^6.23.0",

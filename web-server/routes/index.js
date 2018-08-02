@@ -1,4 +1,4 @@
-import restRouter from "./restRouter";
+import newsRouter from "./newsRouter";
 import indexRouter from "./indexRouter";
 
-export { restRouter, indexRouter };
+export { newsRouter, indexRouter };

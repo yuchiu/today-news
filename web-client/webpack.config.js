@@ -1,9 +1,10 @@
 /* eslint-disable */
 
-let webpack = require("webpack");
-let path = require("path");
-let htmlWebpackPlugin = require("html-webpack-plugin");
-let OpenBrowserPlugin = require("open-browser-webpack-plugin");
+const webpack = require("webpack");
+const path = require("path");
+const htmlWebpackPlugin = require("html-webpack-plugin");
+const OpenBrowserPlugin = require("open-browser-webpack-plugin");
+const Uglify = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   entry: {
