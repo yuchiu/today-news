@@ -1,12 +1,4 @@
-import constants from "../constants";
+import newsActions from "./newsActions";
+import testingActions from "./testingActions";
 
-const actions = {
-  fetchText: text => dispatch => {
-    dispatch({
-      type: constants.FETCH_TEXT,
-      payload: text
-    });
-  }
-};
-
-export default actions;
+export { newsActions, testingActions };

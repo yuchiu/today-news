@@ -1,5 +1,5 @@
 import React from "react";
-import { TextChanger } from "./containers";
+import TextChanger from "./TextChanger";
 import { Logo, NavBar } from "../Global";
 
 const Testing = () => (

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import actions from "../../../actions";
-import Text from "../Text";
+import { testingActions } from "../../actions";
+import Text from "./components/Text";
 
 class TextChanger extends React.Component {
   constructor() {
@@ -42,7 +42,7 @@ const stateToProps = state => ({ text: state.text.text });
 
 const dispatchToProps = dispatch => ({
   fetchText: text => {
-    dispatch(actions.fetchText(text));
+    dispatch(testingActions.fetchText(text));
   }
 });
 

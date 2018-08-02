@@ -1,13 +1,14 @@
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { textReducer } from "../reducers";
+import { textReducer, newsReducer } from "../reducers";
 
 let store = null;
 export default {
   configure: () => {
     const rootReducers = combineReducers({
-      text: textReducer
+      text: textReducer,
+      news: newsReducer
     });
     store = createStore(
       rootReducers,
