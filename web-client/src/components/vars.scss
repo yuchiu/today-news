@@ -1,3 +1,8 @@
+/* vars */
+$red: #b9090b;
+$black: #0f0f0f;
+$white: #ecf0f1;
+
 /* mixins */
 @mixin maxMediaQueries($arg...) {
   @if length($arg) ==1 {
@@ -17,8 +22,3 @@
     @content;
   }
 }
-
-/* vars */
-$red: #b9090b;
-$black: #0f0f0f;
-$white: #ecf0f1;
