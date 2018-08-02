@@ -52,9 +52,7 @@ module.exports = {
 
   plugins: process.env.NODE_ENV === 'production' ? [
     new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
+      'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
     new Uglify(),
     new htmlWebpackPlugin({
@@ -62,6 +60,9 @@ module.exports = {
       hash: true
     })
   ] : [
+    new webpack.DefinePlugin({
+      'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
     new htmlWebpackPlugin({
       template: path.join(__dirname, 'index.html'),
       hash: true

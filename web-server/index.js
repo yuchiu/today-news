@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import path from "path";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import { newsRouter, indexRouter } from "./routes";
@@ -10,8 +11,14 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
+const corsOptions = {
+  origin: "http://localhost:8080",
+  optionsSuccessStatus: 200
+};
+
 const app = express();
 
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, "../web-client/dist")));
 app.use("/", indexRouter);
 app.use("/api/v1", newsRouter);

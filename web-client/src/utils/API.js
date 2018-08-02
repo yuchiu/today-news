@@ -4,7 +4,7 @@ const URL = "http://localhost:3200";
 const API_VERSION = "/api/v1";
 
 export default {
-  getNews: (query, queryVariable) =>
+  getNews: () =>
     axios
       .get(`${URL}${API_VERSION}/news`)
       .then(response => response)

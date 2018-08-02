@@ -38,7 +38,7 @@ TextChanger.propTypes = {
   fetchText: PropTypes.func
 };
 
-const stateToProps = state => ({ text: state.text.text });
+const stateToProps = state => ({ text: state.textReducer.text });
 
 const dispatchToProps = dispatch => ({
   fetchText: text => {

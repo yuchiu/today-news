@@ -7,8 +7,8 @@ let store = null;
 export default {
   configure: () => {
     const rootReducers = combineReducers({
-      text: textReducer,
-      news: newsReducer
+      textReducer,
+      newsReducer
     });
     store = createStore(
       rootReducers,

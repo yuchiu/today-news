@@ -29,7 +29,7 @@ class NewsPanel extends React.Component {
     );
   }
 }
-const stateToProps = state => ({ news: state.news.news });
+const stateToProps = state => ({ news: state.newsReducer.news });
 
 const dispatchToProps = dispatch => ({
   fetchNews: () => {
@@ -38,7 +38,7 @@ const dispatchToProps = dispatch => ({
 });
 
 NewsPanel.propTypes = {
-  news: PropTypes.object,
+  news: PropTypes.array,
   fetchNews: PropTypes.func
 };
 export default connect(
