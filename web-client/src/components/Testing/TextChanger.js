@@ -2,23 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { testingActions } from "../../actions";
-import Text from "./components/Text";
+import Text from "./presentations/Text";
 
 class TextChanger extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      inputVal: ""
-    };
-  }
+  state = {
+    inputVal: ""
+  };
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({ inputVal: e.target.value });
-  }
+  };
 
-  displayText() {
+  displayText = () => {
     this.props.fetchText(this.state.inputVal);
-  }
+  };
 
   render() {
     return (
