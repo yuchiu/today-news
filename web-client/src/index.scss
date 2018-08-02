@@ -1,0 +1,12 @@
+@import "styles/var";
+@import "styles/mixins";
+@import "styles/base";
+@import "components/Landing/index";
+@import "components/Global/NavBar";
+@import "components/Global/Logo";
+
+#about {
+  text-align: center;
+  padding: 30px;
+  font-size: 30px;
+}

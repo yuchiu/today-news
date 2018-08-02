@@ -35,7 +35,7 @@ class NewsPanel extends React.Component {
     return news ? (
       <div className="container-fluid">
         <div className="list-group">
-          {news.map(n => <NewsCard key={n.digest} news={n} />)}
+          {news.map((n, i) => <NewsCard key={i} news={n} />)}
         </div>
       </div>
     ) : (
