@@ -5,6 +5,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import { newsRouter, indexRouter } from "./routes";
+// testing rpcClient
+import { rpcClient } from "./services";
 
 mongoose.connect(
   "mongodb://user01:user01@ds163781.mlab.com:63781/latest-news",
@@ -28,6 +30,14 @@ app.use(cookieParser());
 
 app.listen(3200, () => {
   console.log("app listening on PORT 3200");
+});
+
+// testing rpcClient
+rpcClient.add(5, 6, response => {
+  console.assert(response === 11);
+});
+rpcClient.add(5, 6, response => {
+  console.assert(response === 12);
 });
 
 // kill nodemon process manually on exit ctrl+c
