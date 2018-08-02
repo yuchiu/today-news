@@ -19,7 +19,6 @@ class NewsPanel extends React.Component {
       window.pageYOffset ||
       document.documentElement.scrollTop;
     if (window.innerHeight + scrollY >= document.body.offsetHeight - 50) {
-      console.log("handleScroll");
       this.loadMoreNews();
     }
   };
@@ -31,7 +30,6 @@ class NewsPanel extends React.Component {
 
   render() {
     const { news } = this.props;
-    console.log(`inside redner: ${news}`);
     return news ? (
       <div className="container-fluid">
         <div className="list-group">

@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import { Testing, Landing, NotFound } from "./allRoutes";
+import "./index.scss";
 
 const Routes = () => (
   <BrowserRouter>
