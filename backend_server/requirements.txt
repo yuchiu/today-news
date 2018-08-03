@@ -1,2 +1,4 @@
 python-jsonrpc
 pymongo
+pika
+json
