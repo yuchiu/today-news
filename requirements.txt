@@ -1,0 +1,5 @@
+python-jsonrpc
+pymongo
+pika
+loads
+requests
