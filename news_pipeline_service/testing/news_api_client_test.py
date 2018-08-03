@@ -1,4 +1,8 @@
-import news_api_client as client
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+
+import news_api_client as client  # pylint: disable=E0401
 
 
 def test_basic():
