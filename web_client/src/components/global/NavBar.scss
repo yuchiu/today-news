@@ -4,11 +4,3 @@ nav {
     display: flex;
   }
 }
-
-@include maxMediaQueries(750px) {
-  nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}

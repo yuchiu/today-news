@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import _ from "lodash";
 
+import "./NewsPanel.scss";
 import { NewsCard } from "./presentations";
 import { newsActions } from "../../actions";
 
