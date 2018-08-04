@@ -1,5 +1,5 @@
-import Landing from "./Landing";
-import Testing from "./Testing";
-import NotFound from "./NotFound";
+import LandingPage from "./LandingPage";
+import TestingPage from "./TestingPage";
+import NotFoundPage from "./NotFoundPage";
 
-export { Landing, Testing, NotFound };
+export { LandingPage, TestingPage, NotFoundPage };

@@ -1,15 +1,30 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { Testing, Landing, NotFound } from "./allRoutes";
+import { TestingPage, LandingPage, NotFoundPage } from "./allRoutes";
+import { auth } from "../utils";
 import "./index.scss";
+
+// eslint-disable-next-line
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      auth.isUserAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={{ pathname: "/login" }} />
+      )
+    }
+  />
+);
 
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Landing} />
-      <Route exact path="/testing" component={Testing} />
-      <Route component={NotFound} />
+      <Route exact path="/" component={LandingPage} />
+      <PrivateRoute exact path="/testing" component={TestingPage} />
+      <Route component={NotFoundPage} />
     </Switch>
   </BrowserRouter>
 );

@@ -1,8 +1,8 @@
 import React from "react";
-import { NavBar, Logo } from "../Global";
+import { NavBar, Logo } from "../global";
 import NewsPanel from "./NewsPanel";
 
-const Landing = () => (
+const LandingPage = () => (
   <div>
     <NavBar />
     <Logo />
@@ -10,4 +10,4 @@ const Landing = () => (
   </div>
 );
 
-export default Landing;
+export default LandingPage;
