@@ -15,21 +15,6 @@ class LoginPage extends React.Component {
     }
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const {
-      user: { email, password }
-    } = this.state;
-    this.props.fetchLogin({ email, password });
-    this.setState({
-      user: {
-        email: "",
-        password: ""
-      }
-    });
-  };
-
   handleChange = e => {
     const { user } = this.state;
     const field = e.target.name;
@@ -37,6 +22,23 @@ class LoginPage extends React.Component {
 
     this.setState({
       user
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const {
+      user: { email, password }
+    } = this.state;
+    console.log("email:", email);
+    console.log("password:", password);
+    this.props.fetchLogin({ email, password });
+    this.setState({
+      user: {
+        email: "",
+        password: ""
+      }
     });
   };
 

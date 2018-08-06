@@ -9,6 +9,14 @@ export default {
       .get(`${URL}${API_VERSION}/news`)
       .then(response => response)
       .catch(err => err),
+  registerUser: (email, password) =>
+    axios
+      .post(`${URL}/auth/register`, {
+        email,
+        password
+      })
+      .then(response => response.data)
+      .catch(err => err),
   loginUser: (email, password) =>
     axios
       .post(`${URL}/auth/login`, {
@@ -16,4 +24,5 @@ export default {
         password
       })
       .then(response => response.data)
+      .catch(err => err)
 };
