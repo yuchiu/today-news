@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { authActions } from "../../actions";
+import { OAuth, NavBar } from "../global";
 import RegisterForm from "./RegisterForm";
 
 class RegisterPage extends React.Component {
@@ -12,29 +13,6 @@ class RegisterPage extends React.Component {
       email: "",
       password: "",
       confirmPassword: ""
-    }
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const {
-      user: { email, password, confirmPassword }
-    } = this.state;
-
-    console.log("email:", email);
-    console.log("password:", password);
-    console.log("confirm_assword:", confirmPassword);
-
-    if (password === confirmPassword) {
-      this.props.fetchRegister({ email, password });
-      this.setState({
-        user: {
-          email: "",
-          password: "",
-          confirmPassword: ""
-        }
-      });
     }
   };
 
@@ -58,15 +36,42 @@ class RegisterPage extends React.Component {
     }
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const {
+      user: { email, password, confirmPassword }
+    } = this.state;
+
+    console.log("email:", email);
+    console.log("password:", password);
+    console.log("confirm_password:", confirmPassword);
+
+    if (password === confirmPassword) {
+      this.props.fetchRegister({ email, password });
+      this.setState({
+        user: {
+          email: "",
+          password: "",
+          confirmPassword: ""
+        }
+      });
+    }
+  };
+
   render() {
     const { errors, user } = this.state;
     return (
-      <RegisterForm
-        onSubmit={this.handleSubmit}
-        onChange={this.handleChange}
-        errors={errors}
-        user={user}
-      />
+      <React.Fragment>
+        <NavBar />
+        <RegisterForm
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+          errors={errors}
+          user={user}
+        />
+        <OAuth />
+      </React.Fragment>
     );
   }
 }

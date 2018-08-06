@@ -57,7 +57,7 @@ const LoginForm = ({ onSubmit, onChange, errors, user }) => (
         <div className="row">
           <p className="right-align">
             {" "}
-            New to Tap News? <Link to="/signup">Sign Up</Link>
+            New to Latest News? <Link to="/signup">Sign Up</Link>
           </p>
         </div>
       </form>

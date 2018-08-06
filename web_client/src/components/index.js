@@ -3,13 +3,11 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { auth } from "../utils";
 import "./index.scss";
-import {
-  TestingPage,
-  LandingPage,
-  NotFoundPage,
-  RegisterPage,
-  LoginPage
-} from "./allRoutes";
+import LandingPage from "./LandingPage";
+import TestingPage from "./TestingPage";
+import NotFoundPage from "./NotFoundPage";
+import RegisterPage from "./RegisterPage";
+import LoginPage from "./LoginPage";
 
 // eslint-disable-next-line
 const PrivateRoute = ({ component: Component, ...rest }) => (

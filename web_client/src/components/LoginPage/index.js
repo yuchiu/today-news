@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { authActions } from "../../actions";
 import { auth } from "../../utils";
+import { NavBar, OAuth } from "../global";
 import LoginForm from "./LoginForm";
 
 class LoginPage extends React.Component {
@@ -45,12 +46,16 @@ class LoginPage extends React.Component {
   render() {
     const { errors, user } = this.state;
     return (
-      <LoginForm
-        onSubmit={this.handleSubmit}
-        onChange={this.handleChange}
-        errors={errors}
-        user={user}
-      />
+      <React.Fragment>
+        <NavBar />
+        <LoginForm
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+          errors={errors}
+          user={user}
+        />
+        <OAuth />
+      </React.Fragment>
     );
   }
 }

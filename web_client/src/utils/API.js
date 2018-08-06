@@ -9,6 +9,11 @@ export default {
       .get(`${URL}${API_VERSION}/news`)
       .then(response => response)
       .catch(err => err),
+  oauthLogin: () =>
+    axios
+      .post(`${URL}/auth/google`, {})
+      .then(response => response.data)
+      .catch(err => err),
   registerUser: (email, password) =>
     axios
       .post(`${URL}/auth/register`, {
