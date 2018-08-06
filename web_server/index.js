@@ -6,9 +6,18 @@ import cookieParser from "cookie-parser";
 
 import { newsRouter, indexRouter } from "./routes";
 
+require("dotenv").config();
+
 mongoose.connect(
-  "mongodb://user01:user01@ds163781.mlab.com:63781/latest-news",
-  { useNewUrlParser: true }
+  process.env.DB_URL,
+  { useNewUrlParser: true },
+  err => {
+    if (err) {
+      console.log(`DB Connection failed:${err}`);
+    } else {
+      console.log("DB Connection Success");
+    }
+  }
 );
 
 // remove cors in production env
