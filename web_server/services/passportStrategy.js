@@ -1,14 +1,17 @@
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
 
-export default passport.use(
-  new GoogleStrategy({
-    // options for google strategy
-    callbackURL: "/",
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET
-  }),
-  () => {
-    // passport callback
-  }
+passport.use(
+  new GoogleStrategy(
+    {
+      // options for google strategy
+      callbackURL: "/",
+      clientID:
+        "25628771030-k5ucj1s748k0e773rgahps3ec55htlm4.apps.googleusercontent.com",
+      clientSecret: "V7x2sjF4qyNzuRcmCffjetpL"
+    },
+    () => {
+      // passport callback
+    }
+  )
 );

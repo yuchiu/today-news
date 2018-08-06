@@ -1,5 +1,7 @@
-import newsRouter from "./newsRouter";
-import indexRouter from "./indexRouter";
-import authRouter from "./authRouter";
+import { authController, newsController } from "../controllers";
 
-export { newsRouter, indexRouter, authRouter };
+export default app => {
+  app.get("/api/v1/news", newsController.getNews);
+  app.post("/auth/register", authController.register);
+  app.post("/auth/login", authController.login);
+};

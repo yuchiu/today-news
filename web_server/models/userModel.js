@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
-const UserSchema = mongoose.Schema({
+const User = mongoose.Schema({
   firstName: {
     type: String,
     trim: true,
@@ -15,6 +16,7 @@ const UserSchema = mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true,
     trim: true,
     lowercase: true,
     maxlength: 50,
@@ -32,6 +34,8 @@ const UserSchema = mongoose.Schema({
   }
 });
 
-const userModel = mongoose.model("UserSchema", UserSchema);
+const userModel = mongoose.model("User", User);
+userModel.prototype.comparePassword = password =>
+  bcrypt.compareAsync(password, this.password);
 
 export default userModel;
