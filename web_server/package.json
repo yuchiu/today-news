@@ -17,7 +17,9 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "jayson": "^2.0.6",
-    "mongoose": "^5.2.6"
+    "mongoose": "^5.2.6",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -4,7 +4,7 @@ import path from "path";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-import { newsRouter, indexRouter } from "./routes";
+import { newsRouter, indexRouter, authRouter } from "./routes";
 
 require("dotenv").config();
 
@@ -33,6 +33,7 @@ app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, "../web-client/dist")));
 app.use("/", indexRouter);
 app.use("/api/v1", newsRouter);
+app.use("/auth", authRouter);
 app.use(cookieParser());
 
 app.listen(3200, () => {
