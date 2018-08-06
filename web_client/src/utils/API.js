@@ -8,5 +8,12 @@ export default {
     axios
       .get(`${URL}${API_VERSION}/news`)
       .then(response => response)
-      .catch(err => err)
+      .catch(err => err),
+  loginUser: (email, password) =>
+    axios
+      .post(`${URL}/auth/login`, {
+        email,
+        password
+      })
+      .then(response => response.data)
 };

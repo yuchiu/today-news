@@ -1,9 +1,15 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { TestingPage, LandingPage, NotFoundPage } from "./allRoutes";
 import { auth } from "../utils";
 import "./index.scss";
+import {
+  TestingPage,
+  LandingPage,
+  NotFoundPage,
+  RegisterPage,
+  LoginPage
+} from "./allRoutes";
 
 // eslint-disable-next-line
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -23,6 +29,8 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={LandingPage} />
+      <Route exact path="/login" component={LoginPage} />
+      <Route exact path="/register" component={RegisterPage} />
       <PrivateRoute exact path="/testing" component={TestingPage} />
       <Route component={NotFoundPage} />
     </Switch>
