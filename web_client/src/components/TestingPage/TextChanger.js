@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
 import { testingActions } from "../../actions";
 import Text from "./presentations/Text";
 
@@ -13,17 +14,16 @@ class TextChanger extends React.Component {
     this.setState({ inputVal: e.target.value });
   };
 
-  displayText = () => {
+  handleClick = () => {
     this.props.fetchText(this.state.inputVal);
+    console.log("11111111111111");
   };
 
   render() {
     return (
       <div id="body-container">
-        <input onChange={this.handleChange.bind(this)} />
-        <button onClick={this.displayText.bind(this)}>
-          Change Display Text
-        </button>
+        <input onChange={this.handleChange} />
+        <button onClick={this.handleClick}>Change Display Text</button>
         <Text text={this.props.text} />
       </div>
     );

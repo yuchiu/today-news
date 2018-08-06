@@ -11,7 +11,7 @@ export default {
       .catch(err => err),
   oauthLogin: () =>
     axios
-      .post(`${URL}/auth/google`, {})
+      .get(`${URL}/auth/google`, {})
       .then(response => response.data)
       .catch(err => err),
   registerUser: (email, password) =>

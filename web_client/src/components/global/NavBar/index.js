@@ -20,12 +20,18 @@ const NavBar = () => (
           <li>{auth.getEmail()}</li>
           <Link to="/">Log out</Link>
         </Menu.Item>
+        <Menu.Item position="right">
+          <Link to="/about">About</Link>
+        </Menu.Item>
       </Menu>
     )}
     {!auth.isUserAuthenticated() && (
       <Menu>
         <Menu.Item>
           <Link to="/">Latest News</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="/testing">Testing</Link>
         </Menu.Item>
 
         <Menu.Item position="right">

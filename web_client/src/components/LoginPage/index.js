@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { authActions } from "../../actions";
-import { auth } from "../../utils";
-import { NavBar, OAuth } from "../global";
+import { NavBar } from "../global";
 import LoginForm from "./LoginForm";
 
 class LoginPage extends React.Component {
@@ -45,6 +44,7 @@ class LoginPage extends React.Component {
 
   render() {
     const { errors, user } = this.state;
+    const { history } = this.props;
     return (
       <React.Fragment>
         <NavBar />
@@ -54,14 +54,12 @@ class LoginPage extends React.Component {
           errors={errors}
           user={user}
         />
-        <OAuth />
       </React.Fragment>
     );
   }
 }
 
 LoginPage.propTypes = {
-  history: PropTypes.object.isRequired,
   fetchLogin: PropTypes.func.isRequired
 };
 
@@ -69,7 +67,7 @@ const stateToProps = state => ({});
 
 const dispatchToProps = dispatch => ({
   fetchLogin: credential => {
-    dispatch(authActions.fetchText(credential));
+    dispatch(authActions.fetchLogin(credential));
   }
 });
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBar, Logo } from "../global";
+import { NavBar, Logo, OAuth } from "../global";
 import NewsPanel from "./NewsPanel";
 
 const LandingPage = () => (

@@ -20,6 +20,7 @@ const RegisterForm = ({ onSubmit, onChange, errors, user }) => (
               id="email"
               type="email"
               name="email"
+              value={user.email}
               className="validate"
               onChange={onChange}
             />
@@ -37,6 +38,7 @@ const RegisterForm = ({ onSubmit, onChange, errors, user }) => (
               id="password"
               type="password"
               name="password"
+              value={user.password}
               className="validate"
               onChange={onChange}
             />
@@ -53,7 +55,8 @@ const RegisterForm = ({ onSubmit, onChange, errors, user }) => (
             <input
               id="confirm_password"
               type="password"
-              name="confirm_password"
+              name="confirmPassword"
+              value={user.confirmPassword}
               className="validate"
               onChange={onChange}
             />

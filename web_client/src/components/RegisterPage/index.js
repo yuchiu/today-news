@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { authActions } from "../../actions";
-import { OAuth, NavBar } from "../global";
+import { NavBar } from "../global";
 import RegisterForm from "./RegisterForm";
 
 class RegisterPage extends React.Component {
@@ -61,6 +61,7 @@ class RegisterPage extends React.Component {
 
   render() {
     const { errors, user } = this.state;
+    const { history } = this.props;
     return (
       <React.Fragment>
         <NavBar />
@@ -70,14 +71,12 @@ class RegisterPage extends React.Component {
           errors={errors}
           user={user}
         />
-        <OAuth />
       </React.Fragment>
     );
   }
 }
 
 RegisterPage.propTypes = {
-  history: PropTypes.object.isRequired,
   fetchRegister: PropTypes.func.isRequired
 };
 
@@ -85,7 +84,7 @@ const stateToProps = state => ({});
 
 const dispatchToProps = dispatch => ({
   fetchRegister: credential => {
-    dispatch(authActions.fetchText(credential));
+    dispatch(authActions.fetchRegister(credential));
   }
 });
 export default connect(
