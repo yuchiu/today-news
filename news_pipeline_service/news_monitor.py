@@ -14,6 +14,7 @@ REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 
 NEWS_TIME_OUT_IN_SECONDS = 3600 * 24
+SLEEP_TIME_IN_SECONDS = 10
 
 SCRAPE_NEWS_TASK_QUEUE_URL = "amqp://rutjjghd:azj53edQjx1lCSpICxmnKrhc0cE9OFOW@lion.rmq.cloudamqp.com/rutjjghd"
 SCRAPE_NEWS_TASK_QUEUE_NAME = 'latest_news_scrape_news_task_queue'
@@ -50,3 +51,5 @@ while True:
             cloudAMQP_client.sendMessage(news)
 
     print "Fetched %d new news." % num_of_new_news
+
+    cloudAMQP_client.sleep(SLEEP_TIME_IN_SECONDS)
