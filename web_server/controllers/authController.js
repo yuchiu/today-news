@@ -1,6 +1,12 @@
-import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
 import { userModel } from "../models";
+
+function jwtSignUser(user) {
+  const ONE_WEEK = 60 * 60 * 24 * 7;
+  return jwt.sign(user, process.env.JWT_SECRET, {
+    expiresIn: ONE_WEEK
+  });
+}
 
 const authController = {
   register: async (req, res) => {
@@ -11,7 +17,7 @@ const authController = {
       res.send({
         confirmation: true,
         user: userJson,
-        token: "xxx"
+        token: jwtSignUser(userJson)
       });
     } catch (err) {
       res.send({
@@ -20,33 +26,34 @@ const authController = {
       });
     }
   },
+  // eslint-disable-next-line consistent-return
   login: async (req, res) => {
     try {
       const { email, password } = req.body;
       const user = await userModel.findOne({
-        where: {
-          email
-        }
+        email
       });
+      // find user
       if (!user) {
-        res.status(403).send({
+        return res.send({
           confirmation: false,
-          error: "invalid sign in info"
+          error: "no user was found"
         });
       }
-      const isPasswordValid = await user.comparePassword(password);
-      if (!isPasswordValid) {
-        res.status(403).send({
-          error: "Invalid log in info"
+      // validate password
+      if (user.password !== password) {
+        return res.send({
+          confirmation: false,
+          error: "password invalid"
         });
       }
       const userJson = user.toJSON();
       res.send({
-        user: userJson,
-        token: "xxx"
+        confirmation: true,
+        user,
+        token: jwtSignUser(userJson)
       });
     } catch (err) {
-      // email already exists
       res.status(500).send({
         error: "an error has occured trying to login"
       });

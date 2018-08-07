@@ -43,6 +43,10 @@ app.listen(3200, () => {
 
 // kill nodemon process manually on exit ctrl+c
 process.on("SIGINT", () => {
-  console.log("Stopped nodemon manually");
+  console.log("Stopped nodemon manually on SIGINT");
+  process.exit(0);
+});
+process.on("uncaughtException", () => {
+  console.log("Stopped nodemon manually on uncaughtException");
   process.exit(0);
 });
