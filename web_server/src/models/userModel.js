@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
-const User = mongoose.Schema({
+const UserSchema = mongoose.Schema({
   firstName: {
     type: String,
     trim: true,
-    maxlength: 50,
+    maxlength: 100,
     default: ""
   },
   lastName: {
     type: String,
     trim: true,
-    maxlength: 50,
+    maxlength: 100,
     default: ""
   },
   email: {
@@ -18,13 +18,13 @@ const User = mongoose.Schema({
     unique: true,
     trim: true,
     lowercase: true,
-    maxlength: 50,
+    maxlength: 100,
     default: ""
   },
   password: {
     type: String,
     minlength: 4,
-    maxlength: 50,
+    maxlength: 100,
     default: ""
   },
   timestamp: {
@@ -33,6 +33,17 @@ const User = mongoose.Schema({
   }
 });
 
-const userModel = mongoose.model("User", User);
+UserSchema.method.summary = () => {
+  const summary = {
+    id: this._id.toString(),
+    firstName: this.firstName,
+    lastName: this.lastName,
+    email: this.email,
+    timestamp: this.timestamp
+  };
+  return summary;
+};
+
+const userModel = mongoose.model("User", UserSchema);
 
 export default userModel;

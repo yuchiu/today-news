@@ -10,13 +10,15 @@ export default {
     if (error) {
       switch (error.details[0].context.key) {
         case "email":
-          res.status(400).send({
-            error: "Email address is not valid"
+          res.send({
+            confirmation: false,
+            error: "email address is not valid"
           });
           break;
         case "password":
-          res.status(400).send({
-            error: `The password provided failed to match the following rules:
+          res.send({
+            confirmation: false,
+            error: `the password provided failed to match the following rules:
                     <br>
                     1. It must contain ONLY the following characters: lower case, upper case, numerics
                     <br>
@@ -25,7 +27,8 @@ export default {
           });
           break;
         default:
-          res.status(400).send({
+          res.send({
+            confirmation: false,
             error: "invalid registration infomation"
           });
       }

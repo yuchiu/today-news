@@ -21,27 +21,25 @@ mongoose.connect(
   }
 );
 
-// remove cors in production env
+const app = express();
+
+/* remove cors in production env */
 const corsOptions = {
   origin: "http://localhost:8080",
   optionsSuccessStatus: 200
 };
-
-const app = express();
-
-// remove cors in production env
 app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "../web_client/dist")));
 app.use(cookieParser());
-
 routes(app);
 
 app.listen(3200, () => {
   console.log("app listening on PORT 3200");
 });
 
-// kill nodemon process manually on exit ctrl+c
+/* kill nodemon process manually */
 process.on("SIGINT", () => {
   console.log("Stopped nodemon manually on SIGINT");
   process.exit(0);

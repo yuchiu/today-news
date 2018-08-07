@@ -1,28 +1,45 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+
 import { userModel } from "../models";
 
-function jwtSignUser(user) {
+const jwtSignUser = user => {
   const ONE_WEEK = 60 * 60 * 24 * 7;
   return jwt.sign(user, process.env.JWT_SECRET, {
     expiresIn: ONE_WEEK
   });
-}
+};
+
+const userSummary = user => {
+  const summary = {
+    id: user._id.toString(),
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    timestamp: user.timestamp
+  };
+  return summary;
+};
 
 const authController = {
   register: async (req, res) => {
     try {
+      // hash password & create user
       const credential = req.body;
+      credential.password = bcrypt.hashSync(credential.password, 10);
       const user = await userModel.create(credential);
+
+      // user is created successfully
       const userJson = user.toJSON();
       res.send({
         confirmation: true,
-        user: userJson,
+        user: userSummary(userJson),
         token: jwtSignUser(userJson)
       });
     } catch (err) {
       res.send({
         confirmation: false,
-        error: err
+        error: `this email account ${req.body.email} is already registered`
       });
     }
   },
@@ -37,20 +54,22 @@ const authController = {
       if (!user) {
         return res.send({
           confirmation: false,
-          error: "no user was found"
+          error: `this email account ${req.body.email} is not yet registered`
         });
       }
       // validate password
-      if (user.password !== password) {
+      const isPasswordValid = bcrypt.compareSync(password, user.password);
+      if (!isPasswordValid) {
         return res.send({
           confirmation: false,
-          error: "password invalid"
+          error: "invalid log in information"
         });
       }
+      // user is validated
       const userJson = user.toJSON();
       res.send({
         confirmation: true,
-        user,
+        user: userSummary(userJson),
         token: jwtSignUser(userJson)
       });
     } catch (err) {
