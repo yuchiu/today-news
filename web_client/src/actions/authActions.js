@@ -3,10 +3,8 @@ import { API } from "../utils";
 
 export default {
   fetchRegister: credential => async dispatch => {
-    const response = await API.registerUser(
-      credential.email,
-      credential.password
-    );
+    const { email, password } = credential;
+    const response = await API.registerUser(email, password);
     dispatch({
       type: constants.FETCH_LOGIN,
       payload: response
@@ -14,7 +12,8 @@ export default {
   },
 
   fetchLogin: credential => async dispatch => {
-    const response = await API.loginUser(credential.email, credential.password);
+    const { email, password } = credential;
+    const response = await API.loginUser(email, password);
     dispatch({
       type: constants.FETCH_LOGIN,
       payload: response

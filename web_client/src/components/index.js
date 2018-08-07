@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { auth } from "../utils";
 import "./index.scss";
+import { Auth } from "../utils";
 import LandingPage from "./LandingPage";
 import TestingPage from "./TestingPage";
 import NotFoundPage from "./NotFoundPage";
@@ -15,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      auth.isUserAuthenticated() ? (
+      Auth.isUserAuthenticated() ? (
         <Component {...props} />
       ) : (
         <Redirect to={{ pathname: "/login" }} />

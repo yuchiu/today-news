@@ -3,11 +3,11 @@ import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 import "./index.scss";
-import { auth } from "../../../utils";
+import { Auth } from "../../../utils";
 
 const NavBar = () => (
   <div className="nav-bar">
-    {auth.isUserAuthenticated() && (
+    {Auth.isUserAuthenticated() && (
       <Menu>
         <Menu.Item>
           <Link to="/">Latest News</Link>
@@ -17,7 +17,7 @@ const NavBar = () => (
         </Menu.Item>
 
         <Menu.Item position="right">
-          <li>{auth.getEmail()}</li>
+          <li>{Auth.getEmail()}</li>
           <Link to="/">Log out</Link>
         </Menu.Item>
         <Menu.Item position="right">
@@ -25,7 +25,7 @@ const NavBar = () => (
         </Menu.Item>
       </Menu>
     )}
-    {!auth.isUserAuthenticated() && (
+    {!Auth.isUserAuthenticated() && (
       <Menu>
         <Menu.Item>
           <Link to="/">Latest News</Link>

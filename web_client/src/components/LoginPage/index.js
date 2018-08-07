@@ -31,8 +31,7 @@ class LoginPage extends React.Component {
     const {
       user: { email, password }
     } = this.state;
-    console.log("email:", email);
-    console.log("password:", password);
+
     this.props.fetchLogin({ email, password });
     this.setState({
       user: {
@@ -44,7 +43,6 @@ class LoginPage extends React.Component {
 
   render() {
     const { errors, user } = this.state;
-    const { history } = this.props;
     return (
       <React.Fragment>
         <NavBar />

@@ -43,10 +43,6 @@ class RegisterPage extends React.Component {
       user: { email, password, confirmPassword }
     } = this.state;
 
-    console.log("email:", email);
-    console.log("password:", password);
-    console.log("confirm_password:", confirmPassword);
-
     if (password === confirmPassword) {
       this.props.fetchRegister({ email, password });
       this.setState({
@@ -61,7 +57,6 @@ class RegisterPage extends React.Component {
 
   render() {
     const { errors, user } = this.state;
-    const { history } = this.props;
     return (
       <React.Fragment>
         <NavBar />
