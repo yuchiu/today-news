@@ -22,10 +22,23 @@ const userSummary = user => {
 };
 
 const authController = {
+  // eslint-disable-next-line consistent-return
   register: async (req, res) => {
     try {
-      // hash password & create user
       const credential = req.body;
+
+      // find user, return error if user is found
+      const isUserCreated = await userModel.findOne({
+        email: credential.email
+      });
+      if (isUserCreated) {
+        return res.send({
+          confirmation: false,
+          error: `this email account ${req.body.email} is already registered`
+        });
+      }
+
+      // hash password & create user
       credential.password = bcrypt.hashSync(credential.password, 10);
       const user = await userModel.create(credential);
 
@@ -37,26 +50,30 @@ const authController = {
         token: jwtSignUser(userJson)
       });
     } catch (err) {
+      // other server error
       res.send({
         confirmation: false,
-        error: `this email account ${req.body.email} is already registered`
+        error: "an error has occured trying to register"
       });
     }
   },
+
   // eslint-disable-next-line consistent-return
   login: async (req, res) => {
     try {
       const { email, password } = req.body;
+
+      // find user, return error if user is not found
       const user = await userModel.findOne({
         email
       });
-      // find user
       if (!user) {
         return res.send({
           confirmation: false,
           error: `this email account ${req.body.email} is not yet registered`
         });
       }
+
       // validate password
       const isPasswordValid = bcrypt.compareSync(password, user.password);
       if (!isPasswordValid) {
@@ -65,6 +82,7 @@ const authController = {
           error: "invalid log in information"
         });
       }
+
       // user is validated
       const userJson = user.toJSON();
       res.send({
@@ -73,7 +91,9 @@ const authController = {
         token: jwtSignUser(userJson)
       });
     } catch (err) {
-      res.status(500).send({
+      // other server error
+      res.send({
+        confirmation: false,
         error: "an error has occured trying to login"
       });
     }
