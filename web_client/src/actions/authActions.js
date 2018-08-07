@@ -18,5 +18,12 @@ export default {
       type: constants.FETCH_LOGIN,
       payload: response
     });
+  },
+
+  fetchLogout: () => dispatch => {
+    dispatch({
+      type: constants.FETCH_LOGOUT,
+      payload: null
+    });
   }
 };

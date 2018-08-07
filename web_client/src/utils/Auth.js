@@ -3,11 +3,9 @@ export default {
    * Authenticate a user. Save a token string in Local Storage
    *
    * @param {string} token
-   * @param {string} email
    */
-  authenticateUser: (token, email) => {
+  authenticateUser: token => {
     localStorage.setItem("token", token);
-    localStorage.setItem("email", email);
   },
 
   /**
@@ -23,7 +21,6 @@ export default {
    */
   deauthenticateUser: () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("email");
   },
 
   /**
@@ -31,12 +28,5 @@ export default {
    *
    * @returns {string}
    */
-  getToken: () => localStorage.getItem("token"),
-
-  /**
-   * Get email.
-   *
-   * @returns {string}
-   */
-  getEmail: () => localStorage.getItem("email")
+  getToken: () => localStorage.getItem("token")
 };

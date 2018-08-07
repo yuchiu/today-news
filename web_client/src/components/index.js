@@ -7,11 +7,10 @@ import LandingPage from "./LandingPage";
 import TestingPage from "./TestingPage";
 import NotFoundPage from "./NotFoundPage";
 import RegisterPage from "./RegisterPage";
-import AboutPage from "./AboutPage";
 import LoginPage from "./LoginPage";
 
 // eslint-disable-next-line
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const AuthenticatedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
@@ -30,8 +29,7 @@ const Routes = () => (
       <Route exact path="/" component={LandingPage} />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register" component={RegisterPage} />
-      <Route exact path="/testing" component={TestingPage} />
-      <PrivateRoute exact path="/about" component={AboutPage} />
+      <AuthenticatedRoute exact path="/testing" component={TestingPage} />
       <Route component={NotFoundPage} />
     </Switch>
   </BrowserRouter>

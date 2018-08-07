@@ -5,7 +5,7 @@ import store from "./stores";
 import Routes from "./components";
 
 const app = (
-  <Provider store={store.configure()}>
+  <Provider store={store}>
     <Routes />
   </Provider>
 );
