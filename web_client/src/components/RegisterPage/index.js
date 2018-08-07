@@ -16,6 +16,13 @@ class RegisterPage extends React.Component {
     }
   };
 
+  componentDidUpdate() {
+    const { isUserAuthenticated, history } = this.props;
+    if (isUserAuthenticated) {
+      history.push("/");
+    }
+  }
+
   handleChange = e => {
     const { user } = this.state;
     const field = e.target.name;
@@ -57,9 +64,10 @@ class RegisterPage extends React.Component {
 
   render() {
     const { errors, user } = this.state;
+    const { history } = this.props;
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar history={history} />
         <RegisterForm
           onSubmit={this.handleSubmit}
           onChange={this.handleChange}
@@ -72,10 +80,14 @@ class RegisterPage extends React.Component {
 }
 
 RegisterPage.propTypes = {
-  fetchRegister: PropTypes.func.isRequired
+  fetchRegister: PropTypes.func.isRequired,
+  isUserAuthenticated: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired
 };
 
-const stateToProps = state => ({});
+const stateToProps = state => ({
+  isUserAuthenticated: state.authReducer.isUserAuthenticated
+});
 
 const dispatchToProps = dispatch => ({
   fetchRegister: credential => {

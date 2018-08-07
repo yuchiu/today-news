@@ -1,5 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const NotFoundPage = () => <div>Not Found</div>;
+import { NavBar } from "../global";
+
+const NotFoundPage = ({ history }) => (
+  <div>
+    <NavBar history={history} />Not Found
+  </div>
+);
+
+NotFoundPage.propTypes = {
+  history: PropTypes.object.isRequired
+};
 
 export default NotFoundPage;
