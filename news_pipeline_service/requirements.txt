@@ -2,3 +2,5 @@ loads
 requests
 redis
 lxml
+pika
+newspaper3k

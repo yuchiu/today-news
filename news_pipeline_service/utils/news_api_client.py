@@ -1,3 +1,4 @@
+
 import requests
 
 from json import loads
@@ -6,34 +7,32 @@ NEWS_API_ENDPOINT = 'https://newsapi.org/v1/'
 NEWS_API_KEY = "76c1515740924551909bf3f80d20421f"
 ARTICLES_API = 'articles'
 
-#BBC = 'bbc-news'
-CNN = 'cnn'
-DEFAULT_SOURCES = [CNN]
 
+CNN = 'cnn'
+DEFAULT_SOURCE = [CNN]
 SORT_BY_TOP = 'top'
 
 
-def buildUrl(end_point=NEWS_API_ENDPOINT, api_name=ARTICLES_API):
-    return end_point + api_name
+def _buildUrl(endpoint=NEWS_API_ENDPOINT, apiName=ARTICLES_API):
+    return endpoint + apiName
 
 
-def getNewsFromSource(sources=DEFAULT_SOURCES, sortBy=SORT_BY_TOP):
+def getNewsListFromSources(sources=DEFAULT_SOURCE, sortBy=SORT_BY_TOP):
     articles = []
+
     for source in sources:
         payload = {'apiKey': NEWS_API_KEY,
                    'source': source,
                    'sortBy': sortBy}
-        response = requests.get(buildUrl(), params=payload)
-        res_json = loads(response.content)
+        response = requests.get(_buildUrl(), params=payload)
+        res_json = loads(response.content.decode('utf-8'))
 
-        # Extract info from response
+        # extract news from response
         if (res_json is not None and
             res_json['status'] == 'ok' and
                 res_json['source'] is not None):
-
-            # populate news
+            # populate news source in each article.
             for news in res_json['articles']:
                 news['source'] = res_json['source']
-
             articles.extend(res_json['articles'])
     return articles
