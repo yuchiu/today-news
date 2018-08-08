@@ -1,6 +1,6 @@
 # Usage
 
-#### required softwares & version this project is currently using
+#### required softwares & version this project is using during development
 
 ```
 ubuntu    18.04.1
@@ -10,13 +10,13 @@ Redis     4.0.11
 
 npm       6.1.0
 nodejs    10.7.0
-python    2.7.15
-pip       9.0.1
+python3   3.6.5
+pip3      9.0.1
 ```
 
 ## Development
 
-#### Start DataBases - Terminal
+#### Start DataBases - Terminal(linux)
 
 ```
 sudo systemctl start mongod
