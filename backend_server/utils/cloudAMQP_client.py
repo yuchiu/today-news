@@ -17,21 +17,21 @@ class CloudAMQPClient:
         self.channel.basic_publish(exchange='',
                                    routing_key=self.queue_name,
                                    body=json.dumps(message))
-        print "[X] Sent message to %s: %s" % (self.queue_name, message)
-        return
+        print("[x] Sent message to %s:%s" % (self.queue_name, message))
 
     # get a message
     def getMessage(self):
         method_frame, header_frame, body = self.channel.basic_get(
             self.queue_name)
-        if method_frame is not None:
-            print "[O] Received message from %s: %s" % (self.queue_name, body)
+        if method_frame:
+            print("[x] Received message from %s:%s" % (self.queue_name, body))
             self.channel.basic_ack(method_frame.delivery_tag)
-            return json.loads(body)
+            return json.loads(body.decode('utf-8'))
         else:
-            print "No message returned"
+            print("No message returned.")
             return None
 
-    # sleep
+    # BlockingConnection sleep is a safer way to sleep than time.slee(). This
+    # will respond to server's heartbeat
     def sleep(self, seconds):
         self.connection.sleep(seconds)
