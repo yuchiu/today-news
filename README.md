@@ -7,6 +7,7 @@ ubuntu    18.04.1
 
 mongodb   4.0.0
 Redis     4.0.11
+rabbitmq  using CloudAMQP's RabbitMQ service
 
 npm       6.1.0
 nodejs    10.7.0
@@ -16,12 +17,17 @@ pip3      9.0.1
 
 ## Development
 
-#### Start DataBases - Terminal(linux)
+#### DataBases - Terminal
+
+1.  start databases(linux environment)
 
 ```
 sudo systemctl start mongod
 sudo systemctl start redis
 ```
+
+default redis port: 6379
+default mongodb port: 27017
 
 #### Web Server - Terminal A
 
@@ -56,7 +62,7 @@ python service.py
 
 Application will be serving on http://localhost:4040
 
-#### News Monitor Service - Terminal D
+#### News Pipeline Service - Terminal D
 
 1.  install dependencies & start application
 
