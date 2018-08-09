@@ -4,3 +4,7 @@ redis
 lxml
 pika
 newspaper3k
+python-dateutil
+sklearn
+numpy
+scipy
