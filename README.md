@@ -64,9 +64,8 @@ Application will be serving on http://localhost:4040
 
 #### News Pipeline Service - Terminal D
 
-1.  install dependencies & start application
+1.  script to auto launch the service
 
 ```
-pip install -r requirements.txt
-python news_monitor.py
+sh news_pipeline_launcher.sh
 ```
