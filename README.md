@@ -5,7 +5,7 @@
 ```
 ubuntu    18.04.1
 
-mongodb   4.0.0
+mongodb   3.6
 Redis     4.0.11
 rabbitmq  using CloudAMQP's RabbitMQ service
 
@@ -56,7 +56,7 @@ Application will be serving on http://localhost:8080
 1.  install dependencies & start application
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 python service.py
 ```
 
