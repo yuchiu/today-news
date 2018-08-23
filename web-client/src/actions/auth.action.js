@@ -2,25 +2,25 @@ import constants from "../constants";
 import { authService } from "../services";
 
 export default {
-  fetchRegister: credentials => async dispatch => {
+  registerUser: credentials => async dispatch => {
     const response = await authService.registerUser(credentials);
     dispatch({
-      type: constants.FETCH_LOGIN,
+      type: constants.LOGIN_USER,
       payload: response
     });
   },
 
-  fetchLogin: credentials => async dispatch => {
+  loginUser: credentials => async dispatch => {
     const response = await authService.loginUser(credentials);
     dispatch({
-      type: constants.FETCH_LOGIN,
+      type: constants.LOGIN_USER,
       payload: response
     });
   },
 
-  fetchLogout: () => dispatch => {
+  logoutUser: () => dispatch => {
     dispatch({
-      type: constants.FETCH_LOGOUT
+      type: constants.LOGOUT_USER
     });
   }
 };

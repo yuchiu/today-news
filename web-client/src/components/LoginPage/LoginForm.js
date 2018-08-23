@@ -1,77 +1,66 @@
 import React from "react";
+import { Form, Icon, Input, Button } from "antd";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import "./LoginForm.scss";
 
-const LoginForm = ({ onSubmit, onChange, errors, credentials }) => (
-  <div className="container">
-    <div className="card-panel login-panel">
-      <form className="col s12" action="/" onSubmit={onSubmit}>
-        <h4 className="center-align">Login</h4>
-        {errors.summary && (
-          <div className="row">
-            <p className="error-message">{errors.summary}</p>
-          </div>
-        )}
-        <div className="row">
-          <div className="input-field col s12">
-            <input
-              className="validate"
-              id="email"
-              type="email"
-              name="email"
-              value={credentials.email}
-              onChange={onChange}
-            />
-            <label htmlFor="email">Email</label>
-          </div>
-        </div>
-        {errors.email && (
-          <div className="row">
-            <p className="error-message">{errors.email}</p>
-          </div>
-        )}
-        <div className="row">
-          <div className="input-field col s12">
-            <input
-              className="validate"
-              id="password"
-              type="password"
-              name="password"
-              value={credentials.password}
-              onChange={onChange}
-            />
-            <label htmlFor="password">Password</label>
-          </div>
-        </div>
-        {errors.password && (
-          <div className="row">
-            <p className="error-message">{errors.password}</p>
-          </div>
-        )}
-        <div className="row right-align">
-          <input
-            type="submit"
-            className="waves-effect waves-light btn indigo lighten-1"
-            value="Log in"
-          />
-        </div>
-        <div className="row">
-          <p className="right-align">
-            {" "}
-            New to Latest News? <Link to="/signup">Sign Up</Link>
-          </p>
-        </div>
-      </form>
-    </div>
-  </div>
+import { InlineError } from "../global";
+
+const LoginForm = ({
+  handleLogin,
+  onChange,
+  redirectToRegister,
+  clientErrors,
+  credentials
+}) => (
+  <Form className="login-form">
+    <Form.Item>
+      <label htmlFor="email">Email</label>
+      {clientErrors.email && <InlineError text={clientErrors.email} />}
+      <Input
+        prefix={<Icon type="mail" />}
+        id="email"
+        type="email"
+        name="email"
+        value={credentials.email}
+        className=""
+        onChange={onChange}
+        placeholder="email"
+        size="large"
+      />
+    </Form.Item>
+    <Form.Item>
+      <label htmlFor="password">Password</label>
+      {clientErrors.password && <InlineError text={clientErrors.password} />}
+      <Input
+        prefix={<Icon type="lock" />}
+        id="password"
+        type="password"
+        name="password"
+        value={credentials.password}
+        className="validate"
+        onChange={onChange}
+        placeholder="password"
+        size="large"
+      />
+    </Form.Item>
+    <Button
+      type="primary"
+      htmlType="submit"
+      className=""
+      size="large"
+      onClick={handleLogin}
+    >
+      Log In
+    </Button>
+    <br /> New to Job Hunting? <a onClick={redirectToRegister}>Register</a>
+  </Form>
 );
 
 LoginForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired,
+  redirectToRegister: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
-  credentials: PropTypes.object.isRequired
+  credentials: PropTypes.object.isRequired,
+  clientErrors: PropTypes.object.isRequired
 };
 
 export default LoginForm;

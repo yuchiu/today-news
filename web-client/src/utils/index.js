@@ -1,3 +1,4 @@
 import auth from "./auth";
+import validateForm from "./validateForm";
 
-export { auth };
+export { auth, validateForm };

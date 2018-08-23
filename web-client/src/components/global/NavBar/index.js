@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Menu } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Button } from "antd";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { authAction } from "../../../actions";
@@ -9,44 +9,40 @@ import "./index.scss";
 import { auth } from "../../../utils";
 
 class NavBar extends React.Component {
-  componentDidUpdate() {
-    const { isUserAuthenticated, history } = this.props;
-    if (!isUserAuthenticated) {
-      history.push("/");
-    }
-  }
+  handleClick = () => {
+    const { logoutUser, history } = this.props;
+    logoutUser();
+    history.push("/");
+  };
 
   render() {
-    const { fetchLogout, isUserAuthenticated, user } = this.props;
+    const { isUserAuthenticated, username } = this.props;
     return (
       <div className="nav-bar">
-        {isUserAuthenticated && (
-          <Menu>
-            <Menu.Item>
+        {isUserAuthenticated &&
+          username && (
+            <div className="nav-bar">
               <Link to="/">Latest News</Link>
-            </Menu.Item>
-            <Menu.Item position="right">
+              <span>Hi! {username}</span>
               <Link to="/testing">Testing</Link>
-            </Menu.Item>
-            <Menu.Item position="right">
-              <li>{user.email}</li>
-              <button onClick={() => fetchLogout()}>Log out</button>
-            </Menu.Item>
-          </Menu>
-        )}
+              <Link to="/testing">
+                <li>testing</li>
+              </Link>
+              <Button type="primary" onClick={this.handleClick}>
+                Log Out
+              </Button>
+            </div>
+          )}
         {!isUserAuthenticated && (
-          <Menu>
-            <Menu.Item>
-              <Link to="/">Latest News</Link>
-            </Menu.Item>
-
-            <Menu.Item position="right">
-              <Link to="/login">Log In</Link>
-            </Menu.Item>
-            <Menu.Item position="right">
-              <Link to="/register">Register</Link>
-            </Menu.Item>
-          </Menu>
+          <div className="nav-bar">
+            <Link to="/">Latest News</Link>
+            <Link to="/login">
+              <li>login</li>
+            </Link>
+            <Link to="/register">
+              <li>register</li>
+            </Link>
+          </div>
         )}
       </div>
     );
@@ -55,23 +51,25 @@ class NavBar extends React.Component {
 
 NavBar.propTypes = {
   isUserAuthenticated: PropTypes.bool.isRequired,
-  fetchLogout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+  username: PropTypes.string,
   history: PropTypes.object.isRequired
 };
 
 const stateToProps = state => ({
   isUserAuthenticated: state.authReducer.isUserAuthenticated,
-  user: state.authReducer.user
+  username: state.authReducer.user.username
 });
 
 const dispatchToProps = dispatch => ({
-  fetchLogout: () => {
-    dispatch(authAction.fetchLogout());
+  logoutUser: () => {
+    dispatch(authAction.logoutUser());
   }
 });
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(NavBar);
+export default withRouter(
+  connect(
+    stateToProps,
+    dispatchToProps
+  )(NavBar)
+);

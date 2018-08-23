@@ -8,6 +8,7 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "dependencies": {
+    "antd": "^3.8.2",
     "antd-mobile": "^2.2.0-beta.1",
     "axios": "^0.18.0",
     "chalk": "1.1.3",

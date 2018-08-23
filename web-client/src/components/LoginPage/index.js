@@ -1,26 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
+import { validateForm } from "../../utils";
 import { authAction } from "../../actions";
-import { NavBar } from "../global";
+import { NavBar, InlineError } from "../global";
 import LoginForm from "./LoginForm";
 
 class LoginPage extends React.Component {
   state = {
-    errors: {},
+    clientErrors: {},
     credentials: {
       email: "",
       password: ""
     }
   };
 
-  componentDidUpdate() {
-    const { isUserAuthenticated, history } = this.props;
-    if (isUserAuthenticated) {
-      history.push("/");
-    }
+  componentWillUnmount() {
+    this.setState({
+      credentials: {
+        email: "",
+        password: ""
+      }
+    });
   }
+
+  redirectToRegister = () => {
+    const { history } = this.props;
+    history.push("/register");
+  };
 
   handleChange = e => {
     const { credentials } = this.state;
@@ -32,50 +41,55 @@ class LoginPage extends React.Component {
     });
   };
 
-  handleSubmit = e => {
+  handleLogin = e => {
     e.preventDefault();
 
     const { credentials } = this.state;
 
-    this.props.fetchLogin(credentials);
-    this.setState({
-      credentials: {
-        email: "",
-        password: ""
-      }
-    });
+    const clientErrors = validateForm.login(credentials);
+    this.setState({ clientErrors });
+    if (Object.keys(clientErrors).length === 0) {
+      const { loginUser } = this.props;
+      loginUser(credentials);
+    }
   };
 
   render() {
-    const { errors, credentials } = this.state;
-    const { history } = this.props;
+    const { clientErrors, credentials } = this.state;
+    const { isUserAuthenticated, message } = this.props;
     return (
       <React.Fragment>
-        <NavBar history={history} />
+        {isUserAuthenticated && <Redirect to="/" />}
+        <NavBar />
         <LoginForm
-          onSubmit={this.handleSubmit}
+          handleLogin={this.handleLogin}
           onChange={this.handleChange}
-          errors={errors}
+          redirectToRegister={this.redirectToRegister}
+          clientErrors={clientErrors}
           credentials={credentials}
         />
+        <br />
+        {message && <InlineError text={message} />}
       </React.Fragment>
     );
   }
 }
 
 LoginPage.propTypes = {
-  fetchLogin: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
   isUserAuthenticated: PropTypes.bool.isRequired,
-  history: PropTypes.object.isRequired
+  message: PropTypes.string
 };
 
 const stateToProps = state => ({
-  isUserAuthenticated: state.authReducer.isUserAuthenticated
+  isUserAuthenticated: state.authReducer.isUserAuthenticated,
+  message: state.authReducer.message
 });
 
 const dispatchToProps = dispatch => ({
-  fetchLogin: credential => {
-    dispatch(authAction.fetchLogin(credential));
+  loginUser: credential => {
+    dispatch(authAction.loginUser(credential));
   }
 });
 

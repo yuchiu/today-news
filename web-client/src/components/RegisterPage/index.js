@@ -1,98 +1,113 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
+import { validateForm } from "../../utils";
 import { authAction } from "../../actions";
-import { NavBar } from "../global";
+import { NavBar, InlineError } from "../global";
 import RegisterForm from "./RegisterForm";
 
 class RegisterPage extends React.Component {
   state = {
-    errors: {},
+    clientErrors: {},
     credentials: {
+      username: "",
       email: "",
       password: "",
       confirmPassword: ""
     }
   };
 
-  componentDidUpdate() {
-    const { isUserAuthenticated, history } = this.props;
-    if (isUserAuthenticated) {
-      history.push("/");
-    }
+  componentWillUnmount() {
+    this.setState({
+      credentials: {
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+      }
+    });
   }
+
+  redirectToLogin = () => {
+    const { history } = this.props;
+    history.push("/login");
+  };
 
   handleChange = e => {
     const { credentials } = this.state;
     const field = e.target.name;
     credentials[field] = e.target.value;
-
     this.setState({
       credentials
     });
-
     if (credentials.password !== credentials.confirmPassword) {
-      const { errors } = this.state;
-      errors.password = "Password and Confirm Password don't match.";
-      this.setState({ errors });
+      const { clientErrors } = this.state;
+      clientErrors.confirmPassword =
+        "Password and Confirm Password don't match.";
+      this.setState({ clientErrors });
     } else {
-      const { errors } = this.state;
-      errors.password = "";
-      this.setState({ errors });
+      const { clientErrors } = this.state;
+      clientErrors.confirmPassword = "";
+      this.setState({ clientErrors });
     }
   };
 
-  handleSubmit = e => {
+  handleRegister = e => {
     e.preventDefault();
 
     const {
       credentials,
-      credentials: { password, confirmPassword }
+      credentials: { username, email, password, confirmPassword }
     } = this.state;
 
     if (password === confirmPassword) {
-      this.props.fetchRegister(credentials);
-      this.setState({
-        credentials: {
-          email: "",
-          password: "",
-          confirmPassword: ""
-        }
-      });
+      const clientErrors = validateForm.register(credentials);
+      this.setState({ clientErrors });
+
+      if (Object.keys(clientErrors).length === 0) {
+        const { registerUser } = this.props;
+        registerUser({ username, email, password });
+      }
     }
   };
 
   render() {
-    const { errors, credentials } = this.state;
-    const { history } = this.props;
+    const { clientErrors, credentials } = this.state;
+    const { isUserAuthenticated, message } = this.props;
     return (
       <React.Fragment>
-        <NavBar history={history} />
+        {isUserAuthenticated && <Redirect to="/" />}
+        <NavBar />
         <RegisterForm
-          onSubmit={this.handleSubmit}
+          handleRegister={this.handleRegister}
           onChange={this.handleChange}
-          errors={errors}
+          redirectToLogin={this.redirectToLogin}
+          clientErrors={clientErrors}
           credentials={credentials}
         />
+        {message && <InlineError text={message} />}
       </React.Fragment>
     );
   }
 }
 
 RegisterPage.propTypes = {
-  fetchRegister: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
   isUserAuthenticated: PropTypes.bool.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  message: PropTypes.string
 };
 
 const stateToProps = state => ({
-  isUserAuthenticated: state.authReducer.isUserAuthenticated
+  isUserAuthenticated: state.authReducer.isUserAuthenticated,
+  message: state.authReducer.message
 });
 
 const dispatchToProps = dispatch => ({
-  fetchRegister: credential => {
-    dispatch(authAction.fetchRegister(credential));
+  registerUser: credential => {
+    dispatch(authAction.registerUser(credential));
   }
 });
 export default connect(

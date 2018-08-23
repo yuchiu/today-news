@@ -6,7 +6,7 @@ import { auth } from "../utils";
 const defaultState = {
   isUserAuthenticated: false,
   user: {},
-  error: {}
+  message: ""
 };
 
 const initialState = defineState(defaultState)("authReducer");
@@ -14,23 +14,23 @@ const initialState = defineState(defaultState)("authReducer");
 export default (state = initialState, action) => {
   const newState = Object.assign({}, state);
   switch (action.type) {
-    case constants.FETCH_LOGIN:
+    case constants.LOGIN_USER:
       if (action.payload.confirmation) {
         auth.authenticateUser(action.payload.token, action.payload.user);
         newState.isUserAuthenticated = auth.isUserAuthenticated();
         newState.user = action.payload.user;
-        newState.error = {};
+        newState.message = action.payload.message;
       } else {
         newState.isUserAuthenticated = auth.isUserAuthenticated();
         newState.user = {};
-        newState.error = action.payload.error;
+        newState.message = action.payload.message;
       }
       return newState;
-    case constants.FETCH_LOGOUT:
+    case constants.LOGOUT_USER:
       auth.deauthenticateUser();
       newState.isUserAuthenticated = auth.isUserAuthenticated();
       newState.user = {};
-      newState.error = {};
+      newState.message = "";
       return newState;
     default:
       return state;
