@@ -5,7 +5,8 @@ import { NavBar } from "../global";
 
 const NotFoundPage = ({ history }) => (
   <div>
-    <NavBar history={history} />Not Found
+    <NavBar history={history} />
+    Not Found
   </div>
 );
 
