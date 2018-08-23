@@ -49,7 +49,7 @@ npm install
 npm start
 ```
 
-Application will be serving on http://localhost:8080
+Application will be serving on http://localhost:3000
 
 #### Backend Server - Terminal C
 
