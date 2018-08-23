@@ -1,11 +1,13 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
+import config from "../../config";
 import { userModel } from "../models";
 
 const jwtSignUser = user => {
+  const userJson = user.toJSON();
   const ONE_WEEK = 60 * 60 * 24 * 7;
-  return jwt.sign(user, process.env.JWT_SECRET, {
+  return jwt.sign(userJson, config.JWT_SECRET, {
     expiresIn: ONE_WEEK
   });
 };

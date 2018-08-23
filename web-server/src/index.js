@@ -5,12 +5,11 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 
+import config from "../config";
 import routes from "./routes";
 
-require("dotenv").config();
-
 mongoose.connect(
-  process.env.DB_LOCAL,
+  config.DB_LOCAL,
   { useNewUrlParser: true },
   err => {
     if (err) {
@@ -25,26 +24,16 @@ const app = express();
 
 /* remove cors in production env */
 const corsOptions = {
-  origin: "http://localhost:8080",
+  origin: "http://localhost:3000",
   optionsSuccessStatus: 200
 };
-app.use(cors(corsOptions));
 
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "../web_client/dist")));
+app.use(express.static(path.join(__dirname, "../web-client/build")));
 app.use(cookieParser());
 routes(app);
 
-app.listen(3200, () => {
-  console.log("app listening on PORT 3200");
-});
-
-/* kill nodemon process manually */
-process.on("SIGINT", () => {
-  console.log("Stopped nodemon manually on SIGINT");
-  process.exit(0);
-});
-process.on("uncaughtException", () => {
-  console.log("Stopped nodemon manually on uncaughtException");
-  process.exit(0);
+app.listen(config.PORT, () => {
+  console.log(`app listenning on port ${config.PORT}`);
 });

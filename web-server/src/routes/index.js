@@ -1,5 +1,5 @@
 import { authController, newsController } from "../controllers";
-import { authPolicy } from "../utils";
+import { authPolicy } from "../policies";
 
 export default app => {
   app.get("/api/v1/news", newsController.getNews);
