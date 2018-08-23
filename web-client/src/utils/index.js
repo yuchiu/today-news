@@ -1,4 +1,3 @@
-import API from "./API";
-import Auth from "./Auth";
+import auth from "./auth";
 
-export { API, Auth };
+export { auth };

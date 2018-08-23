@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import "./RegisterForm.scss";
 
-const RegisterForm = ({ onSubmit, onChange, errors, user }) => (
+const RegisterForm = ({ onSubmit, onChange, errors, credentials }) => (
   <div className="container">
     <div className="card-panel register-panel">
       <form className="col s12" action="/" onSubmit={onSubmit}>
@@ -20,7 +20,7 @@ const RegisterForm = ({ onSubmit, onChange, errors, user }) => (
               id="email"
               type="email"
               name="email"
-              value={user.email}
+              value={credentials.email}
               className="validate"
               onChange={onChange}
             />
@@ -38,7 +38,7 @@ const RegisterForm = ({ onSubmit, onChange, errors, user }) => (
               id="password"
               type="password"
               name="password"
-              value={user.password}
+              value={credentials.password}
               className="validate"
               onChange={onChange}
             />
@@ -56,7 +56,7 @@ const RegisterForm = ({ onSubmit, onChange, errors, user }) => (
               id="confirm_password"
               type="password"
               name="confirmPassword"
-              value={user.confirmPassword}
+              value={credentials.confirmPassword}
               className="validate"
               onChange={onChange}
             />
@@ -85,7 +85,7 @@ RegisterForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  credentials: PropTypes.object.isRequired
 };
 
 export default RegisterForm;

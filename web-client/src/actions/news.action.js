@@ -1,9 +1,9 @@
 import constants from "../constants";
-import { API } from "../utils";
+import { newsService } from "../services";
 
 export default {
   fetchNews: () => async dispatch => {
-    const response = await API.getNews();
+    const response = await newsService.getNews();
     dispatch({
       type: constants.FETCH_NEWS,
       payload: response

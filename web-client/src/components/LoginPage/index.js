@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { authActions } from "../../actions";
+import { authAction } from "../../actions";
 import { NavBar } from "../global";
 import LoginForm from "./LoginForm";
 
 class LoginPage extends React.Component {
   state = {
     errors: {},
-    user: {
+    credentials: {
       email: "",
       password: ""
     }
@@ -23,25 +23,23 @@ class LoginPage extends React.Component {
   }
 
   handleChange = e => {
-    const { user } = this.state;
+    const { credentials } = this.state;
     const field = e.target.name;
-    user[field] = e.target.value;
+    credentials[field] = e.target.value;
 
     this.setState({
-      user
+      credentials
     });
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    const {
-      user: { email, password }
-    } = this.state;
+    const { credentials } = this.state;
 
-    this.props.fetchLogin({ email, password });
+    this.props.fetchLogin(credentials);
     this.setState({
-      user: {
+      credentials: {
         email: "",
         password: ""
       }
@@ -49,7 +47,7 @@ class LoginPage extends React.Component {
   };
 
   render() {
-    const { errors, user } = this.state;
+    const { errors, credentials } = this.state;
     const { history } = this.props;
     return (
       <React.Fragment>
@@ -58,7 +56,7 @@ class LoginPage extends React.Component {
           onSubmit={this.handleSubmit}
           onChange={this.handleChange}
           errors={errors}
-          user={user}
+          credentials={credentials}
         />
       </React.Fragment>
     );
@@ -77,7 +75,7 @@ const stateToProps = state => ({
 
 const dispatchToProps = dispatch => ({
   fetchLogin: credential => {
-    dispatch(authActions.fetchLogin(credential));
+    dispatch(authAction.fetchLogin(credential));
   }
 });
 

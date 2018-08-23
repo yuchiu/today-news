@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import "./index.scss";
-import { Auth } from "../utils";
+import { auth } from "../utils";
 import LandingPage from "./LandingPage";
 import TestingPage from "./TestingPage";
 import NotFoundPage from "./NotFoundPage";
@@ -14,7 +13,7 @@ const AuthenticatedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      Auth.isUserAuthenticated() ? (
+      auth.isUserAuthenticated() ? (
         <Component {...props} />
       ) : (
         <Redirect to={{ pathname: "/login" }} />

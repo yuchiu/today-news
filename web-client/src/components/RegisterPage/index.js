@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { authActions } from "../../actions";
+import { authAction } from "../../actions";
 import { NavBar } from "../global";
 import RegisterForm from "./RegisterForm";
 
 class RegisterPage extends React.Component {
   state = {
     errors: {},
-    user: {
+    credentials: {
       email: "",
       password: "",
       confirmPassword: ""
@@ -24,15 +24,15 @@ class RegisterPage extends React.Component {
   }
 
   handleChange = e => {
-    const { user } = this.state;
+    const { credentials } = this.state;
     const field = e.target.name;
-    user[field] = e.target.value;
+    credentials[field] = e.target.value;
 
     this.setState({
-      user
+      credentials
     });
 
-    if (user.password !== user.confirmPassword) {
+    if (credentials.password !== credentials.confirmPassword) {
       const { errors } = this.state;
       errors.password = "Password and Confirm Password don't match.";
       this.setState({ errors });
@@ -47,13 +47,14 @@ class RegisterPage extends React.Component {
     e.preventDefault();
 
     const {
-      user: { email, password, confirmPassword }
+      credentials,
+      credentials: { password, confirmPassword }
     } = this.state;
 
     if (password === confirmPassword) {
-      this.props.fetchRegister({ email, password });
+      this.props.fetchRegister(credentials);
       this.setState({
-        user: {
+        credentials: {
           email: "",
           password: "",
           confirmPassword: ""
@@ -63,7 +64,7 @@ class RegisterPage extends React.Component {
   };
 
   render() {
-    const { errors, user } = this.state;
+    const { errors, credentials } = this.state;
     const { history } = this.props;
     return (
       <React.Fragment>
@@ -72,7 +73,7 @@ class RegisterPage extends React.Component {
           onSubmit={this.handleSubmit}
           onChange={this.handleChange}
           errors={errors}
-          user={user}
+          credentials={credentials}
         />
       </React.Fragment>
     );
@@ -91,7 +92,7 @@ const stateToProps = state => ({
 
 const dispatchToProps = dispatch => ({
   fetchRegister: credential => {
-    dispatch(authActions.fetchRegister(credential));
+    dispatch(authAction.fetchRegister(credential));
   }
 });
 export default connect(

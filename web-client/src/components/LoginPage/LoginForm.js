@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./LoginForm.scss";
 
-const LoginForm = ({ onSubmit, onChange, errors, user }) => (
+const LoginForm = ({ onSubmit, onChange, errors, credentials }) => (
   <div className="container">
     <div className="card-panel login-panel">
       <form className="col s12" action="/" onSubmit={onSubmit}>
@@ -20,7 +20,7 @@ const LoginForm = ({ onSubmit, onChange, errors, user }) => (
               id="email"
               type="email"
               name="email"
-              value={user.email}
+              value={credentials.email}
               onChange={onChange}
             />
             <label htmlFor="email">Email</label>
@@ -38,7 +38,7 @@ const LoginForm = ({ onSubmit, onChange, errors, user }) => (
               id="password"
               type="password"
               name="password"
-              value={user.password}
+              value={credentials.password}
               onChange={onChange}
             />
             <label htmlFor="password">Password</label>
@@ -71,7 +71,7 @@ LoginForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  credentials: PropTypes.object.isRequired
 };
 
 export default LoginForm;

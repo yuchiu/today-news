@@ -1,5 +1,5 @@
-import newsActions from "./newsActions";
-import testingActions from "./testingActions";
-import authActions from "./authActions";
+import newsAction from "./news.action";
+import testingAction from "./testing.action";
+import authAction from "./auth.action";
 
-export { newsActions, testingActions, authActions };
+export { newsAction, testingAction, authAction };

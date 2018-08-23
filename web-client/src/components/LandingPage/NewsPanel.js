@@ -5,7 +5,7 @@ import _ from "lodash";
 
 import "./NewsPanel.scss";
 import { NewsCard } from "./presentations";
-import { newsActions } from "../../actions";
+import { newsAction } from "../../actions";
 
 class NewsPanel extends React.Component {
   componentDidMount() {
@@ -49,7 +49,7 @@ const stateToProps = state => ({ news: state.newsReducer.news });
 
 const dispatchToProps = dispatch => ({
   fetchNews: () => {
-    dispatch(newsActions.fetchNews());
+    dispatch(newsAction.fetchNews());
   }
 });
 

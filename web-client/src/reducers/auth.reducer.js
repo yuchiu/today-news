@@ -1,7 +1,7 @@
 import { defineState } from "redux-localstore";
 
 import constants from "../constants";
-import { Auth } from "../utils";
+import { auth } from "../utils";
 
 const defaultState = {
   isUserAuthenticated: false,
@@ -16,19 +16,19 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case constants.FETCH_LOGIN:
       if (action.payload.confirmation) {
-        Auth.authenticateUser(action.payload.token);
-        newState.isUserAuthenticated = Auth.isUserAuthenticated();
+        auth.authenticateUser(action.payload.token, action.payload.user);
+        newState.isUserAuthenticated = auth.isUserAuthenticated();
         newState.user = action.payload.user;
         newState.error = {};
       } else {
-        newState.isUserAuthenticated = Auth.isUserAuthenticated();
+        newState.isUserAuthenticated = auth.isUserAuthenticated();
         newState.user = {};
         newState.error = action.payload.error;
       }
       return newState;
     case constants.FETCH_LOGOUT:
-      Auth.deauthenticateUser();
-      newState.isUserAuthenticated = Auth.isUserAuthenticated();
+      auth.deauthenticateUser();
+      newState.isUserAuthenticated = auth.isUserAuthenticated();
       newState.user = {};
       newState.error = {};
       return newState;

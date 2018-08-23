@@ -4,9 +4,9 @@ import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { authActions } from "../../../actions";
+import { authAction } from "../../../actions";
 import "./index.scss";
-import { Auth } from "../../../utils";
+import { auth } from "../../../utils";
 
 class NavBar extends React.Component {
   componentDidUpdate() {
@@ -67,7 +67,7 @@ const stateToProps = state => ({
 
 const dispatchToProps = dispatch => ({
   fetchLogout: () => {
-    dispatch(authActions.fetchLogout());
+    dispatch(authAction.fetchLogout());
   }
 });
 
