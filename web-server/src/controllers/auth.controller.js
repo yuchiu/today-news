@@ -15,9 +15,9 @@ const jwtSignUser = user => {
 const userSummary = user => {
   const summary = {
     id: user._id.toString(),
-    firstName: user.firstName,
-    lastName: user.lastName,
+    username: user.username,
     email: user.email,
+    desc: user.description,
     timestamp: user.timestamp
   };
   return summary;
@@ -27,35 +27,34 @@ const authController = {
   // eslint-disable-next-line consistent-return
   register: async (req, res) => {
     try {
-      const credential = req.body;
+      const credentials = req.body;
 
       // find user, return error if user is found
       const isUserCreated = await userModel.findOne({
-        email: credential.email
+        email: credentials.email
       });
       if (isUserCreated) {
-        return res.send({
+        res.status(400).send({
           confirmation: false,
-          error: `this email account ${req.body.email} is already registered`
+          message: `this email account ${req.body.email} is already registered`
         });
       }
 
       // hash password & create user
-      credential.password = bcrypt.hashSync(credential.password, 10);
-      const user = await userModel.create(credential);
+      credentials.password = bcrypt.hashSync(credentials.password, 10);
+      const user = await userModel.create(credentials);
 
-      // user is created successfully
-      const userJson = user.toJSON();
       res.send({
         confirmation: true,
-        user: userSummary(userJson),
-        token: jwtSignUser(userJson)
+        message: "register successfully",
+        user: userSummary(user),
+        token: jwtSignUser(user)
       });
     } catch (err) {
       // other server error
-      res.send({
+      res.status(500).send({
         confirmation: false,
-        error: "an error has occured trying to register"
+        message: "An error has occured trying to register"
       });
     }
   },
@@ -63,40 +62,42 @@ const authController = {
   // eslint-disable-next-line consistent-return
   login: async (req, res) => {
     try {
-      const { email, password } = req.body;
-
+      const credentials = req.body;
       // find user, return error if user is not found
       const user = await userModel.findOne({
-        email
+        email: credentials.email
       });
       if (!user) {
-        return res.send({
+        return res.status(400).send({
           confirmation: false,
-          error: `this email account ${req.body.email} is not yet registered`
+          message: `this email account ${req.body.email} is not yet registered`
         });
       }
 
       // validate password
-      const isPasswordValid = bcrypt.compareSync(password, user.password);
+      const isPasswordValid = bcrypt.compareSync(
+        credentials.password,
+        user.password
+      );
       if (!isPasswordValid) {
-        return res.send({
+        return res.status(400).send({
           confirmation: false,
-          error: "invalid log in information"
+          message: "Invalid log in infomation"
         });
       }
 
       // user is validated
-      const userJson = user.toJSON();
       res.send({
         confirmation: true,
-        user: userSummary(userJson),
-        token: jwtSignUser(userJson)
+        message: "log in successfully",
+        user: userSummary(user),
+        token: jwtSignUser(user)
       });
     } catch (err) {
       // other server error
-      res.send({
+      res.status(500).send({
         confirmation: false,
-        error: "an error has occured trying to login"
+        message: "An error has occured trying to log in"
       });
     }
   }

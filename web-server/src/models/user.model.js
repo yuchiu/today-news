@@ -1,30 +1,29 @@
 import mongoose from "mongoose";
 
 const UserSchema = mongoose.Schema({
-  firstName: {
+  username: {
     type: String,
     trim: true,
-    maxlength: 100,
-    default: ""
-  },
-  lastName: {
-    type: String,
-    trim: true,
-    maxlength: 100,
-    default: ""
+    maxlength: 127,
+    require: true
   },
   email: {
     type: String,
     unique: true,
     trim: true,
     lowercase: true,
-    maxlength: 100,
-    default: ""
+    maxlength: 127,
+    require: true
   },
   password: {
     type: String,
     minlength: 4,
-    maxlength: 100,
+    maxlength: 127,
+    require: true
+  },
+  description: {
+    type: String,
+    maxlength: 127,
     default: ""
   },
   timestamp: {

@@ -1,24 +1,31 @@
 import Joi from "joi";
 
-export default {
+const authPolicy = {
   register: (req, res, next) => {
     const schema = {
+      username: Joi.string().regex(new RegExp("^[a-zA-Z0-9]{4,32}$")),
       email: Joi.string().email(),
       password: Joi.string().regex(new RegExp("^[a-zA-Z0-9]{4,32}$"))
     };
     const { error, value } = Joi.validate(req.body, schema);
     if (error) {
       switch (error.details[0].context.key) {
-        case "email":
-          res.send({
+        case "username":
+          res.status(400).send({
             confirmation: false,
-            error: "email address is not valid"
+            message: "username is not valid"
+          });
+          break;
+        case "email":
+          res.status(400).send({
+            confirmation: false,
+            message: "email address is not valid"
           });
           break;
         case "password":
-          res.send({
+          res.status(400).send({
             confirmation: false,
-            error: `the password provided failed to match the following rules:
+            message: `the password provided failed to match the following rules:
                     <br>
                     1. It must contain ONLY the following characters: lower case, upper case, numerics
                     <br>
@@ -27,9 +34,9 @@ export default {
           });
           break;
         default:
-          res.send({
+          res.status(400).send({
             confirmation: false,
-            error: "invalid registration infomation"
+            message: "invalid registration infomation"
           });
       }
     } else {
@@ -37,3 +44,4 @@ export default {
     }
   }
 };
+export default authPolicy;
