@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
+import "../utils/axiosInterceptors";
 import "./index.css";
 import { auth } from "../utils";
 import LandingPage from "./LandingPage";

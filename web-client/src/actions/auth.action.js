@@ -1,5 +1,5 @@
 import constants from "../constants";
-import { authService } from "../services";
+import { authService } from "./services";
 
 export default {
   registerUser: credentials => async dispatch => {

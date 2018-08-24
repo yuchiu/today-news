@@ -1,5 +1,5 @@
 import axios from "axios";
-import { auth } from "../utils";
+import { auth } from "../../utils";
 
 const API = () =>
   axios.create({
