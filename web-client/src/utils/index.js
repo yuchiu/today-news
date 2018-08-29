@@ -1,4 +1,4 @@
-import auth from "./auth";
+import localStore from "./localStore";
 import validateForm from "./validateForm";
 
-export { auth, validateForm };
+export { localStore, validateForm };

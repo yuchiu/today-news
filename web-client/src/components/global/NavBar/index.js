@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 
 import { authAction } from "../../../actions";
 import "./index.scss";
-import { auth } from "../../../utils";
 
 class NavBar extends React.Component {
   handleClick = () => {

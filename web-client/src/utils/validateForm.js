@@ -24,7 +24,7 @@ export default {
     }
     if (!data.password) {
       clientErrors.password = "Can't be blank";
-    } else if (data.password.length < 4 || data.username.length > 50) {
+    } else if (data.password.length < 4 || data.password.length > 50) {
       clientErrors.password = "Length of password have to be between 4 to 50";
     }
     if (!data.email) {
