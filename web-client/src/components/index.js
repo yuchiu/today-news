@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "../utils/axiosInterceptors";
-import "./index.css";
+import "./index.scss";
 import { AuthRoute, AutoAuth } from "./global";
 import LandingPage from "./LandingPage";
 import TestingPage from "./TestingPage";
