@@ -14,7 +14,7 @@ const jwtSignUser = user => {
 
 const userSummary = user => {
   const summary = {
-    id: user._id.toString(),
+    _id: user._id.toString(),
     username: user.username,
     email: user.email,
     desc: user.description,
@@ -24,6 +24,22 @@ const userSummary = user => {
 };
 
 const authController = {
+  autoLogin: async (req, res) => {
+    try {
+      // req.user is retreived from auth.policy
+      const userId = req.user._id;
+      const user = await userModel.findOne({
+        _id: userId
+      });
+
+      res.status(200).send({
+        confirmation: true,
+        user: userSummary(user)
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
   // eslint-disable-next-line consistent-return
   register: async (req, res) => {
     try {
@@ -44,9 +60,8 @@ const authController = {
       credentials.password = bcrypt.hashSync(credentials.password, 10);
       const user = await userModel.create(credentials);
 
-      res.send({
+      res.status(200).send({
         confirmation: true,
-        message: "register successfully",
         user: userSummary(user),
         token: jwtSignUser(user)
       });
@@ -87,9 +102,8 @@ const authController = {
       }
 
       // user is validated
-      res.send({
+      res.status(200).send({
         confirmation: true,
-        message: "log in successfully",
         user: userSummary(user),
         token: jwtSignUser(user)
       });
