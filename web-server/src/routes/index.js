@@ -2,7 +2,7 @@ import { authController, newsController } from "../controllers";
 import { formPolicy, authPolicy } from "../policies";
 
 export default app => {
-  app.get("/auth/auto-login", authPolicy, authController.autoLogin);
+  app.get("/auth/auto-auth", authPolicy, authController.autoAuth);
   app.post("/auth/register", formPolicy.register, authController.register);
   app.post("/auth/login", authController.login);
 

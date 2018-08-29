@@ -14,6 +14,14 @@ export default (state = initialState, action) => {
       newState.message = action.payload.message;
       return newState;
 
+    case constants.AUTO_LOGIN:
+      if (action.payload.confirmation) {
+        newState.isUserAuthenticated = true;
+        newState.user = action.payload.user;
+        return newState;
+      }
+      return newState;
+
     case constants.LOGIN_USER:
       localStore.authenticateUser(action.payload);
       newState.isUserAuthenticated = true;

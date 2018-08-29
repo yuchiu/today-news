@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "../utils/axiosInterceptors";
 import "./index.css";
-import { AuthRoute } from "./global";
+import { AuthRoute, AutoAuth } from "./global";
 import LandingPage from "./LandingPage";
 import TestingPage from "./TestingPage";
 import NotFoundPage from "./NotFoundPage";
@@ -28,13 +28,17 @@ class Router extends React.Component {
       <h2>Error occured while rendering this page</h2>
     ) : (
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/register" component={RegisterPage} />
-          <AuthRoute exact path="/testing" component={TestingPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
+        <React.Fragment>
+          {/* try to log in user automatically if auth info exist */}
+          <AutoAuth />
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <AuthRoute exact path="/testing" component={TestingPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </React.Fragment>
       </BrowserRouter>
     );
   }

@@ -1,8 +1,8 @@
 import API from "./API";
 
 const authService = {
-  autoLogin: async () => {
-    const response = await API().get(`/auth/auto-login`);
+  autoAuth: async () => {
+    const response = await API().get(`/auth/auto-auth`);
     return response;
   },
   registerUser: async credentials => {

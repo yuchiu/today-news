@@ -2,6 +2,15 @@ import constants from "../constants";
 import { authService } from "./services";
 
 export default {
+  autoAuth: () => async dispatch => {
+    const response = await authService.autoAuth();
+    const { data } = response;
+    dispatch({
+      type: constants.AUTO_LOGIN,
+      payload: data
+    });
+  },
+
   registerUser: credentials => async dispatch => {
     try {
       const response = await authService.registerUser(credentials);

@@ -24,7 +24,7 @@ const userSummary = user => {
 };
 
 const authController = {
-  autoLogin: async (req, res) => {
+  autoAuth: async (req, res) => {
     try {
       // req.user is retreived from auth.policy
       const userId = req.user._id;
