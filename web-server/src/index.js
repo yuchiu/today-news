@@ -1,15 +1,34 @@
+import path from "path";
 import express from "express";
 import mongoose from "mongoose";
-import path from "path";
 import cors from "cors";
+import logger from "morgan";
+import cookieParser from "cookie-parser";
+import helmet from "helmet";
+import compression from "compression";
 import bodyParser from "body-parser";
 
-import "./utils/passport";
 import config from "../config";
-import routes from "./routes";
+import routers from "./routers";
+import "./utils/passport";
 
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(helmet());
+app.use(compression());
+app.use(logger("dev"));
+app.use(bodyParser.json());
+
+app.use(cors());
+
+routers(app);
+
+/* database connection */
 mongoose.connect(
-  config.DB_LOCAL,
+  config.MONGO_LOCAL_URI || config.MONGO_CLOUD_URI,
   { useNewUrlParser: true },
   err => {
     if (err) {
@@ -20,19 +39,11 @@ mongoose.connect(
   }
 );
 
-const app = express();
-
-/* remove cors in production env */
-const corsOptions = {
-  origin: "http://localhost:3000",
-  optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "../web-client/build")));
-routes(app);
-
-app.listen(config.PORT, () => {
-  console.log(`app listenning on port ${config.PORT}`);
+/* listen to port */
+app.listen(config.PORT || 3030, () => {
+  if (config.PORT) {
+    console.log(`app listenning on port ${config.PORT}`);
+  } else {
+    console.log("app listenning on port 3030");
+  }
 });

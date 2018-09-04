@@ -1,6 +1,6 @@
 {
-  "DB_LOCAL": "mongodb://localhost:27017/latest-news",
-  "DB_CLOUD": "mongodb://user01:user01@ds163781.mlab.com:63781/latest-news",
-  "PORT": 3200,
+  "MONGO_LOCAL_URI": "mongodb://localhost:27017/todays-news",
+  "MONGO_CLOUD_URI": "mongodb://user01:user01@ds163781.mlab.com:63781/latest-news",
+  "PORT": 3030,
   "JWT_SECRET": "ckmksadii8jrei8riwe3897547fjujrf928r32"
 }

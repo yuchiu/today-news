@@ -1,10 +1,10 @@
-import API from "./API";
+import { APIV1 } from "./API";
 
-const API_VERSION = "/api/v1";
+const newsPath = "/news";
 
 const newsService = {
   getNews: async () => {
-    const response = await API().get(`${API_VERSION}/news`);
+    const response = await APIV1().get(`${newsPath}`);
     return response;
   }
 };

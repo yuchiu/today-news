@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { authAction } from "../../../actions";
+import { userAction } from "../../../actions";
 
 class AutoAuth extends React.Component {
   componentDidMount() {
@@ -21,7 +21,7 @@ AutoAuth.propTypes = {
 
 const dispatchToProps = dispatch => ({
   autoAuth: () => {
-    dispatch(authAction.autoAuth());
+    dispatch(userAction.autoAuth());
   }
 });
 

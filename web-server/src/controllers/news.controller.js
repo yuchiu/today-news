@@ -38,7 +38,7 @@ const newsController = {
         reason: "Recommend"
       }
     ];
-    res.json(news);
+    res.status(200).send(news);
   }
 };
 

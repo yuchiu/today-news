@@ -1,4 +1,4 @@
-import authController from "./auth.controller";
+import userController from "./user.controller";
 import newsController from "./news.controller";
 
-export { authController, newsController };
+export { userController, newsController };

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { validateForm } from "../../utils";
-import { authAction } from "../../actions";
+import { userAction } from "../../actions";
 import { NavBar, InlineError } from "../global";
 import LoginForm from "./LoginForm";
 
@@ -12,7 +12,7 @@ class LoginPage extends React.Component {
   state = {
     clientErrors: {},
     credentials: {
-      email: "",
+      username: "",
       password: ""
     }
   };
@@ -20,7 +20,7 @@ class LoginPage extends React.Component {
   componentWillUnmount() {
     this.setState({
       credentials: {
-        email: "",
+        username: "",
         password: ""
       }
     });
@@ -83,13 +83,13 @@ LoginPage.propTypes = {
 };
 
 const stateToProps = state => ({
-  isUserAuthenticated: state.authReducer.isUserAuthenticated,
-  message: state.authReducer.message
+  isUserAuthenticated: state.userReducer.isUserAuthenticated,
+  message: state.userReducer.message
 });
 
 const dispatchToProps = dispatch => ({
   loginUser: credential => {
-    dispatch(authAction.loginUser(credential));
+    dispatch(userAction.loginUser(credential));
   }
 });
 

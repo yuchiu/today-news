@@ -13,17 +13,17 @@ const LoginForm = ({
 }) => (
   <Form className="login-form">
     <Form.Item>
-      <label htmlFor="email">Email</label>
-      {clientErrors.email && <InlineError text={clientErrors.email} />}
+      <label htmlFor="username">Username</label>
+      {clientErrors.username && <InlineError text={clientErrors.username} />}
       <Input
         prefix={<Icon type="mail" />}
-        id="email"
-        type="email"
-        name="email"
-        value={credentials.email}
+        id="username"
+        type="text"
+        name="username"
+        value={credentials.username}
         className=""
         onChange={onChange}
-        placeholder="email"
+        placeholder="username"
         size="large"
       />
     </Form.Item>

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { validateForm } from "../../utils";
-import { authAction } from "../../actions";
+import { userAction } from "../../actions";
 import { NavBar, InlineError } from "../global";
 import RegisterForm from "./RegisterForm";
 
@@ -101,13 +101,13 @@ RegisterPage.propTypes = {
 };
 
 const stateToProps = state => ({
-  isUserAuthenticated: state.authReducer.isUserAuthenticated,
-  message: state.authReducer.message
+  isUserAuthenticated: state.userReducer.isUserAuthenticated,
+  message: state.userReducer.message
 });
 
 const dispatchToProps = dispatch => ({
   registerUser: credential => {
-    dispatch(authAction.registerUser(credential));
+    dispatch(userAction.registerUser(credential));
   }
 });
 export default connect(

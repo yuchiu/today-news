@@ -20,7 +20,7 @@ class AuthRoute extends React.Component {
   }
 }
 const stateToProps = state => ({
-  isUserAuthenticated: state.authReducer.isUserAuthenticated
+  isUserAuthenticated: state.userReducer.isUserAuthenticated
 });
 export default connect(
   stateToProps,
