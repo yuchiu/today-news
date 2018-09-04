@@ -24,18 +24,6 @@ const newsController = {
           "https://248qms3nhmvl15d4ne1i4pxl-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/Litecoin-bg-760x400.jpg",
         digest: "2",
         reason: "Recommend"
-      },
-      {
-        url:
-          "https://www.ccn.com/litecoin-price-massively-discounted-cryptocurrency-analyst/",
-        title: "Litecoin Price ‘Massively Discounted’: Cryptocurrency Analyst",
-        description:
-          "upporters of litecoin often tout the sixth-largest cryptocurrency as “silver to bitcoin’s digital gold,” but one cryptocurrency says it’s also a diamond in the rough.",
-        source: "cnn",
-        urlToImage:
-          "https://248qms3nhmvl15d4ne1i4pxl-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/Litecoin-bg-760x400.jpg",
-        digest: "2",
-        reason: "Recommend"
       }
     ];
     res.status(200).send(news);
