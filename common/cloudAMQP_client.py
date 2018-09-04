@@ -1,5 +1,5 @@
 import json
-import pika
+import pika  # pylint: disable=E0401
 
 
 class CloudAMQPClient:

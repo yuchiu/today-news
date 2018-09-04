@@ -7,6 +7,7 @@ from newspaper import Article  # pylint: disable=E0401
 
 sys.path.append(os.path.join(os.path.dirname(__file__), './', 'utils'))
 sys.path.append(os.path.join(os.path.dirname(__file__), './', 'scrapers'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 
 
 from cloudAMQP_client import CloudAMQPClient  # pylint: disable=E0401

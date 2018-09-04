@@ -1,8 +1,8 @@
 import os
 import random
-import requests
+import requests  # pylint: disable=E0401
 
-from lxml import html
+from lxml import html  # pylint: disable=E0401
 
 GET_CNN_NEWS_XPATH = """//p[contains(@class, 'zn-body__paragraph')]//text() | //div[contains(@class, 'zn-body__paragraph')]//text()"""
 
