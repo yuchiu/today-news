@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { NavBar, Logo } from "../global";
+import { NavBar, Logo } from "@/components/global";
 import NewsPanel from "./NewsPanel";
 
 const LandingPage = ({ history }) => (

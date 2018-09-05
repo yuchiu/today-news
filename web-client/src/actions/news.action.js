@@ -1,4 +1,4 @@
-import constants from "../constants";
+import constants from "@/constants";
 import { newsService } from "./services";
 
 export default {

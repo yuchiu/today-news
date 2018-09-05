@@ -5,7 +5,7 @@ import _ from "lodash";
 
 import "./NewsPanel.scss";
 import { NewsCard } from "./presentations";
-import { newsAction } from "../../actions";
+import { newsAction } from "@/actions";
 
 class NewsPanel extends React.Component {
   componentDidMount() {

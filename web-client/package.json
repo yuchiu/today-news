@@ -127,11 +127,9 @@
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
-      "plugin:prettier/recommended",
-      "plugin:react/recommended"
-    ],
-    "plugins": [
-      "react"
+      "airbnb-base",
+      "react-app",
+      "plugin:prettier/recommended"
     ],
     "env": {
       "browser": true,

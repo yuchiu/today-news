@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import { validateForm } from "../../utils";
-import { userAction } from "../../actions";
-import { NavBar, InlineError } from "../global";
+import { validateForm } from "@/utils";
+import { userAction } from "@/actions";
+import { NavBar, InlineError } from "@/components/global";
 import LoginForm from "./LoginForm";
 
 class LoginPage extends React.Component {

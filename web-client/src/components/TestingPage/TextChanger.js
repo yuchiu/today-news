@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { testingAction } from "../../actions";
+import { testingAction } from "@/actions";
 import Text from "./presentations/Text";
 
 class TextChanger extends React.Component {

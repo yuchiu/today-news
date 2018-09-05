@@ -1,4 +1,4 @@
-import constants from "../constants";
+import constants from "@/constants";
 import { userService } from "./services";
 
 export default {

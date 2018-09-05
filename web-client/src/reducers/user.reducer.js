@@ -1,5 +1,5 @@
-import constants from "../constants";
-import { localStore } from "../utils";
+import constants from "@/constants";
+import { localStore } from "@/utils";
 
 const initialState = {
   isUserAuthenticated: false,

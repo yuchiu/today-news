@@ -4,7 +4,7 @@ import { Menu, Icon } from "antd";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { userAction } from "../../../actions";
+import { userAction } from "@/actions";
 
 class NavBar extends React.Component {
   state = {
