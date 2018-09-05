@@ -16,7 +16,7 @@ DEDUPE_NEWS_TASK_QUEUE_NAME = "latest_news_dedupe_news_task_queue"
 
 SLEEP_TIME_IN_SECONDS = 1
 
-NEWS_TABLE_NAME = "news-test"
+NEWS_TABLE_NAME = "news"
 
 SAME_NEWS_SIMILARITY_THRESHOLD = 0.9
 

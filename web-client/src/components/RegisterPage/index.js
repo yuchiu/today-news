@@ -75,7 +75,7 @@ class RegisterPage extends React.Component {
 
   render() {
     const { clientErrors, credentials } = this.state;
-    const { isUserAuthenticated, message } = this.props;
+    const { isUserAuthenticated, error } = this.props;
     return (
       <React.Fragment>
         {isUserAuthenticated && <Redirect to="/" />}
@@ -87,7 +87,7 @@ class RegisterPage extends React.Component {
           clientErrors={clientErrors}
           credentials={credentials}
         />
-        {message && <InlineError text={message} />}
+        {error && <InlineError text={error} />}
       </React.Fragment>
     );
   }
@@ -97,12 +97,12 @@ RegisterPage.propTypes = {
   registerUser: PropTypes.func.isRequired,
   isUserAuthenticated: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
-  message: PropTypes.string
+  error: PropTypes.string
 };
 
 const stateToProps = state => ({
   isUserAuthenticated: state.userReducer.isUserAuthenticated,
-  message: state.userReducer.message
+  error: state.userReducer.error
 });
 
 const dispatchToProps = dispatch => ({

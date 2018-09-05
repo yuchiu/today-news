@@ -56,7 +56,7 @@ class LoginPage extends React.Component {
 
   render() {
     const { clientErrors, credentials } = this.state;
-    const { isUserAuthenticated, message } = this.props;
+    const { isUserAuthenticated, error } = this.props;
     return (
       <React.Fragment>
         {isUserAuthenticated && <Redirect to="/" />}
@@ -69,7 +69,7 @@ class LoginPage extends React.Component {
           credentials={credentials}
         />
         <br />
-        {message && <InlineError text={message} />}
+        {error && <InlineError text={error} />}
       </React.Fragment>
     );
   }
@@ -79,12 +79,12 @@ LoginPage.propTypes = {
   history: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
   isUserAuthenticated: PropTypes.bool.isRequired,
-  message: PropTypes.string
+  error: PropTypes.string
 };
 
 const stateToProps = state => ({
   isUserAuthenticated: state.userReducer.isUserAuthenticated,
-  message: state.userReducer.message
+  error: state.userReducer.error
 });
 
 const dispatchToProps = dispatch => ({

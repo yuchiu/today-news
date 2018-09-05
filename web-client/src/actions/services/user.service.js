@@ -1,20 +1,18 @@
 import { APIV1 } from "./API";
 
-const userPath = "/users";
-
 const userService = {
   autoAuth: async () => {
-    const response = await APIV1().get(`${userPath}/auth`);
+    const response = await APIV1().get(`/users`);
     return response;
   },
   registerUser: async credentials => {
-    const response = await APIV1().post(`${userPath}`, credentials);
+    const response = await APIV1().post(`/users`, credentials);
     return response;
   },
 
   loginUser: async credentials => {
     const response = await APIV1().post(
-      `${userPath}/${credentials.username}`,
+      `/users/${credentials.username}`,
       credentials
     );
     return response;

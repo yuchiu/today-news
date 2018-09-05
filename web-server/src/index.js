@@ -12,6 +12,8 @@ import config from "../config";
 import routers from "./routers";
 import "./utils/passport";
 
+import rpcClient from "./utils/rpcClient";
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,3 +49,7 @@ app.listen(config.PORT || 3030, () => {
     console.log("app listenning on port 3030");
   }
 });
+
+// /* testing python rpc server */
+// console.log("inside server index, testing rpc");
+// rpcClient.add(5, 6);

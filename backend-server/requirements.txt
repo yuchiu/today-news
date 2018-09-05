@@ -1,4 +1,0 @@
-jsonrpclib-pelix
-pymongo
-pika
-redis

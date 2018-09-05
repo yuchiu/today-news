@@ -8,11 +8,10 @@ const client = jayson.client.http({
 // Test RPC method
 
 const rpcClient = {
-  add: (a, b, callback) => {
+  add: (a, b) => {
     client.request("add", [a, b], (err, error, response) => {
       if (err) throw err;
       console.log(response);
-      callback(response);
     });
   }
 };

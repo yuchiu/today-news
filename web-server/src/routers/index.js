@@ -16,12 +16,13 @@ export default app => {
   /* append user routes to api v1 routes */
   apiRoutes.use("/users", userRoutes);
 
-  userRoutes.get("/:username", userController.getUser);
   userRoutes.get(
-    "/auth",
+    "/",
     authPolicy.bearerTokenAuth,
     userController.bearerTokenAuthUser
   );
+  userRoutes.get("/:username", userController.getUser);
+
   userRoutes.post("/", authPolicy.registerRule, userController.createUser);
   userRoutes.post("/:username", userController.loginUser);
   userRoutes.put("/:username", userController.updateUser);
@@ -29,5 +30,5 @@ export default app => {
 
   /* append news routes to api v1 routes */
   apiRoutes.use("/news", newsRoutes);
-  newsRoutes.get("/", newsController.getNews);
+  newsRoutes.get("/:index", newsController.getNews);
 };

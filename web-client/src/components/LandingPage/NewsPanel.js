@@ -25,8 +25,8 @@ class NewsPanel extends React.Component {
   };
 
   loadMoreNews = e => {
-    const { fetchNews } = this.props;
-    fetchNews();
+    const { fetchNews, currentIndex } = this.props;
+    fetchNews(currentIndex);
   };
 
   render() {
@@ -45,17 +45,21 @@ class NewsPanel extends React.Component {
   }
 }
 
-const stateToProps = state => ({ news: state.newsReducer.news });
+const stateToProps = state => ({
+  news: state.newsReducer.news,
+  currentIndex: state.newsReducer.currentIndex
+});
 
 const dispatchToProps = dispatch => ({
-  fetchNews: () => {
-    dispatch(newsAction.fetchNews());
+  fetchNews: currentIndex => {
+    dispatch(newsAction.fetchNews(currentIndex));
   }
 });
 
 NewsPanel.propTypes = {
   news: PropTypes.array,
-  fetchNews: PropTypes.func
+  fetchNews: PropTypes.func,
+  currentIndex: PropTypes.number
 };
 export default connect(
   stateToProps,

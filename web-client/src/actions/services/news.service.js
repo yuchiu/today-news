@@ -1,10 +1,8 @@
 import { APIV1 } from "./API";
 
-const newsPath = "/news";
-
 const newsService = {
-  getNews: async () => {
-    const response = await APIV1().get(`${newsPath}`);
+  getNews: async currentIndex => {
+    const response = await APIV1().get(`/news/${currentIndex}`);
     return response;
   }
 };
