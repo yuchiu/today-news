@@ -29,21 +29,4 @@ passport.use(new passport_jwt_1.Strategy({
         return done(new Error(), false);
     }
 })));
-const checkToken = () => (req, res, next) => {
-    passport.authenticate("jwt", (err, user) => {
-        if (err) {
-            res.status(403).send({
-                error: "token authentication failed"
-            });
-        }
-        else if (!user) {
-            next();
-        }
-        else {
-            req.user = user;
-            next();
-        }
-    })(req, res, next);
-};
-exports.checkToken = checkToken;
 //# sourceMappingURL=passport.js.map

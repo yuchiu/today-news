@@ -9,21 +9,19 @@ const helmet = require("helmet");
 const bluebird = require("bluebird");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
-// import * as routers from "./routers";
-const secrets_1 = require("./util/secrets");
 // Passport configuration & middlewares
-const passport_1 = require("./config/passport");
+require("./config/passport");
+const router_1 = require("./router");
+const secrets_1 = require("./util/secrets");
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
-// Create Express server
 const app = express();
 // Connect to MongoDB
-const mongoUrl = secrets_1.MONGODB_URI;
 mongoose.Promise = bluebird;
 mongoose
-    .connect(mongoUrl, { useNewUrlParser: true })
+    .connect(secrets_1.MONGODB_URI, { useNewUrlParser: true })
     .then(() => {
-    console.log("DB Connection Success");
+    console.log(`DB Connection Success. Connected to ${secrets_1.MONGODB_URI}`);
 })
     .catch(err => {
     console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
@@ -37,8 +35,6 @@ app.use(compression());
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(cors());
-app.use(passport_1.checkToken());
-// routers(app);
-/* listen to port */
+app.use("/api/v1", router_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map

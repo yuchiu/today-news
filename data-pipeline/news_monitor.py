@@ -15,7 +15,7 @@ from cloudAMQP_client import CloudAMQPClient   # pylint: disable=E0401
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 
-SLEEP_TIME_IN_SECONDS = 10
+SLEEP_TIME_IN_SECONDS = 60 * 60
 NEWS_TIME_OUT_IN_SECONDS = 3600 * 24 * 3
 
 SCRAPE_NEWS_TASK_QUEUE_URL = "amqp://rutjjghd:azj53edQjx1lCSpICxmnKrhc0cE9OFOW@lion.rmq.cloudamqp.com/rutjjghd"

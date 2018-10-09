@@ -8,27 +8,25 @@ import * as bluebird from "bluebird";
 import * as bodyParser from "body-parser";
 import * as dotenv from "dotenv";
 
-// import * as routers from "./routers";
-import { MONGODB_URI } from "./util/secrets";
 // Passport configuration & middlewares
-import { checkToken } from "./config/passport";
+import "./config/passport";
+import apiV1Routes from "./router";
+import { MONGODB_URI } from "./util/secrets";
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
 
-// Create Express server
 const app = express();
 
 // Connect to MongoDB
-const mongoUrl = MONGODB_URI;
 (<any>mongoose).Promise = bluebird;
 mongoose
   .connect(
-    mongoUrl,
+    MONGODB_URI,
     { useNewUrlParser: true }
   )
   .then(() => {
-    console.log("DB Connection Success");
+    console.log(`DB Connection Success. Connected to ${MONGODB_URI}`);
   })
   .catch(err => {
     console.log(
@@ -45,8 +43,6 @@ app.use(compression());
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(cors());
-app.use(checkToken());
-// routers(app);
+app.use("/api/v1", apiV1Routes);
 
-/* listen to port */
 export default app;

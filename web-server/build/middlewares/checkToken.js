@@ -1,15 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const passport = require("passport");
-exports.default = () => (req, res, next) => {
+exports.default = (req, res, next) => {
     passport.authenticate("jwt", (err, user) => {
-        if (err) {
+        if (err || !user) {
             res.status(403).send({
                 error: "token authentication failed"
             });
-        }
-        else if (!user) {
-            next();
         }
         else {
             req.user = user;
@@ -17,4 +14,4 @@ exports.default = () => (req, res, next) => {
         }
     })(req, res, next);
 };
-//# sourceMappingURL=isAuthenticated.js.map
+//# sourceMappingURL=checkToken.js.map
