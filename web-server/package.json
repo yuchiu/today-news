@@ -4,40 +4,51 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently --kill-others \"npm run ts\" \"npm run server\"",
+    "ts": "tsc -w",
+    "server": "nodemon ./build/server.js",
+    "build": "tsc && node ./build/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.2",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
-    "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
-    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "helmet": "^3.13.0",
     "jayson": "^2.0.6",
     "joi": "^13.5.2",
     "jsonwebtoken": "^8.3.0",
+    "logger": "0.0.1",
     "mongoose": "^5.2.6",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-3": "^6.24.1",
+    "@types/express": "^4.16.0",
+    "@types/node": "^9.4.6",
+    "@types/bluebird": "^3.5.20",
+    "@types/winston": "^2.3.7",
+    "@types/passport": "^0.4.3",
+    "@types/mongoose": "^5.2.9",
+    "concurrently": "^4.0.1",
     "cross-env": "^5.2.0",
-    "eslint": "^5.2.0",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-prettier": "^2.6.2",
+    "dotenv": "^6.1.0",
+    "errorhandler": "^1.5.0",
     "nodemon": "^1.18.3",
-    "prettier": "^1.14.0"
+    "prettier": "^1.14.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.0.3"
+  },
+  "tslintConfig": {
+    "extends": [
+      "tslint:latest",
+      "tslint-config-prettier"
+    ]
   }
 }
