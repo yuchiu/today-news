@@ -11,12 +11,21 @@ const newsController = {
       const toIndex = parseInt(index, 10) + 10;
       const news = data.slice(index, toIndex);
       res.status(200).send({
+        meta: {
+          type: "success",
+          status: 200,
+          message: ""
+        },
         news
       });
     } catch (err) {
       console.log(err);
       res.status(500).send({
-        error: "server error"
+        meta: {
+          type: "error",
+          status: 500,
+          message: "server error"
+        }
       });
     }
   }

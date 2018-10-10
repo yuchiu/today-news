@@ -26,28 +26,6 @@ const userSummary = user => {
 };
 
 const userController = {
-  getUser: async (req: Request, res: Response) => {
-    try {
-      const { username } = req.params;
-      const user = await User.findOne({ username });
-
-      /* user not registered */
-      if (!user) {
-        return res.status(403).send({
-          error: `this account ${username} is not yet registered`
-        });
-      }
-
-      res.status(200).send({
-        user: userSummary(user)
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(500).send({
-        error: "server error"
-      });
-    }
-  },
   signUpUser: async (req: Request, res: Response) => {
     try {
       const credentials = req.body;
@@ -80,13 +58,22 @@ const userController = {
       credentials.password = await bcrypt.hash(credentials.password, 10);
       const user = await User.create(credentials);
       res.status(200).send({
+        meta: {
+          type: "success",
+          status: 200,
+          message: ""
+        },
         user: userSummary(user),
         token: jwtSignUser(user)
       });
     } catch (err) {
       console.log(err);
       res.status(500).send({
-        error: "server error"
+        meta: {
+          type: "error",
+          status: 500,
+          message: "server error"
+        }
       });
     }
   },
@@ -118,13 +105,22 @@ const userController = {
 
       /* password is validated */
       res.status(200).send({
+        meta: {
+          type: "success",
+          status: 200,
+          message: ""
+        },
         user: userSummary(user),
         token: jwtSignUser(user)
       });
     } catch (err) {
       console.log(err);
       res.status(500).send({
-        error: "server error"
+        meta: {
+          type: "error",
+          status: 500,
+          message: "server error"
+        }
       });
     }
   },
@@ -143,7 +139,11 @@ const userController = {
     } catch (err) {
       console.log(err);
       res.status(500).send({
-        error: "server error"
+        meta: {
+          type: "error",
+          status: 500,
+          message: "server error"
+        }
       });
     }
   }

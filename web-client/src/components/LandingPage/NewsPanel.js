@@ -6,6 +6,7 @@ import _ from "lodash";
 import "./NewsPanel.scss";
 import { NewsCard } from "./presentations";
 import { newsAction } from "@/actions";
+import { newsSelector } from "@/reducers/selectors";
 
 class NewsPanel extends React.Component {
   componentDidMount() {
@@ -25,17 +26,17 @@ class NewsPanel extends React.Component {
   };
 
   loadMoreNews = e => {
-    const { fetchNews, currentIndex } = this.props;
-    fetchNews(currentIndex);
+    const { fetchNews, offsetIndex } = this.props;
+    fetchNews(offsetIndex);
   };
 
   render() {
-    const { news } = this.props;
-    return news ? (
+    const { newsList } = this.props;
+    return newsList ? (
       <div className="container-fluid">
         <div className="list-group">
-          {news.map((n, i) => (
-            <NewsCard key={i} news={n} />
+          {newsList.map((news, i) => (
+            <NewsCard key={i} news={news} />
           ))}
         </div>
       </div>
@@ -45,22 +46,24 @@ class NewsPanel extends React.Component {
   }
 }
 
+NewsPanel.propTypes = {
+  newsList: PropTypes.array,
+  offsetIndex: PropTypes.number,
+
+  fetchNews: PropTypes.func
+};
+
 const stateToProps = state => ({
-  news: state.newsReducer.news,
-  currentIndex: state.newsReducer.currentIndex
+  newsList: newsSelector.getNewsList(state),
+  offsetIndex: newsSelector.getOffsetIndex(state)
 });
 
 const dispatchToProps = dispatch => ({
-  fetchNews: currentIndex => {
-    dispatch(newsAction.fetchNews(currentIndex));
+  fetchNews: offsetIndex => {
+    dispatch(newsAction.fetchNews(offsetIndex));
   }
 });
 
-NewsPanel.propTypes = {
-  news: PropTypes.array,
-  fetchNews: PropTypes.func,
-  currentIndex: PropTypes.number
-};
 export default connect(
   stateToProps,
   dispatchToProps

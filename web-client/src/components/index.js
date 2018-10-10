@@ -1,14 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import "@/utils/axiosInterceptors";
-import "./index.scss";
-import { AuthRoute, AutoAuth } from "./global";
+import AuthRoute from "./AuthRoute";
+import AutoAuth from "./AutoAuth";
 import LandingPage from "./LandingPage";
-import TestingPage from "./TestingPage";
 import NotFoundPage from "./NotFoundPage";
-import RegisterPage from "./RegisterPage";
-import LoginPage from "./LoginPage";
+import SignUpPage from "./SignUpPage";
+import SignInPage from "./SignInPage";
 
 class Router extends React.Component {
   state = {
@@ -33,9 +31,8 @@ class Router extends React.Component {
           <AutoAuth />
           <Switch>
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/register" component={RegisterPage} />
-            <AuthRoute exact path="/testing" component={TestingPage} />
+            <Route exact path="/singin" component={SignInPage} />
+            <Route exact path="/signup" component={SignUpPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </React.Fragment>

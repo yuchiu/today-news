@@ -7,14 +7,14 @@ export default {
       const response = await newsService.getNews(currentIndex);
       const { data } = response;
       dispatch({
-        type: constants.FETCH_NEWS,
+        type: constants.NEWS_FETCH,
         payload: data
       });
     } catch (err) {
       const { data } = err.response;
       dispatch({
-        type: constants.FETCH_NEWS_ERROR,
-        payload: data
+        type: constants.NEWS_ERROR,
+        payload: data.meta.message
       });
     }
   }

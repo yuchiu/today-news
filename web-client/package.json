@@ -28,6 +28,7 @@
     "redux-localstore": "^0.2.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "reselect": "^4.0.0",
     "resolve": "1.6.0",
     "semantic-ui-react": "^0.82.3",
     "validator": "^10.6.0",

@@ -1,17 +1,17 @@
-import { APIV1 } from "./API";
+import { apiV1 } from "./API";
 
 const userService = {
-  autoAuth: async () => {
-    const response = await APIV1().get(`/users/auth`);
+  tryAutoSignIn: async () => {
+    const response = await apiV1().get(`/users/auth`);
     return response;
   },
-  registerUser: async credentials => {
-    const response = await APIV1().post(`/users/singup`, credentials);
+  fetchSignUpUser: async credentials => {
+    const response = await apiV1().post(`/users/singup`, credentials);
     return response;
   },
 
-  loginUser: async credentials => {
-    const response = await APIV1().post(`/users/singin`, credentials);
+  fetchSignInUser: async credentials => {
+    const response = await apiV1().post(`/users/singin`, credentials);
     return response;
   }
 };

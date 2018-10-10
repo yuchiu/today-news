@@ -1,41 +1,41 @@
 import constants from "@/constants";
-import { localStore } from "@/utils";
+import localStore from "@/util/localStore";
+import sessionStore from "@/util/sessionStore";
 
 const initialState = {
-  isUserAuthenticated: false,
-  user: {},
-  error: ""
+  isUserLoggedIn: false,
+  currentUser: {}
 };
 
 export default (state = initialState, action) => {
-  const newState = Object.assign({}, state);
+  const newState = { ...state };
   switch (action.type) {
-    case constants.AUTH_ERROR:
-      newState.error = action.payload.error;
+    case constants.USER_FETCH_TRY_AUTO_LOGIN:
+      newState.currentUser = action.payload.user;
+      sessionStore.setUserLoggedIn();
+      newState.isUserLoggedIn = sessionStore.getLoginStatus();
       return newState;
 
-    case constants.AUTO_LOGIN:
-      if (action.payload.confirmation) {
-        newState.isUserAuthenticated = true;
-        newState.user = action.payload.user;
-        return newState;
-      }
-      return newState;
-
-    case constants.LOGIN_USER:
+    case constants.USER_FETCH_LOGIN:
       localStore.authenticateUser(action.payload);
-      newState.isUserAuthenticated = true;
-      newState.user = action.payload.user;
-      newState.error = "";
+      newState.currentUser = action.payload.user;
+      sessionStore.setUserLoggedIn();
+      newState.isUserLoggedIn = sessionStore.getLoginStatus();
       return newState;
 
-    case constants.LOGOUT_USER:
+    case constants.USER_LOGOUT:
       localStore.deauthenticateUser();
-      newState.isUserAuthenticated = false;
-      newState.user = {};
-      newState.error = "";
-      return newState;
+      sessionStore.setUserLoggedOut();
+      return initialState;
+
     default:
       return state;
   }
 };
+
+/* state selectors */
+const getCurrentUser = state => state.userReducer.currentUser;
+const getCurrentUsername = state => state.userReducer.currentUser.username;
+const getIsUserLoggedIn = state => state.userReducer.isUserLoggedIn;
+
+export { getCurrentUser, getCurrentUsername, getIsUserLoggedIn };

@@ -2,52 +2,52 @@ import constants from "@/constants";
 import { userService } from "./services";
 
 export default {
-  autoAuth: () => async dispatch => {
-    const response = await userService.autoAuth();
+  tryAutoSignIn: () => async dispatch => {
+    const response = await userService.tryAutoSignIn();
     const { data } = response;
     dispatch({
-      type: constants.AUTO_LOGIN,
+      type: constants.USER_FETCH_TRY_AUTO_LOGIN,
       payload: data
     });
   },
 
-  registerUser: credentials => async dispatch => {
+  fetchSignUpUser: credentials => async dispatch => {
     try {
-      const response = await userService.registerUser(credentials);
+      const response = await userService.fetchSignUpUser(credentials);
       const { data } = response;
       dispatch({
-        type: constants.LOGIN_USER,
+        type: constants.USER_FETCH_LOGIN,
         payload: data
       });
     } catch (err) {
       const { data } = err.response;
       dispatch({
-        type: constants.AUTH_ERROR,
-        payload: data
+        type: constants.USER_ERROR,
+        payload: data.meta.message
       });
     }
   },
 
-  loginUser: credentials => async dispatch => {
+  fetchSignInUser: credentials => async dispatch => {
     try {
-      const response = await userService.loginUser(credentials);
+      const response = await userService.fetchSignInUser(credentials);
       const { data } = response;
       dispatch({
-        type: constants.LOGIN_USER,
+        type: constants.USER_FETCH_LOGIN,
         payload: data
       });
     } catch (err) {
       const { data } = err.response;
       dispatch({
-        type: constants.AUTH_ERROR,
-        payload: data
+        type: constants.USER_ERROR,
+        payload: data.meta.message
       });
     }
   },
 
-  logoutUser: () => dispatch => {
+  signOutUser: () => dispatch => {
     dispatch({
-      type: constants.LOGOUT_USER
+      type: constants.USER_LOGOUT
     });
   }
 };
