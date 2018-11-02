@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^6.1.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.2",
@@ -39,7 +40,6 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-prettier": "^2.6.2",
     "concurrently": "^4.0.1",
-    "dotenv": "^6.1.0",
     "errorhandler": "^1.5.0",
     "nodemon": "^1.18.3",
     "prettier": "^1.14.0"

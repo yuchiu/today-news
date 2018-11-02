@@ -1,71 +1,60 @@
 # Usage
 
-#### required softwares & version this project is using during development
+## required softwares & version this project is using
 
-```
-ubuntu    18.04.1
-
+```versions
 mongodb   3.6
 Redis     4.0.11
 rabbitmq  using CloudAMQP's RabbitMQ service
 
 npm       6.1.0
 nodejs    10.7.0
-python3   3.6.5
 pip3      9.0.1
-```
-
-## Development
-
-#### DataBases - Terminal
-
-1.  start databases(linux environment)
-
-```
-sudo systemctl start mongod
-sudo systemctl start redis
+python3   3.6.5
 ```
 
 default redis port: 6379
 default mongodb port: 27017
 
-#### Web Server - Terminal A
+## Development
 
-1.  install dependencies & start application
+### News Pipeline
 
-```
-npm install
-npm start
-```
+1. script to auto launch the data pipeline
 
-Application will be serving on http://localhost:3200
-
-#### Web Client - Terminal B
-
-1.  install dependencies & start application
-
-```
-npm install
-npm start
+```terminal
+sh news_pipeline_launcher.sh
 ```
 
-Application will be serving on http://localhost:3000
+### Backend Server
 
-#### Backend Server - Terminal C
+1. install dependencies & start application
 
-1.  install dependencies & start application
-
-```
+```terminal
 pip3 install -r requirements.txt
 python service.py
 ```
 
 Application will be serving on http://localhost:4040
 
-#### News Pipeline Service - Terminal D
+### Web Server
 
-1.  script to auto launch the service
+1. install dependencies & start application
 
+```terminal
+npm install
+npm start
 ```
-sh news_pipeline_launcher.sh
+
+Application will be serving on http://localhost:3030
+
+### Web Client
+
+1. install dependencies & start application
+
+```terminal
+npm install
+npm start
 ```
+
+Application will be serving on http://localhost:3000
