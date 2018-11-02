@@ -15,7 +15,8 @@ export default (state = initialState, action) => {
       return newState;
 
     case constants.USER_LOGOUT:
-      return initialState;
+      newState.offsetIndex = 0;
+      return newState;
 
     default:
       return state;

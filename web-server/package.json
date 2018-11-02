@@ -21,6 +21,7 @@
     "jayson": "^2.0.6",
     "joi": "^13.5.2",
     "jsonwebtoken": "^8.3.0",
+    "errorhandler": "^1.5.0",
     "logger": "0.0.1",
     "mongoose": "^5.2.6",
     "morgan": "^1.9.0",
@@ -40,7 +41,6 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-prettier": "^2.6.2",
     "concurrently": "^4.0.1",
-    "errorhandler": "^1.5.0",
     "nodemon": "^1.18.3",
     "prettier": "^1.14.0"
   },
