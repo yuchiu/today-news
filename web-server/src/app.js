@@ -1,12 +1,12 @@
-import * as express from "express";
-import * as mongoose from "mongoose";
-import * as compression from "compression"; // compresses requests
-import * as cors from "cors";
-import * as logger from "morgan";
-import * as helmet from "helmet";
-import * as bluebird from "bluebird";
-import * as bodyParser from "body-parser";
-import * as dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+import compression from "compression"; // compresses requests
+import cors from "cors";
+import logger from "morgan";
+import helmet from "helmet";
+import bluebird from "bluebird";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
 
 // Passport configuration & middlewares
 import "./config/passport";
@@ -19,7 +19,6 @@ dotenv.config();
 const app = express();
 
 // Connect to MongoDB
-(<any>mongoose).Promise = bluebird;
 mongoose
   .connect(
     MONGODB_URI,
@@ -30,7 +29,7 @@ mongoose
   })
   .catch(err => {
     console.log(
-      "MongoDB connection error. Please make sure MongoDB is running. " + err
+      `MongoDB connection error. Please make sure MongoDB is running. ${err}`
     );
     // process.exit();
   });

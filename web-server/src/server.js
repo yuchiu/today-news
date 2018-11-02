@@ -1,4 +1,4 @@
-import * as errorHandler from "errorhandler";
+import errorHandler from "errorhandler";
 
 import app from "./app";
 

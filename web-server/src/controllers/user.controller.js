@@ -1,7 +1,6 @@
-import * as bcrypt from "bcryptjs";
-import * as jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../util/secrets";
-import { Request, Response } from "express";
 
 import User from "../models/User";
 
@@ -26,7 +25,7 @@ const userSummary = user => {
 };
 
 const userController = {
-  signUpUser: async (req: Request, res: Response) => {
+  signUpUser: async (req, res) => {
     try {
       const credentials = req.body;
 
@@ -77,7 +76,7 @@ const userController = {
       });
     }
   },
-  signInUser: async (req: Request, res: Response) => {
+  signInUser: async (req, res) => {
     try {
       const credentials = req.body;
       console.log(req.body);
@@ -124,7 +123,7 @@ const userController = {
       });
     }
   },
-  tryAutoSignIn: async (req: Request, res: Response) => {
+  tryAutoSignIn: async (req, res) => {
     try {
       // req.user is retreived from bearer token of auth.policy
       const { username } = req.user;

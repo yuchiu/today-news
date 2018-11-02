@@ -1,7 +1,6 @@
-import * as passport from "passport";
-import { Request, Response, NextFunction } from "express";
+import passport from "passport";
 
-export default (req: Request, res: Response, next: NextFunction) => {
+export default (req, res, next) => {
   passport.authenticate("jwt", (err, user) => {
     if (err || !user) {
       res.status(403).send({

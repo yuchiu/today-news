@@ -1,8 +1,8 @@
-import * as express from "express";
+import express from "express";
 
 import { newsController } from "../controllers";
 
-const router: express.Router = express.Router();
+const router = express.Router();
 
 router.get("/:index", newsController.getNews);
 

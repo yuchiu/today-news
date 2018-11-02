@@ -1,9 +1,7 @@
-import { Request, Response } from "express";
-
 import News from "../models/News";
 
 const newsController = {
-  getNews: async (req: Request, res: Response) => {
+  getNews: async (req, res) => {
     try {
       const { index } = req.params;
 

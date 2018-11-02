@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 
 import newsRouter from "./news.router";
 import userRouter from "./user.router";
