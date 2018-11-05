@@ -2,17 +2,22 @@
 
 ## required softwares & version this project is using
 
-```versions
-mongodb   3.6
-Redis     4.0.11
-rabbitmq  using CloudAMQP's RabbitMQ service
+| Softwares | Versions        |
+| --------- | --------------- |
+| npm       | 6.1.0           |
+| pip3      | 9.0.1           |
+| nodejs    | 10.7.0          |
+| python3   | 3.6.5           |
+| mongodb   | 3.6             |
+| Redis     | 4.0.11          |
+| rabbitmq  | using CloudAMQP |
 
-npm       6.1.0
-nodejs    10.7.0
-pip3      9.0.1
-python3   3.6.5
-```
+npm 6.1.0
+nodejs 10.7.0
+pip3 9.0.1
+python3 3.6.5
 
+````
 default redis port: 6379
 default mongodb port: 27017
 
@@ -24,7 +29,7 @@ default mongodb port: 27017
 
 ```terminal
 sh news_pipeline_launcher.sh
-```
+````
 
 ### Backend Server
 
