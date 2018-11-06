@@ -1,4 +1,4 @@
-import constants from "@/constants";
+import actionTypes from "@/actionTypes";
 import { userService } from "./services";
 
 export default {
@@ -6,7 +6,7 @@ export default {
     const response = await userService.tryAutoSignIn();
     const { data } = response;
     dispatch({
-      type: constants.USER_FETCH_TRY_AUTO_LOGIN,
+      type: actionTypes.USER_FETCH_TRY_AUTO_LOGIN,
       payload: data
     });
   },
@@ -16,13 +16,13 @@ export default {
       const response = await userService.fetchSignUpUser(credentials);
       const { data } = response;
       dispatch({
-        type: constants.USER_FETCH_LOGIN,
+        type: actionTypes.USER_FETCH_LOGIN,
         payload: data
       });
     } catch (err) {
       const { data } = err.response;
       dispatch({
-        type: constants.USER_ERROR,
+        type: actionTypes.USER_ERROR,
         payload: data.meta.message
       });
     }
@@ -33,13 +33,13 @@ export default {
       const response = await userService.fetchSignInUser(credentials);
       const { data } = response;
       dispatch({
-        type: constants.USER_FETCH_LOGIN,
+        type: actionTypes.USER_FETCH_LOGIN,
         payload: data
       });
     } catch (err) {
       const { data } = err.response;
       dispatch({
-        type: constants.USER_ERROR,
+        type: actionTypes.USER_ERROR,
         payload: data.meta.message
       });
     }
@@ -47,7 +47,13 @@ export default {
 
   signOutUser: () => dispatch => {
     dispatch({
-      type: constants.USER_LOGOUT
+      type: actionTypes.USER_LOGOUT
+    });
+  },
+  fetchClickLog: clickLogData => dispatch => {
+    userService.fetchClickLog(clickLogData);
+    dispatch({
+      type: actionTypes.USER_FETCH_CLICK_LOG
     });
   }
 };

@@ -1,4 +1,4 @@
-import constants from "@/constants";
+import actionTypes from "@/actionTypes";
 
 const initialState = {
   newsList: [],
@@ -9,12 +9,12 @@ export default (state = initialState, action) => {
   const newState = { ...state };
 
   switch (action.type) {
-    case constants.NEWS_FETCH:
+    case actionTypes.NEWS_FETCH:
       newState.newsList = newState.newsList.concat(action.payload.news);
       newState.offsetIndex += 10;
       return newState;
 
-    case constants.USER_LOGOUT:
+    case actionTypes.USER_LOGOUT:
       newState.offsetIndex = 0;
       return newState;
 

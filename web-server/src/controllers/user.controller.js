@@ -126,8 +126,6 @@ const userController = {
   tryAutoSignIn: async (req, res) => {
     try {
       // req.user is retreived from bearer token of auth.policy
-      console.log(`inside tryAutoSignIn ${req.user}`);
-      console.log(req.user);
       res.status(200).send({
         confirmation: true,
         user: userSummary(req.user)

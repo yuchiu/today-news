@@ -1,4 +1,4 @@
-import constants from "@/constants";
+import actionTypes from "@/actionTypes";
 
 const initialState = {
   error: ""
@@ -8,15 +8,15 @@ export default (state = initialState, action) => {
   const newState = { ...state };
 
   switch (action.type) {
-    case constants.NEWS_ERROR:
+    case actionTypes.NEWS_ERROR:
       newState.error = action.payload;
       return newState;
 
-    case constants.USER_ERROR:
+    case actionTypes.USER_ERROR:
       newState.error = action.payload;
       return newState;
 
-    case constants.USER_LOGOUT:
+    case actionTypes.USER_LOGOUT:
       return initialState;
 
     default:

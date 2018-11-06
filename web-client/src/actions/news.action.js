@@ -1,4 +1,4 @@
-import constants from "@/constants";
+import actionTypes from "@/actionTypes";
 import { newsService } from "./services";
 
 export default {
@@ -7,13 +7,13 @@ export default {
       const response = await newsService.fetchNews(currentIndex);
       const { data } = response;
       dispatch({
-        type: constants.NEWS_FETCH,
+        type: actionTypes.NEWS_FETCH,
         payload: data
       });
     } catch (err) {
       const { data } = err.response;
       dispatch({
-        type: constants.NEWS_ERROR,
+        type: actionTypes.NEWS_ERROR,
         payload: data.meta.message
       });
     }

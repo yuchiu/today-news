@@ -13,6 +13,11 @@ const userService = {
   fetchSignInUser: async credentials => {
     const response = await apiV1().post(`/users/singin`, credentials);
     return response;
+  },
+  fetchClickLog: clickLogData => {
+    apiV1().post(
+      `/users/${clickLogData.userId}/news/${clickLogData.newsDigest}`
+    );
   }
 };
 

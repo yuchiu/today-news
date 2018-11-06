@@ -1,4 +1,4 @@
-import constants from "@/constants";
+import actionTypes from "@/actionTypes";
 import localStore from "@/util/localStore";
 import sessionStore from "@/util/sessionStore";
 
@@ -10,20 +10,20 @@ const initialState = {
 export default (state = initialState, action) => {
   const newState = { ...state };
   switch (action.type) {
-    case constants.USER_FETCH_TRY_AUTO_LOGIN:
+    case actionTypes.USER_FETCH_TRY_AUTO_LOGIN:
       newState.currentUser = action.payload.user;
       sessionStore.setUserLoggedIn();
       newState.isUserLoggedIn = sessionStore.getLoginStatus();
       return newState;
 
-    case constants.USER_FETCH_LOGIN:
+    case actionTypes.USER_FETCH_LOGIN:
       localStore.authenticateUser(action.payload);
       newState.currentUser = action.payload.user;
       sessionStore.setUserLoggedIn();
       newState.isUserLoggedIn = sessionStore.getLoginStatus();
       return newState;
 
-    case constants.USER_LOGOUT:
+    case actionTypes.USER_LOGOUT:
       localStore.deauthenticateUser();
       sessionStore.setUserLoggedOut();
       return initialState;
