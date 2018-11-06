@@ -3,6 +3,17 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../util/secrets";
 
 import User from "../models/User";
+import rpcClient from "../config/rpcClient";
+
+const logNewsClickForUser = (userId, newsId) => {
+  rpcClient.request(
+    "logNewsClickForUser",
+    [userId, newsId],
+    (err, response) => {
+      if (err) throw err;
+    }
+  );
+};
 
 const jwtSignUser = user => {
   try {
@@ -139,6 +150,15 @@ const userController = {
           message: "server error"
         }
       });
+    }
+  },
+  clickLogger: async (req, res) => {
+    try {
+      if (req.user) {
+        logNewsClickForUser(req.user.id, req.params.newsDigestId);
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 };

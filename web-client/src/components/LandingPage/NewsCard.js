@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import "./NewsCard.scss";
 
 class NewsCard extends React.Component {
-  handleClickLog = newsDigest => {
-    const { currentUser, fetchClickLog } = this.props;
-    fetchClickLog({ userId: currentUser.id, newsDigest });
+  handleClickLog = newsDigestId => {
+    const { fetchClickLog } = this.props;
+    fetchClickLog(newsDigestId);
   };
 
   render() {

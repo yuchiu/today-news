@@ -6,7 +6,7 @@ import _ from "lodash";
 import "./NewsPanel.scss";
 import NewsCard from "./NewsCard";
 import { newsAction, userAction } from "@/actions";
-import { newsSelector, userSelector } from "@/reducers/selectors";
+import { newsSelector } from "@/reducers/selectors";
 
 class NewsPanel extends React.Component {
   componentDidMount() {
@@ -31,17 +31,12 @@ class NewsPanel extends React.Component {
   };
 
   render() {
-    const { newsList, currentUser, fetchClickLog } = this.props;
+    const { newsList, fetchClickLog } = this.props;
     return newsList ? (
       <div className="container-fluid">
         <div className="list-group">
           {newsList.map((news, i) => (
-            <NewsCard
-              key={i}
-              news={news}
-              currentUser={currentUser}
-              fetchClickLog={fetchClickLog}
-            />
+            <NewsCard key={i} news={news} fetchClickLog={fetchClickLog} />
           ))}
         </div>
       </div>
@@ -54,14 +49,12 @@ class NewsPanel extends React.Component {
 NewsPanel.propTypes = {
   newsList: PropTypes.array.isRequired,
   offsetIndex: PropTypes.number.isRequired,
-  currentUser: PropTypes.object.isRequired,
 
   fetchNews: PropTypes.func.isRequired,
   fetchClickLog: PropTypes.func.isRequired
 };
 
 const stateToProps = state => ({
-  currentUser: userSelector.getCurrentUser(state),
   newsList: newsSelector.getNewsList(state),
   offsetIndex: newsSelector.getOffsetIndex(state)
 });
@@ -70,8 +63,8 @@ const dispatchToProps = dispatch => ({
   fetchNews: offsetIndex => {
     dispatch(newsAction.fetchNews(offsetIndex));
   },
-  fetchClickLog: clickLogData => {
-    dispatch(userAction.fetchClickLog(clickLogData));
+  fetchClickLog: newsDigestId => {
+    dispatch(userAction.fetchClickLog(newsDigestId));
   }
 });
 

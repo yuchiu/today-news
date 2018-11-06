@@ -14,10 +14,8 @@ const userService = {
     const response = await apiV1().post(`/users/singin`, credentials);
     return response;
   },
-  fetchClickLog: clickLogData => {
-    apiV1().post(
-      `/users/${clickLogData.userId}/news/${clickLogData.newsDigest}`
-    );
+  fetchClickLog: newsDigestId => {
+    apiV1().post(`/users/click-logs/news/${newsDigestId}`);
   }
 };
 

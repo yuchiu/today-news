@@ -9,12 +9,7 @@ from bson.json_util import dumps  # pylint: disable=E0401
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../', 'utils'))
 import mongodb_client  # pylint: disable=E0401
-
-
-def get_one_news():
-    """Get one news"""
-    res = mongodb_client.get_db()['news'].find_one()
-    return json.loads(dumps(res))
+from cloudAMQP_client import CloudAMQPClient   # pylint: disable=E0401
 
 
 REDIS_HOST = "localhost"
@@ -28,6 +23,24 @@ NEWS_LIMIT = 100
 
 
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
+
+LOG_CLICKS_TASK_QUEUE_URL = 'amqp://lnmofzhd:04BvbnZTToWYf2aLkKSNNryw4rX7lWfs@toad.rmq.cloudamqp.com/lnmofzhd'
+LOG_CLICKS_TASK_QUEUE_NAME = 'preference'
+cloudAMQP_client = CloudAMQPClient(
+    LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
+
+
+def get_one_news():
+    """Get one news"""
+    res = mongodb_client.get_db()['news'].find_one()
+    return json.loads(dumps(res))
+
+
+def logNewsClickForUser(user_id, news_id):
+    # Send log task to machine learning service for prediction
+    message = {'userId': user_id, 'newsId': news_id,
+               'timestamp': str(datetime.utcnow())}
+    cloudAMQP_client.sendMessage(message)
 
 
 def getNewsSummariesForUser(user_id, page_num):

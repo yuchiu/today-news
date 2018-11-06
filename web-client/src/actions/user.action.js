@@ -50,8 +50,8 @@ export default {
       type: actionTypes.USER_LOGOUT
     });
   },
-  fetchClickLog: clickLogData => dispatch => {
-    userService.fetchClickLog(clickLogData);
+  fetchClickLog: newsDigestId => dispatch => {
+    userService.fetchClickLog(newsDigestId);
     dispatch({
       type: actionTypes.USER_FETCH_CLICK_LOG
     });
