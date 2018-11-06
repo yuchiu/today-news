@@ -12,12 +12,6 @@
 | Redis     | 4.0.11          |
 | rabbitmq  | using CloudAMQP |
 
-npm 6.1.0
-nodejs 10.7.0
-pip3 9.0.1
-python3 3.6.5
-
-````
 default redis port: 6379
 default mongodb port: 27017
 
@@ -29,15 +23,14 @@ default mongodb port: 27017
 
 ```terminal
 sh news_pipeline_launcher.sh
-````
+```
 
 ### Backend Server
 
 1. install dependencies & start application
 
 ```terminal
-pip3 install -r requirements.txt
-python service.py
+sh launcher.sh
 ```
 
 Application will be serving on http://localhost:4040

@@ -4,7 +4,7 @@ import { newsService } from "./services";
 export default {
   fetchNews: currentIndex => async dispatch => {
     try {
-      const response = await newsService.getNews(currentIndex);
+      const response = await newsService.fetchNews(currentIndex);
       const { data } = response;
       dispatch({
         type: constants.NEWS_FETCH,

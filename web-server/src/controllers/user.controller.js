@@ -126,14 +126,11 @@ const userController = {
   tryAutoSignIn: async (req, res) => {
     try {
       // req.user is retreived from bearer token of auth.policy
-      const { username } = req.user;
-      const user = await User.findOne({
-        username
-      });
-
+      console.log(`inside tryAutoSignIn ${req.user}`);
+      console.log(req.user);
       res.status(200).send({
         confirmation: true,
-        user: userSummary(user)
+        user: userSummary(req.user)
       });
     } catch (err) {
       console.log(err);

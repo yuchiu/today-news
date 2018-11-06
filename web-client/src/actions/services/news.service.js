@@ -1,7 +1,7 @@
 import { apiV1 } from "./API";
 
 const newsService = {
-  getNews: async currentIndex => {
+  fetchNews: async currentIndex => {
     const response = await apiV1().get(`/news/${currentIndex}`);
     return response;
   }
