@@ -24,10 +24,10 @@ NEWS_LIMIT = 100
 
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
 
-LOG_CLICKS_TASK_QUEUE_URL = 'amqp://lnmofzhd:04BvbnZTToWYf2aLkKSNNryw4rX7lWfs@toad.rmq.cloudamqp.com/lnmofzhd'
-LOG_CLICKS_TASK_QUEUE_NAME = 'preference'
+CLICK_LOG_TASK_QUEUE_URL = 'amqp://lnmofzhd:04BvbnZTToWYf2aLkKSNNryw4rX7lWfs@toad.rmq.cloudamqp.com/lnmofzhd'
+CLICK_LOG_TASK_QUEUE_NAME = 'preference-click-log-task-queue'
 cloudAMQP_client = CloudAMQPClient(
-    LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
+    CLICK_LOG_TASK_QUEUE_URL, CLICK_LOG_TASK_QUEUE_NAME)
 
 
 def get_one_news():

@@ -17,13 +17,23 @@ default mongodb port: 27017
 
 ## Development
 
-### News Pipeline
+### News Pipeline Service
 
 1. script to auto launch the data pipeline
 
 ```terminal
 sh news_pipeline_launcher.sh
 ```
+
+### News Recommendation Service
+
+1. install dependencies & start application
+
+```terminal
+sh launcher.sh
+```
+
+Application will be serving on http://localhost:5050
 
 ### Backend Server
 
