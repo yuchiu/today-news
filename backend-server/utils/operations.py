@@ -10,6 +10,7 @@ from bson.json_util import dumps  # pylint: disable=E0401
 sys.path.append(os.path.join(os.path.dirname(__file__), '../', 'utils'))
 import mongodb_client  # pylint: disable=E0401
 from cloudAMQP_client import CloudAMQPClient   # pylint: disable=E0401
+import news_recommendation_service_client  # pylint: disable=E0401
 
 
 REDIS_HOST = "localhost"
@@ -22,10 +23,10 @@ NEWS_LIST_BATCH_SIZE = 10
 NEWS_LIMIT = 100
 
 
-redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
-
 CLICK_LOG_TASK_QUEUE_URL = 'amqp://lnmofzhd:04BvbnZTToWYf2aLkKSNNryw4rX7lWfs@toad.rmq.cloudamqp.com/lnmofzhd'
 CLICK_LOG_TASK_QUEUE_NAME = 'preference-click-log-task-queue'
+
+redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
 cloudAMQP_client = CloudAMQPClient(
     CLICK_LOG_TASK_QUEUE_URL, CLICK_LOG_TASK_QUEUE_NAME)
 
@@ -71,9 +72,19 @@ def getNewsSummariesForUser(user_id, page_num):
 
         sliced_news = total_news[begin_index: end_index]
 
+    # Get preference for the user.
+    preference = news_recommendation_service_client.getPreferenceForUser(
+        user_id)
+    topPrefence = None
+
+    if preference is not None and len(preference) > 0:
+        topPrefence = preference[0]
+
     for news in sliced_news:
         # Remove text field to save bandwidth.
         del news['text']
         if news['publishedAt'].date() == datetime.today().date():
             news['time'] = 'today'
+        if news['class'] == topPrefence:
+            news['reason'] = "Recommend"
     return json.loads(dumps(sliced_news))
