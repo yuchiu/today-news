@@ -165,7 +165,7 @@ const userController = {
       });
     }
   },
-  clickLogger: async (req, res) => {
+  preferenceLogger: async (req, res) => {
     try {
       if (req.user) {
         logNewsClickForUser(req.user.id, req.params.newsDigestId);

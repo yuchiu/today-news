@@ -15,7 +15,7 @@ const userService = {
     return response;
   },
   fetchClickLog: newsDigestId => {
-    apiV1().post(`/users/click-logs/news/${newsDigestId}`);
+    apiV1().post(`/users/preference-logs/news/${newsDigestId}`);
   }
 };
 
