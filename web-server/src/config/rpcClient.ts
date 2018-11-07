@@ -1,4 +1,4 @@
-import jayson from "jayson";
+import * as jayson from "jayson";
 
 // create a client
 
