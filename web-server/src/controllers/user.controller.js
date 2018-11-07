@@ -47,8 +47,11 @@ const userController = {
       /* username already registered */
       if (isUsernameRegistered) {
         res.status(403).send({
-          confirmation: false,
-          error: `username: ${credentials.username} is already registered`
+          meta: {
+            type: "error",
+            status: 403,
+            message: `username: ${credentials.username} is already registered`
+          }
         });
       }
 
@@ -59,8 +62,11 @@ const userController = {
       /* email already registered */
       if (isEmailRegistered) {
         res.status(403).send({
-          confirmation: false,
-          error: `email: ${credentials.email} is already registered`
+          meta: {
+            type: "error",
+            status: 403,
+            message: `email: ${credentials.email} is already registered`
+          }
         });
       }
 
@@ -90,13 +96,16 @@ const userController = {
   signInUser: async (req, res) => {
     try {
       const credentials = req.body;
-      console.log(req.body);
       const user = await User.findOne({ username: credentials.username });
 
       /* user not registered */
       if (!user) {
         return res.status(403).send({
-          error: `this account ${credentials.username} is not yet registered`
+          meta: {
+            type: "error",
+            status: 403,
+            message: `this account ${credentials.username} is not yet registered`
+          }
         });
       }
 
@@ -109,7 +118,11 @@ const userController = {
       /* invalid password */
       if (!isPasswordValid) {
         res.status(403).send({
-          error: "invalid password"
+          meta: {
+            type: "error",
+            status: 403,
+            message: "invalid password"
+          }
         });
       }
 

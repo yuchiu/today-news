@@ -1,4 +1,5 @@
-import checkToken from "./checkToken";
+import getUser from "./getUser";
 import registerRule from "./registerRule";
+import authenticate from "./authenticate";
 
-export { checkToken, registerRule };
+export { getUser, registerRule, authenticate };

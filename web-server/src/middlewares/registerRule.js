@@ -45,7 +45,11 @@ export default (req, res, next) => {
         break;
       default:
         res.status(403).send({
-          error: "invalid registration infomation"
+          meta: {
+            type: "error",
+            status: 403,
+            message: "invalid registration infomation"
+          }
         });
     }
   } else {

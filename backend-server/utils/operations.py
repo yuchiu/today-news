@@ -7,7 +7,6 @@ import pickle  # convert dictionary or json into string that redis can process
 
 from bson.json_util import dumps  # pylint: disable=E0401
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../', 'utils'))
 import mongodb_client  # pylint: disable=E0401
 from cloudAMQP_client import CloudAMQPClient   # pylint: disable=E0401
 import news_recommendation_service_client  # pylint: disable=E0401
@@ -72,19 +71,19 @@ def getNewsSummariesForUser(user_id, page_num):
 
         sliced_news = total_news[begin_index: end_index]
 
-    # Get preference for the user.
-    preference = news_recommendation_service_client.getPreferenceForUser(
-        user_id)
-    topPrefence = None
+    # # Get preference for the user.
+    # preference = news_recommendation_service_client.getPreferenceForUser(
+    #     user_id)
+    # topPrefence = None
 
-    if preference is not None and len(preference) > 0:
-        topPrefence = preference[0]
+    # if preference is not None and len(preference) > 0:
+    #     topPrefence = preference[0]
 
     for news in sliced_news:
         # Remove text field to save bandwidth.
         del news['text']
         if news['publishedAt'].date() == datetime.today().date():
             news['time'] = 'today'
-        if news['class'] == topPrefence:
-            news['reason'] = "Recommend"
+        # if news['class'] == topPrefence:
+        #     news['reason'] = "Recommend"
     return json.loads(dumps(sliced_news))

@@ -6,12 +6,12 @@ const userService = {
     return response;
   },
   fetchSignUpUser: async credentials => {
-    const response = await apiV1().post(`/users/singup`, credentials);
+    const response = await apiV1().post(`/users/signup`, credentials);
     return response;
   },
 
   fetchSignInUser: async credentials => {
-    const response = await apiV1().post(`/users/singin`, credentials);
+    const response = await apiV1().post(`/users/signin`, credentials);
     return response;
   },
   fetchClickLog: newsDigestId => {
