@@ -11,7 +11,7 @@ const SignInForm = ({
   clientErrors,
   credentials
 }) => (
-  <Form className="singin-form">
+  <Form className="signin-form">
     <Form.Item>
       <label htmlFor="username">Username</label>
       {clientErrors.username && <InlineError text={clientErrors.username} />}
@@ -51,7 +51,7 @@ const SignInForm = ({
     >
       Log In
     </Button>
-    <br /> New to Job Hunting? <a onClick={redirectToRegister}>Register</a>
+    <br /> New to Today's News? <a onClick={redirectToRegister}>Register</a>
   </Form>
 );
 

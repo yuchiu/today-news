@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { NavBar } from "@/components/common";
-import Content from "./Content";
 
 class NotFoundPage extends React.Component {
   render() {
@@ -15,7 +14,7 @@ class NotFoundPage extends React.Component {
       <React.Fragment>
         <NavBar />
         <main className="not-found-page">
-          <Content unfoundLocation={unfoundLocation} />
+          <p>404! The page `{unfoundLocation}` is not found.</p>
         </main>
       </React.Fragment>
     );

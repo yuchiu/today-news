@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Radio, Button } from "antd";
+import { Form, Icon, Input, Button } from "antd";
 import PropTypes from "prop-types";
 
 import { InlineError } from "@/components/common";

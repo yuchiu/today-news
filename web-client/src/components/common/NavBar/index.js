@@ -50,19 +50,9 @@ class NavBar extends React.Component {
                   </span>
                 }
               >
-                <Menu.ItemGroup title="User's Setting">
-                  <Menu.Item key="my-profile">
-                    <Link to="/">My Profile</Link>
-                  </Menu.Item>
-                  <Menu.Item key="edit-profile">
-                    <Link to="/">Edit Profile</Link>
-                  </Menu.Item>
-                </Menu.ItemGroup>
-                <Menu.ItemGroup title="______________">
-                  <Menu.Item key="singout">
-                    <p onClick={this.handleLogout}>Sign Out</p>
-                  </Menu.Item>
-                </Menu.ItemGroup>
+                <Menu.Item key="singout">
+                  <p onClick={this.handleLogout}>Sign Out</p>
+                </Menu.Item>
               </Menu.SubMenu>
             </Menu>
           )}

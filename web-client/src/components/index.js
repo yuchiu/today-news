@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import AuthRoute from "./AuthRoute";
-import AutoAuth from "./AutoAuth";
+import { userAction } from "@/actions";
 import LandingPage from "./LandingPage";
 import NotFoundPage from "./NotFoundPage";
 import SignUpPage from "./SignUpPage";
@@ -12,6 +13,12 @@ class Router extends React.Component {
   state = {
     hasError: false
   };
+
+  componentDidMount() {
+    // try to log in user automatically if auth info exist
+    const { tryAutoSignIn } = this.props;
+    tryAutoSignIn();
+  }
 
   componentDidCatch(error, info) {
     console.log(error, info);
@@ -27,8 +34,6 @@ class Router extends React.Component {
     ) : (
       <BrowserRouter>
         <React.Fragment>
-          {/* try to log in user automatically if auth info exist */}
-          <AutoAuth />
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/singin" component={SignInPage} />
@@ -40,4 +45,18 @@ class Router extends React.Component {
     );
   }
 }
-export default Router;
+
+Router.propTypes = {
+  tryAutoSignIn: PropTypes.func.isRequired
+};
+
+const dispatchToProps = dispatch => ({
+  tryAutoSignIn: () => {
+    dispatch(userAction.tryAutoSignIn());
+  }
+});
+
+export default connect(
+  null,
+  dispatchToProps
+)(Router);
