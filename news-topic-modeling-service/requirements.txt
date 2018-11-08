@@ -1,4 +1,5 @@
 tensorflow
 numpy
 pandas
+watchdog
 sklearn

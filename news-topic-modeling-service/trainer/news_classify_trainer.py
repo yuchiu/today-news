@@ -1,10 +1,10 @@
 import news_cnn_model
 import numpy as np
 import os
-import pandas as pd
+import pandas as pd  # pylint: disable=E0401
 import pickle
 import shutil
-import tensorflow as tf
+import tensorflow as tf  # pylint: disable=E0401
 
 from sklearn import metrics
 
@@ -22,11 +22,16 @@ N_CLASSES = 8
 # Training parms
 STEPS = 200
 
+
 def main(unused_argv):
     if REMOVE_PREVIOUS_MODEL:
         # Remove old model
         print("Removing previous model...")
-        shutil.rmtree(MODEL_OUTPUT_DIR)
+
+        try:
+            shutil.rmtree(MODEL_OUTPUT_DIR)
+        except OSError as e:
+            print("Error: %s - %s." % (e.filename, e.strerror))
         os.mkdir(MODEL_OUTPUT_DIR)
 
     # Prepare training and testing data
@@ -41,7 +46,8 @@ def main(unused_argv):
     y_test = test_df[0]
 
     # Process vocabulary
-    vocab_processor = learn.preprocessing.VocabularyProcessor(MAX_DOCUMENT_LENGTH)
+    vocab_processor = learn.preprocessing.VocabularyProcessor(
+        MAX_DOCUMENT_LENGTH)
     x_train = np.array(list(vocab_processor.fit_transform(x_train)))
     x_test = np.array(list(vocab_processor.transform(x_test)))
 
@@ -69,6 +75,7 @@ def main(unused_argv):
 
     score = metrics.accuracy_score(y_test, y_predicted)
     print('Accuracy: {0:f}'.format(score))
+
 
 if __name__ == '__main__':
     tf.app.run(main=main)

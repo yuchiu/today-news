@@ -17,7 +17,18 @@ default mongodb port: 27017
 
 ## Development
 
-### News Pipeline Service
+### Building Data Warehouse
+
+#### News Topic Modeling Service
+
+1. install requirements & launch news classifier trainer to create topic model
+
+```terminal
+pip3 install -r requirements.txt
+python3 trainer/news_classify_trainer.py
+```
+
+#### News Pipeline Service
 
 1. script to launch the data pipeline that scrape latest news from different news sources
 
@@ -25,7 +36,7 @@ default mongodb port: 27017
 sh news_pipeline_launcher.sh
 ```
 
-### Preference Log Processor
+#### Preference Log Processor
 
 1. script to launch click log processor pipeline that process user's preference based on his/her clicks
 
@@ -33,15 +44,18 @@ sh news_pipeline_launcher.sh
 sh launcher.sh
 ```
 
-### news-topic-modeling-trainer
+### Serving Application
 
-1. script to launch news classifier trainer to create topic model
+#### News Topic Modeling Service
+
+1. install requirements & start topic model service
 
 ```terminal
-sh launcher.sh
+pip3 install -r requirements.txt
+python3 server/server.py
 ```
 
-### News Recommendation Service
+#### News Recommendation Service
 
 1. script to install dependencies & start news recommendation service
 
@@ -51,7 +65,7 @@ sh launcher.sh
 
 Application will be serving on http://localhost:5050
 
-### Backend Server
+#### Backend Server
 
 1. script to install dependencies & start application
 
@@ -61,7 +75,7 @@ sh launcher.sh
 
 Application will be serving on http://localhost:4040
 
-### Web Server
+#### Web Server
 
 1. install dependencies & start application
 
@@ -72,7 +86,7 @@ npm start
 
 Application will be serving on http://localhost:3030
 
-### Web Client
+#### Web Client
 
 1. install dependencies & start application
 
