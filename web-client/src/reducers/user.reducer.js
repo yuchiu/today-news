@@ -4,7 +4,8 @@ import sessionStore from "@/util/sessionStore";
 
 const initialState = {
   isUserLoggedIn: false,
-  currentUser: {}
+  currentUser: {},
+  isLoading: false
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +18,11 @@ export default (state = initialState, action) => {
       return newState;
 
     case actionTypes.USER_FETCH_LOGIN:
+      newState.isLoading = true;
+      return newState;
+
+    case actionTypes.USER_FETCH_LOGIN_SUCCESS:
+      newState.isLoading = false;
       localStore.authenticateUser(action.payload);
       newState.currentUser = action.payload.user;
       sessionStore.setUserLoggedIn();
@@ -37,5 +43,11 @@ export default (state = initialState, action) => {
 const getCurrentUser = state => state.userReducer.currentUser;
 const getCurrentUsername = state => state.userReducer.currentUser.username;
 const getIsUserLoggedIn = state => state.userReducer.isUserLoggedIn;
+const getUserIsLoading = state => state.userReducer.isLoading;
 
-export { getCurrentUser, getCurrentUsername, getIsUserLoggedIn };
+export {
+  getCurrentUser,
+  getCurrentUsername,
+  getIsUserLoggedIn,
+  getUserIsLoading
+};

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import LoadingOverlay from "react-loading-overlay";
 
 import "./index.scss";
 import validateForm from "@/util/validateForm";
@@ -77,35 +78,40 @@ class SignUpPage extends React.Component {
 
   render() {
     const { clientErrors, credentials } = this.state;
-    const { isUserLoggedIn, error } = this.props;
+    const { isUserLoggedIn, error, isLoading } = this.props;
     return (
-      <React.Fragment>
+      <LoadingOverlay active={isLoading} spinner zIndex={10} text="Loading">
         {isUserLoggedIn && <Redirect to="/" />}
-        <NavBar />
-        <SignUpForm
-          handleRegister={this.handleRegister}
-          onChange={this.handleChange}
-          redirectToLogin={this.redirectToLogin}
-          clientErrors={clientErrors}
-          credentials={credentials}
-        />
-        <br />
-        {error && <InlineError text={error} />}
-      </React.Fragment>
+        <main className="signup-page">
+          <NavBar />
+          <SignUpForm
+            handleRegister={this.handleRegister}
+            onChange={this.handleChange}
+            redirectToLogin={this.redirectToLogin}
+            clientErrors={clientErrors}
+            credentials={credentials}
+          />
+          <br />
+          {error && <InlineError text={error} />}
+        </main>
+      </LoadingOverlay>
     );
   }
 }
 
 SignUpPage.propTypes = {
-  fetchSignUpUser: PropTypes.func.isRequired,
   isUserLoggedIn: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string.isRequired,
+
+  fetchSignUpUser: PropTypes.func.isRequired
 };
 
 const stateToProps = state => ({
   isUserLoggedIn: userSelector.getIsUserLoggedIn(state),
-  error: errorSelector.getError(state)
+  error: errorSelector.getError(state),
+  isLoading: userSelector.getUserIsLoading(state)
 });
 
 const dispatchToProps = dispatch => ({

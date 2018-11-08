@@ -2,7 +2,8 @@ import actionTypes from "@/actionTypes";
 
 const initialState = {
   newsList: [],
-  offsetIndex: 0
+  offsetIndex: 0,
+  isLoading: false
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +11,11 @@ export default (state = initialState, action) => {
 
   switch (action.type) {
     case actionTypes.NEWS_FETCH:
+      newState.isLoading = true;
+      return newState;
+
+    case actionTypes.NEWS_FETCH_SUCCESS:
+      newState.isLoading = false;
       newState.newsList = newState.newsList.concat(action.payload.news);
       newState.offsetIndex += 10;
       return newState;
@@ -28,4 +34,6 @@ const getNewsList = state => state.newsReducer.newsList;
 
 const getOffsetIndex = state => state.newsReducer.offsetIndex;
 
-export { getNewsList, getOffsetIndex };
+const getNewsIsLoading = state => state.newsReducer.isLoading;
+
+export { getNewsList, getOffsetIndex, getNewsIsLoading };

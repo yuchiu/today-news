@@ -32,15 +32,13 @@ class NewsPanel extends React.Component {
   render() {
     const { newsList, fetchClickLog } = this.props;
     return newsList ? (
-      <div className="container-fluid">
-        <div className="list-group">
-          {newsList.map((news, i) => (
-            <NewsCard key={i} news={news} fetchClickLog={fetchClickLog} />
-          ))}
-        </div>
+      <div className="list-group">
+        {newsList.map((news, i) => (
+          <NewsCard key={i} news={news} fetchClickLog={fetchClickLog} />
+        ))}
       </div>
     ) : (
-      <div id="msg-app-loading">Loading...</div>
+      <div>Loading...</div>
     );
   }
 }

@@ -1,20 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import LoadingOverlay from "react-loading-overlay";
 
 import "./index.scss";
-import { NavBar, Logo } from "@/components/common";
+import { newsSelector } from "@/reducers/selectors";
+import { NavBar } from "@/components/common";
 import NewsPanel from "./NewsPanel";
 
-const LandingPage = ({ history }) => (
-  <div>
-    <NavBar history={history} />
-    <Logo />
-    <NewsPanel />
-  </div>
-);
+class LandingPage extends React.Component {
+  render() {
+    const { history, isLoading } = this.props;
+
+    return (
+      <LoadingOverlay active={isLoading} spinner zIndex={10} text="Loading">
+        <main className="landing-page">
+          <NavBar history={history} />
+          <NewsPanel />
+        </main>
+      </LoadingOverlay>
+    );
+  }
+}
 
 LandingPage.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired
 };
 
-export default LandingPage;
+const stateToProps = state => ({
+  isLoading: newsSelector.getNewsIsLoading(state)
+});
+export default connect(
+  stateToProps,
+  null
+)(LandingPage);

@@ -11,14 +11,13 @@ const SignUpForm = ({
   clientErrors,
   credentials
 }) => (
-  <Form className="signup-form">
+  <Form className="signin-form">
     <Form.Item>
       <label htmlFor="username">Username</label>
       {clientErrors.username && <InlineError text={clientErrors.username} />}
       <Input
         prefix={<Icon type="user" />}
-        id="username"
-        type="username"
+        type="text"
         name="username"
         value={credentials.username}
         className=""
@@ -32,7 +31,6 @@ const SignUpForm = ({
       {clientErrors.email && <InlineError text={clientErrors.email} />}
       <Input
         prefix={<Icon type="mail" />}
-        id="email"
         type="email"
         name="email"
         value={credentials.email}
@@ -47,7 +45,6 @@ const SignUpForm = ({
       {clientErrors.password && <InlineError text={clientErrors.password} />}
       <Input
         prefix={<Icon type="lock" />}
-        id="password"
         type="password"
         name="password"
         value={credentials.password}
@@ -64,7 +61,6 @@ const SignUpForm = ({
       )}
       <Input
         prefix={<Icon type="lock" />}
-        id="confirm_password"
         type="password"
         name="confirmPassword"
         value={credentials.confirmPassword}

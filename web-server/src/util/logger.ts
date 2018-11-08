@@ -1,6 +1,6 @@
 import * as winston from "winston";
 import { createLogger, Logger } from "winston";
-import { ENVIRONMENT } from "./secrets";
+import { NODE_ENV } from "./secrets";
 
 const logger: Logger = createLogger({
   transports: [
@@ -11,7 +11,7 @@ const logger: Logger = createLogger({
   ]
 });
 
-if (ENVIRONMENT !== "production") {
+if (NODE_ENV !== "production") {
   logger.debug("Logging initialized at debug level");
 }
 

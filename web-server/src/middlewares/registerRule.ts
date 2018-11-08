@@ -1,4 +1,4 @@
-import Joi from "joi";
+import * as Joi from "joi";
 
 export default (req, res, next) => {
   const schema = {

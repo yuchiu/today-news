@@ -11,14 +11,27 @@ if (fs.existsSync(".env")) {
   );
 }
 
-let ENVIRONMENT;
+// env is default to "development" unless env is specified
+export let NODE_ENV;
 process.env.NODE_ENV
-  ? (ENVIRONMENT = process.env.NODE_ENV)
-  : (ENVIRONMENT = "production");
+  ? (NODE_ENV = process.env.NODE_ENV)
+  : (NODE_ENV = "development");
 
-const JWT_SECRET = process.env["JWT_SECRET"];
+// server url is default to "http://localhost" unless env is specified
+export let SERVER_URL;
+process.env.SERVER_URL
+  ? (SERVER_URL = process.env.SERVER_URL)
+  : (SERVER_URL = "http://localhost");
 
-let MONGODB_URI;
+// port is default to 3030 unless env is specified
+export let SERVER_PORT;
+process.env.SERVER_PORT
+  ? (SERVER_PORT = process.env.SERVER_PORT)
+  : (SERVER_PORT = 3030);
+
+export const JWT_SECRET = process.env["JWT_SECRET"];
+
+export let MONGODB_URI;
 process.env["MONGODB_URI_LOCAL"]
   ? (MONGODB_URI = process.env["MONGODB_URI_LOCAL"])
   : (MONGODB_URI = process.env["MONGODB_URI"]);
@@ -34,4 +47,3 @@ if (!MONGODB_URI) {
   );
   process.exit(1);
 }
-export { ENVIRONMENT, JWT_SECRET, MONGODB_URI };

@@ -8,11 +8,11 @@ export default (state = initialState, action) => {
   const newState = { ...state };
 
   switch (action.type) {
-    case actionTypes.NEWS_ERROR:
+    case actionTypes.ERROR_NEWS:
       newState.error = action.payload;
       return newState;
 
-    case actionTypes.USER_ERROR:
+    case actionTypes.ERROR_USER:
       newState.error = action.payload;
       return newState;
 

@@ -16,8 +16,7 @@ const SignInForm = ({
       <label htmlFor="username">Username</label>
       {clientErrors.username && <InlineError text={clientErrors.username} />}
       <Input
-        prefix={<Icon type="mail" />}
-        id="username"
+        prefix={<Icon type="user" />}
         type="text"
         name="username"
         value={credentials.username}
@@ -32,7 +31,6 @@ const SignInForm = ({
       {clientErrors.password && <InlineError text={clientErrors.password} />}
       <Input
         prefix={<Icon type="lock" />}
-        id="password"
         type="password"
         name="password"
         value={credentials.password}

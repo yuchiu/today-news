@@ -11,7 +11,8 @@ import * as dotenv from "dotenv";
 // Passport configuration & middlewares
 import "./config/passport";
 import apiV1Routes from "./router";
-import { MONGODB_URI } from "./util/secrets";
+import { simulateLatency } from "./middlewares";
+import { MONGODB_URI, SERVER_PORT, NODE_ENV } from "./util/secrets";
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
@@ -35,7 +36,15 @@ mongoose
     // process.exit();
   });
 
-app.set("port", process.env.SERVER_PORT || 3030);
+/**
+ * middlewares
+ */
+/* development build, use logger & simulateLatency */
+if (NODE_ENV === "development") {
+  app.use(simulateLatency(50, 1000));
+}
+app.set("port", SERVER_PORT);
+app.set("env", NODE_ENV);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());

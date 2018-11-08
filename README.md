@@ -25,9 +25,17 @@ default mongodb port: 27017
 sh news_pipeline_launcher.sh
 ```
 
-### Click Log Processor
+### Preference Log Processor
 
-1. script to launch click log processor pipeline that process user's preference
+1. script to launch click log processor pipeline that process user's preference based on his/her clicks
+
+```terminal
+sh launcher.sh
+```
+
+### news-topic-modeling-trainer
+
+1. script to launch news classifier trainer to create topic model
 
 ```terminal
 sh launcher.sh
