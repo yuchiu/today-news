@@ -10,6 +10,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 
 import mongodb_client   # pylint: disable=E0401
 from cloudAMQP_client import CloudAMQPClient   # pylint: disable=E0401
+import news_topic_modeling_service_client  # pylint: disable=E0401
 
 DEDUPE_NEWS_TASK_QUEUE_URL = "amqp://dfedscrp:vDyPnfzqBTLo8f80vo7DI8RZztmOHlPG@lion.rmq.cloudamqp.com/dfedscrp"
 DEDUPE_NEWS_TASK_QUEUE_NAME = "latest_news_dedupe_news_task_queue"
@@ -64,6 +65,12 @@ def handle_message(msg):
                 return
 
     task['publishedAt'] = parser.parse(task['publishedAt'])
+
+    # Classify news
+    title = task['title']
+    if title is not None:
+        topic = news_topic_modeling_service_client.classify(title)
+        task['class'] = topic
 
     db[NEWS_TABLE_NAME].replace_one(
         {'digest': task['digest']}, task, upsert=True)

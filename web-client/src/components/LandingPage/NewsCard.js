@@ -31,6 +31,11 @@ class NewsCard extends React.Component {
                   {news.reason}
                 </div>
               )}
+              {news.class != null && (
+                <div className="news-detail__bottom__meta__class">
+                  {news.class}
+                </div>
+              )}
               {news.source != null && (
                 <div className="news-detail__bottom__meta__source">
                   {news.source}
