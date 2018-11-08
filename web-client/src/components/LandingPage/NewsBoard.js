@@ -7,7 +7,7 @@ import NewsCard from "./NewsCard";
 import { newsAction, userAction } from "@/actions";
 import { newsSelector } from "@/reducers/selectors";
 
-class NewsPanel extends React.Component {
+class NewsBoard extends React.Component {
   componentDidMount() {
     this.loadMoreNews();
     this.loadMoreNews = _.debounce(this.loadMoreNews, 1000);
@@ -32,7 +32,7 @@ class NewsPanel extends React.Component {
   render() {
     const { newsList, fetchClickLog } = this.props;
     return newsList ? (
-      <div className="list-group">
+      <div className="news-board">
         {newsList.map((news, i) => (
           <NewsCard key={i} news={news} fetchClickLog={fetchClickLog} />
         ))}
@@ -43,7 +43,7 @@ class NewsPanel extends React.Component {
   }
 }
 
-NewsPanel.propTypes = {
+NewsBoard.propTypes = {
   newsList: PropTypes.array.isRequired,
   offsetIndex: PropTypes.number.isRequired,
 
@@ -68,4 +68,4 @@ const dispatchToProps = dispatch => ({
 export default connect(
   stateToProps,
   dispatchToProps
-)(NewsPanel);
+)(NewsBoard);
