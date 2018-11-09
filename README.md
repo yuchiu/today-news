@@ -34,23 +34,30 @@ default mongodb port: 27017
 
 #### News Data Pipeline
 
-- script to launch the data pipeline that scrape latest news from different news sources
+- monitor recent published news from News API, send the tasks to a channel of message queue
 
 ```terminal
-sh news_pipeline_launcher.sh
+pip3 install -r requirements.txt
+python3 news_monitor.py
 ```
 
-#### Preference Log Processor
-
-- script to launch click log processor pipeline that process user's preference based on his/her clicks
+- scrape news from tasks send by news_monitor, send the fetched news to another channel of queue for deduper
 
 ```terminal
-sh launcher.sh
+pip3 install -r requirements.txt
+python3 news_fetcher.py
+```
+
+- dedupe fetched news by news_fetcher, use TF-IDF to remove duplicate news, use news topic modeling service to classify news, then store the clean dataset(news) in MongoDB.(News could be saved in DB without topic modeling, the data can be backfill in later process using news topic modeling service)
+
+```terminal
+pip3 install -r requirements.txt
+python3 news_deduper.py
 ```
 
 #### News Topic Modeling Service
 
-- install requirements & launch news classifier trainer to create topic model
+- launch news classifier trainer to create topic model
 
 ```terminal
 pip3 install -r requirements.txt
@@ -64,7 +71,22 @@ pip3 install -r requirements.txt
 python3 server/server.py
 ```
 
+- backfilling data that were stored in database that were populated without topic model
+
+```terminal
+pip3 install -r requirements.txt
+python3 backfill.py
+```
+
 Application will be serving on http://localhost:6060
+
+#### Preference Log Processor
+
+- script to launch click log processor pipeline that process user's preference based on his/her clicks on news using time decay model and store user's preference in DB
+
+```terminal
+sh launcher.sh
+```
 
 ### Serving Application
 
