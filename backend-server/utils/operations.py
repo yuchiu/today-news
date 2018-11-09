@@ -37,6 +37,7 @@ def get_one_news():
 
 
 def logNewsClickForUser(user_id, news_id):
+    print("running")
     # Send log task to machine learning service for prediction
     message = {'userId': user_id, 'newsId': news_id,
                'timestamp': str(datetime.utcnow())}
@@ -71,19 +72,19 @@ def getNewsSummariesForUser(user_id, page_num):
 
         sliced_news = total_news[begin_index: end_index]
 
-    # # Get preference for the user.
-    # preference = news_recommendation_service_client.getPreferenceForUser(
-    #     user_id)
-    # topPrefence = None
+    # Get preference for the user.
+    preference = news_recommendation_service_client.getPreferenceForUser(
+        user_id)
+    topPrefence = None
 
-    # if preference is not None and len(preference) > 0:
-    #     topPrefence = preference[0]
+    if preference is not None and len(preference) > 0:
+        topPrefence = preference[0]
 
     for news in sliced_news:
         # Remove text field to save bandwidth.
         del news['text']
         if news['publishedAt'].date() == datetime.today().date():
             news['time'] = 'today'
-        # if news['class'] == topPrefence:
-        #     news['reason'] = "Recommend"
+        if news['class'] == topPrefence:
+            news['reason'] = "Recommend"
     return json.loads(dumps(sliced_news))

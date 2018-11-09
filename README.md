@@ -82,20 +82,22 @@ Application will be serving on http://localhost:6060
 
 #### Preference Log Processor
 
-- script to launch click log processor pipeline that process user's preference based on his/her clicks on news using time decay model and store user's preference in DB
+- launch click log processor pipeline that process user's preference based on his/her clicks on news using time decay model and store user's preference in DB
 
 ```terminal
-sh launcher.sh
+pip3 install -r requirements.txt
+python3 preference_log_processor.py
 ```
 
 ### Serving Application
 
 #### News Recommendation Service
 
-- script to install dependencies & start news recommendation service
+- install dependencies & start news recommendation service
 
 ```terminal
-sh launcher.sh
+pip3 install -r requirements.txt
+python3 recommendation.py
 ```
 
 Application will be serving on http://localhost:5050
@@ -105,7 +107,8 @@ Application will be serving on http://localhost:5050
 - script to install dependencies & start application
 
 ```terminal
-sh launcher.sh
+pip3 install -r requirements.txt
+python3 service.py
 ```
 
 Application will be serving on http://localhost:4040
