@@ -4,8 +4,8 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 import click_log_processor  # pylint: disable=E0401
 
-# import common package in parent directory
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
+# import config package in parent directory
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'config'))
 
 import mongodb_client  # pylint: disable=E0401
 

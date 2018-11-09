@@ -6,8 +6,7 @@ import datetime
 
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), './', 'utils'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'config'))
 
 import news_api_client   # pylint: disable=E0401
 from cloudAMQP_client import CloudAMQPClient   # pylint: disable=E0401

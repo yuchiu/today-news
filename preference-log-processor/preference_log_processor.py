@@ -17,8 +17,8 @@ import news_class
 import os
 import sys
 
-# import common package in parent directory
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
+# import config package in parent directory
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'config'))
 
 import mongodb_client  # pylint: disable=E0401
 from cloudAMQP_client import CloudAMQPClient  # pylint: disable=E0401
