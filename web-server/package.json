@@ -13,8 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^6.1.0",
-    "bcrypt-nodejs": "0.0.3",
-    "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.2",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
@@ -23,7 +21,6 @@
     "helmet": "^3.13.0",
     "jayson": "^2.0.6",
     "joi": "^13.5.2",
-    "jsonwebtoken": "^8.3.0",
     "errorhandler": "^1.5.0",
     "logger": "0.0.1",
     "mongoose": "^5.2.6",

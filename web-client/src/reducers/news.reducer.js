@@ -20,6 +20,10 @@ export default (state = initialState, action) => {
       newState.offsetIndex += 10;
       return newState;
 
+    case actionTypes.ERROR_NEWS:
+      newState.isLoading = false;
+      return newState;
+
     case actionTypes.USER_LOGOUT:
       newState.offsetIndex = 0;
       return newState;

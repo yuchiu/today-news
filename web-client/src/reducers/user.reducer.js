@@ -29,6 +29,10 @@ export default (state = initialState, action) => {
       newState.isUserLoggedIn = sessionStore.getLoginStatus();
       return newState;
 
+    case actionTypes.ERROR_USER:
+      newState.isLoading = false;
+      return newState;
+
     case actionTypes.USER_LOGOUT:
       localStore.deauthenticateUser();
       sessionStore.setUserLoggedOut();
