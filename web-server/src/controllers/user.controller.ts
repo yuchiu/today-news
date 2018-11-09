@@ -3,17 +3,7 @@ import * as jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../util/secrets";
 
 import User from "../models/User";
-import rpcClient from "../config/rpcClient";
-
-const logNewsClickForUser = (userId, newsId) => {
-  rpcClient.request(
-    "logNewsClickForUser",
-    [userId, newsId],
-    (err, response) => {
-      if (err) throw err;
-    }
-  );
-};
+import { newsService, userService } from "../config/rpcClient";
 
 const jwtSignUser = user => {
   try {
@@ -39,6 +29,15 @@ const userController = {
   signUpUser: async (req, res) => {
     try {
       const credentials = req.body;
+
+      let userServiceResponse;
+      userService.request("signUpUser", credentials, (err, response) => {
+        if (err) {
+          if (err) throw err;
+        }
+        userServiceResponse = response;
+      });
+      console.log(userServiceResponse);
 
       const isUsernameRegistered = await User.findOne({
         username: credentials.username
@@ -96,6 +95,16 @@ const userController = {
   signInUser: async (req, res) => {
     try {
       const credentials = req.body;
+
+      let userServiceResponse;
+      userService.request("signInUser", credentials, (err, response) => {
+        if (err) {
+          if (err) throw err;
+        }
+        userServiceResponse = response;
+      });
+      console.log(userServiceResponse);
+
       const user = await User.findOne({ username: credentials.username });
 
       /* user not registered */
@@ -104,7 +113,9 @@ const userController = {
           meta: {
             type: "error",
             status: 403,
-            message: `this account ${credentials.username} is not yet registered`
+            message: `this account ${
+              credentials.username
+            } is not yet registered`
           }
         });
       }
@@ -149,6 +160,15 @@ const userController = {
   },
   tryAutoSignIn: async (req, res) => {
     try {
+      let userServiceResponse;
+      userService.request("tryAutoSignIn", req.user, (err, response) => {
+        if (err) {
+          if (err) throw err;
+        }
+        userServiceResponse = response;
+      });
+
+      console.log(userServiceResponse);
       // req.user is retreived from bearer token of auth.policy
       res.status(200).send({
         confirmation: true,
@@ -168,7 +188,13 @@ const userController = {
   preferenceLogger: async (req, res) => {
     try {
       if (req.user) {
-        logNewsClickForUser(req.user.id, req.params.newsDigestId);
+        newsService.request(
+          "logNewsClickForUser",
+          [req.user.id, req.params.newsDigestId],
+          (err, response) => {
+            if (err) throw err;
+          }
+        );
       }
     } catch (err) {
       console.log(err);

@@ -1,7 +1,7 @@
-import rpcClient from "../config/rpcClient";
+import { newsService } from "../config/rpcClient";
 
 const getNewsSummariesForUser = (userId, pageNum, callback) => {
-  rpcClient.request(
+  newsService.request(
     "getNewsSummariesForUser",
     [userId, pageNum],
     (err, response) => {

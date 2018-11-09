@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon service.js",
+    "start": "nodemon src/service.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "jayson": "^2.1.0",
+    "mongoose": "^5.3.10",
     "nodemon": "^1.18.6"
   }
 }

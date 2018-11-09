@@ -61,17 +61,19 @@ python3 news_deduper.py
 
 ```terminal
 pip3 install -r requirements.txt
-python3 trainer/news_classify_trainer.py
+cd trainer
+python3 news_classify_trainer.py
 ```
 
 - start topic modeling service for news pipeline to classify new data
 
 ```terminal
 pip3 install -r requirements.txt
-python3 server/server.py
+cd server
+python3 topic_modeling_service.py
 ```
 
-- backfilling data that were stored in database that were populated without topic model
+- backfilling data that were stored in database that were populated without topic model, start topic_modeling_service.py before backfilling
 
 ```terminal
 pip3 install -r requirements.txt
