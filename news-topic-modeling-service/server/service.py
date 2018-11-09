@@ -19,7 +19,7 @@ import news_cnn_model  # pylint: disable=E0401
 learn = tf.contrib.learn
 
 SERVER_HOST = 'localhost'
-SERVER_PORT = 6060
+SERVER_PORT = 7070
 
 MODEL_DIR = '../model'
 MODEL_UPDATE_LAG_IN_SECONDS = 10

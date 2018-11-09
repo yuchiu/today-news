@@ -78,7 +78,7 @@ pip3 install -r requirements.txt
 python3 backfill.py
 ```
 
-Application will be serving on http://localhost:6060
+Application will be serving on http://localhost:7070
 
 #### Preference Log Processor
 
@@ -100,15 +100,26 @@ pip3 install -r requirements.txt
 python3 recommendation.py
 ```
 
-Application will be serving on http://localhost:5050
+Application will be serving on http://localhost:6060
 
-#### Backend Server
+#### News Service
 
-- script to install dependencies & start application
+- install dependencies & start news service
 
 ```terminal
 pip3 install -r requirements.txt
 python3 service.py
+```
+
+Application will be serving on http://localhost:5050
+
+#### User Service
+
+- install dependencies & start user service
+
+```terminal
+npm install
+npm start
 ```
 
 Application will be serving on http://localhost:4040

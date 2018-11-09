@@ -5,7 +5,7 @@ import sys
 import operations
 
 SERVER_HOST = 'localhost'
-SERVER_PORT = 4040
+SERVER_PORT = 5050
 
 
 def get_one_news():
