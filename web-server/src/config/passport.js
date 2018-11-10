@@ -1,10 +1,11 @@
-import { Schema, model } from "mongoose";
-import * as passport from "passport";
+import mongoose from "mongoose";
+import passport from "passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 
 import { JWT_SECRET } from "../util/secrets";
 
-const User = model("User", new Schema({}));
+const User = mongoose.model("User", new mongoose.Schema({}));
+
 passport.use(
   new Strategy(
     {
@@ -16,7 +17,6 @@ passport.use(
         const user = await User.findOne({
           _id: jwtPayload._id
         });
-        console.log(user);
         if (!user) {
           return done(new Error(), false);
         }

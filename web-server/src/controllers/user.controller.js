@@ -38,7 +38,7 @@ const userController = {
     });
   },
   tryAutoSignIn: async (req, res) => {
-    const user = req.user;
+    const { user } = req;
     userService.request("tryAutoSignIn", user, (err, response) => {
       if (err) {
         console.log(err);

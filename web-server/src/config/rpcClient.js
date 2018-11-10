@@ -1,4 +1,4 @@
-import * as jayson from "jayson";
+import jayson from "jayson";
 
 // create a rpc client
 

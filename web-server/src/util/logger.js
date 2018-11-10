@@ -1,8 +1,8 @@
-import * as winston from "winston";
-import { createLogger, Logger } from "winston";
+import winston from "winston";
+import { createLogger } from "winston";
 import { NODE_ENV } from "./secrets";
 
-const logger: Logger = createLogger({
+const logger = createLogger({
   transports: [
     new winston.transports.Console({
       level: process.env.NODE_ENV === "production" ? "error" : "debug"

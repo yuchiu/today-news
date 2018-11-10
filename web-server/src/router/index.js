@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 
 import { getUser } from "../middlewares";
 import newsRouter from "./news.router";

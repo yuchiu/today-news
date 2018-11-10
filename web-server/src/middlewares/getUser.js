@@ -1,4 +1,4 @@
-import * as passport from "passport";
+import passport from "passport";
 
 export default (req, res, next) => {
   passport.authenticate("jwt", (err, user) => {
