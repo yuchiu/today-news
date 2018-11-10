@@ -1,0 +1,23 @@
+@import "../assets/css/mixins";
+
+.text-changer {
+  padding: 30px;
+  text-align: center;
+}
+.aboutpage {
+  text-align: center;
+  padding: 30px;
+  font-size: 30px;
+}
+.logo {
+  display: block;
+  margin: auto;
+}
+
+@include maxMediaQueries(750px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
