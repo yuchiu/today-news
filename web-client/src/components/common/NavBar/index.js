@@ -36,19 +36,11 @@ class NavBar extends React.Component {
               mode="horizontal"
             >
               <Menu.Item key="home">
-                <Link to="/">
-                  <Icon type="home" />
-                  Today&apos;s News
-                </Link>
+                <Link to="/">Today&apos;s News</Link>
               </Menu.Item>
               <Menu.SubMenu
                 style={{ float: "right" }}
-                title={
-                  <span>
-                    <Icon type="user" />
-                    {currentUsername}
-                  </span>
-                }
+                title={<span>Hi, {currentUsername}</span>}
               >
                 <Menu.Item key="singout">
                   <p onClick={this.handleLogout}>Sign Out</p>
@@ -63,22 +55,13 @@ class NavBar extends React.Component {
             mode="horizontal"
           >
             <Menu.Item key="landing">
-              <Link to="/">
-                <Icon type="home" />
-                Today&apos;s News
-              </Link>
+              <Link to="/">Today&apos;s News</Link>
             </Menu.Item>
             <Menu.Item style={{ float: "right" }}>
-              <Link to="/signup">
-                <Icon type="user-add" />
-                signup
-              </Link>
+              <Link to="/signup">Sign Up</Link>
             </Menu.Item>
             <Menu.Item style={{ float: "right" }}>
-              <Link to="/singin">
-                <Icon type="singin" />
-                singin
-              </Link>
+              <Link to="/singin">Sing In</Link>
             </Menu.Item>
           </Menu>
         )}

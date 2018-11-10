@@ -41,8 +41,19 @@ class NewsCard extends React.Component {
                   {news.source}
                 </div>
               )}
+            </div>
+            <div className="news-detail__bottom__reference">
+              <a
+                className="news-detail__bottom__reference__link"
+                href={news.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={this.handleClickLog.bind(this, news.digest)}
+              >
+                Link to article
+              </a>
               {news.publishedAt.$date != null && (
-                <div className="news-detail__bottom__meta__time">
+                <div className="news-detail__bottom__reference__time">
                   <Moment
                     format="HH:mm MMM d, YYYY"
                     date={news.publishedAt.$date}
@@ -50,15 +61,6 @@ class NewsCard extends React.Component {
                 </div>
               )}
             </div>
-            <a
-              className="news-detail__bottom__link"
-              href={news.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={this.handleClickLog.bind(this, news.digest)}
-            >
-              Link to article
-            </a>
           </div>
         </div>
       </div>

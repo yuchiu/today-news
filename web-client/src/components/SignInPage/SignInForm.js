@@ -7,6 +7,7 @@ import { InlineError } from "@/components/common";
 const SignInForm = ({
   handleLogin,
   onChange,
+  error,
   redirectToRegister,
   clientErrors,
   credentials
@@ -49,16 +50,21 @@ const SignInForm = ({
     >
       Log In
     </Button>
-    <br /> New to Today's News? <a onClick={redirectToRegister}>Register</a>
+    <br /> <br />
+    New to Today's News? <a onClick={redirectToRegister}>Register</a>
+    <br /> <br />
+    {error && <InlineError text={error} />}
   </Form>
 );
 
 SignInForm.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
-  redirectToRegister: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
   credentials: PropTypes.object.isRequired,
-  clientErrors: PropTypes.object.isRequired
+  clientErrors: PropTypes.object.isRequired,
+
+  onChange: PropTypes.func.isRequired,
+  redirectToRegister: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired
 };
 
 export default SignInForm;

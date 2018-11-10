@@ -14,6 +14,7 @@
 .news-card {
   padding: 15px;
   border: 1px solid rgb(236, 236, 236);
+  border-radius: 3px;
   display: flex;
 }
 
@@ -44,20 +45,26 @@
   &__bottom {
     display: flex;
     justify-content: space-between;
-    &__link {
-      font-size: 1.2em;
-      padding-top: 15px;
-    }
     &__meta {
       &__source {
         font-weight: 600;
       }
       &__reason {
+        font-weight: 600;
+        color: rgb(54, 187, 187);
       }
       &__class {
         font-weight: 600;
       }
+    }
+
+    &__reference {
+      padding-top: 10px;
       &__time {
+        color: grey;
+      }
+      &__link {
+        font-size: 1.2em;
       }
     }
   }

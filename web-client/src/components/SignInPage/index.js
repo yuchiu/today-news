@@ -7,7 +7,7 @@ import LoadingOverlay from "react-loading-overlay";
 import "./index.scss";
 import validateForm from "@/util/validateForm";
 import { userAction } from "@/actions";
-import { NavBar, InlineError } from "@/components/common";
+import { NavBar } from "@/components/common";
 import { userSelector, errorSelector } from "@/reducers/selectors";
 import SignInForm from "./SignInForm";
 
@@ -71,9 +71,8 @@ class SignInPage extends React.Component {
             redirectToRegister={this.redirectToRegister}
             clientErrors={clientErrors}
             credentials={credentials}
+            error={error}
           />
-          <br />
-          {error && <InlineError text={error} />}
         </main>
       </LoadingOverlay>
     );

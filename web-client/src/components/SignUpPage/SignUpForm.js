@@ -9,6 +9,7 @@ const SignUpForm = ({
   onChange,
   redirectToLogin,
   clientErrors,
+  error,
   credentials
 }) => (
   <Form className="signin-form">
@@ -79,16 +80,21 @@ const SignUpForm = ({
     >
       Register
     </Button>
-    <br /> Already have an account? <a onClick={redirectToLogin}>Log In</a>
+    <br /> <br />
+    Already have an account? <a onClick={redirectToLogin}>Log In</a>
+    <br /> <br />
+    {error && <InlineError text={error} />}
   </Form>
 );
 
 SignUpForm.propTypes = {
+  credentials: PropTypes.object.isRequired,
+  error: PropTypes.string.isRequired,
+  clientErrors: PropTypes.object.isRequired,
+
   handleRegister: PropTypes.func.isRequired,
   redirectToLogin: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  credentials: PropTypes.object.isRequired,
-  clientErrors: PropTypes.object.isRequired
+  onChange: PropTypes.func.isRequired
 };
 
 export default SignUpForm;
