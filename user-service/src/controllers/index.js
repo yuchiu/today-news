@@ -18,8 +18,7 @@ const userSummary = user => {
   const summary = {
     id: user._id,
     username: user.username,
-    email: user.email,
-    timestamp: user.timestamp
+    email: user.email
   };
   return summary;
 };
