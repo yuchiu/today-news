@@ -1,11 +1,11 @@
-import { getNewsList, getOffsetIndex, getNewsIsLoading } from "./news.reducer";
+import { getNewsList, getOffsetIndex, getNewsIsLoading } from "./news.selector";
 import {
   getCurrentUser,
   getIsUserLoggedIn,
   getCurrentUsername,
   getUserIsLoading
-} from "./user.reducer";
-import { getError } from "./error.reducer";
+} from "./user.selector";
+import { getError } from "./error.selector";
 
 const newsSelector = {
   getNewsList: state => getNewsList(state),

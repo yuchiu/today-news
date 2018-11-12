@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
 
-import { userSelector } from "@/reducers/selectors";
+import { userSelector } from "@/selectors";
 
 class AuthRoute extends React.Component {
   render() {

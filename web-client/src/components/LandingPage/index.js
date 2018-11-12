@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import LoadingOverlay from "react-loading-overlay";
 
 import "./index.scss";
-import { newsSelector } from "@/reducers/selectors";
+import { newsSelector } from "@/selectors";
 import { NavBar } from "@/components/common";
 import NewsBoard from "./NewsBoard";
 

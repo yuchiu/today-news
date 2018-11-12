@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { userAction } from "@/actions";
-import { userSelector } from "@/reducers/selectors";
+import { userSelector } from "@/selectors";
 
 class NavBar extends React.Component {
   state = {
@@ -61,7 +61,7 @@ class NavBar extends React.Component {
               <Link to="/signup">Sign Up</Link>
             </Menu.Item>
             <Menu.Item style={{ float: "right" }}>
-              <Link to="/singin">Sing In</Link>
+              <Link to="/signin">Sign In</Link>
             </Menu.Item>
           </Menu>
         )}

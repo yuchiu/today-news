@@ -5,7 +5,7 @@ import _ from "lodash";
 
 import NewsCard from "./NewsCard";
 import { newsAction, userAction } from "@/actions";
-import { newsSelector } from "@/reducers/selectors";
+import { newsSelector } from "@/selectors";
 
 class NewsBoard extends React.Component {
   componentDidMount() {
