@@ -7,7 +7,12 @@ export const userService = jayson.client.http({
   port: 4040
 });
 
-export const newsService = jayson.client.http({
+export const searchService = jayson.client.http({
   hostname: "localhost",
   port: 5050
+});
+
+export const newsService = jayson.client.http({
+  hostname: "localhost",
+  port: 6060
 });

@@ -12,7 +12,7 @@ import mongodb_client  # pylint: disable=E0401
 PREFERENCE_MODEL_TABLE_NAME = "user_preference_model"
 
 SERVER_HOST = 'localhost'
-SERVER_PORT = 6060
+SERVER_PORT = 7070
 
 
 def isclose(a, b, rel_tol=1e-09, abs_tol=0.0):

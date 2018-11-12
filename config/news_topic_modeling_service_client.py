@@ -1,6 +1,6 @@
 import jsonrpclib
 
-URL = "http://localhost:7070"
+URL = "http://localhost:8080"
 
 client = jsonrpclib.ServerProxy(URL)
 
