@@ -2,6 +2,8 @@ const jayson = require("jayson");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
+const controller = require("./controllers")
+
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
@@ -20,16 +22,14 @@ mongoose.connect(
 
 // create a server
 const server = jayson.server({
-  add: function(args, callback) {
-    callback(null, args[0] + args[1]);
-  },
   searchNews: function(searchTerm, callback) {
+    console.log("searchNews called");
     controller.searchNews(searchTerm, callback);
   }
 });
 
 server
   .http()
-  .listen(5050, () =>
+  .listen(process.env.SERVER_PORT, () =>
     console.log(`search service listenning on port ${process.env.SERVER_PORT}`)
   );

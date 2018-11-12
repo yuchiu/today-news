@@ -21,23 +21,22 @@ mongoose.connect(
 
 // create a server
 const server = jayson.server({
-  add: function(args, callback) {
-    callback(null, args[0] + args[1]);
-  },
   signUpUser: function(credentials, callback) {
+    console.log("signUpUser called");
     controller.signUpUser(credentials, callback);
   },
   signInUser: function(credentials, callback) {
-    console.log("signInUser");
+    console.log("signInUser called");
     controller.signInUser(credentials, callback);
   },
   tryAutoSignIn: function(user, callback) {
+    console.log("tryAutoSignIn called");
     controller.tryAutoSignIn(user, callback);
   }
 });
 
 server
   .http()
-  .listen(4040, () =>
+  .listen(process.env.SERVER_PORT, () =>
     console.log(`user service listenning on port ${process.env.SERVER_PORT}`)
   );

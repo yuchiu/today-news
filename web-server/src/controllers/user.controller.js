@@ -1,7 +1,7 @@
 import { newsService, userService } from "../config/rpcClient";
 
 const userController = {
-  signUpUser: async (req, res) => {
+  signUpUser: (req, res) => {
     const credentials = req.body;
 
     userService.request("signUpUser", credentials, (err, response) => {
@@ -19,7 +19,7 @@ const userController = {
       res.status(userServiceResponse.meta.status).send(userServiceResponse);
     });
   },
-  signInUser: async (req, res) => {
+  signInUser: (req, res) => {
     const credentials = req.body;
 
     userService.request("signInUser", credentials, (err, response) => {
@@ -37,7 +37,7 @@ const userController = {
       res.status(userServiceResponse.meta.status).send(userServiceResponse);
     });
   },
-  tryAutoSignIn: async (req, res) => {
+  tryAutoSignIn: (req, res) => {
     const { user } = req;
     userService.request("tryAutoSignIn", user, (err, response) => {
       if (err) {
@@ -54,7 +54,7 @@ const userController = {
       res.status(userServiceResponse.meta.status).send(userServiceResponse);
     });
   },
-  preferenceLogger: async (req, res) => {
+  preferenceLogger: (req, res) => {
     try {
       if (req.user) {
         newsService.request(
