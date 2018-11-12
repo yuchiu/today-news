@@ -36,7 +36,7 @@ class Router extends React.Component {
         <React.Fragment>
           <Switch>
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/singin" component={SignInPage} />
+            <Route exact path="/signin" component={SignInPage} />
             <Route exact path="/signup" component={SignUpPage} />
             <Route component={NotFoundPage} />
           </Switch>

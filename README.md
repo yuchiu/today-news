@@ -4,11 +4,11 @@
 
 ### Client Side
 
-    Reactjs ∙ Redux ∙ React-Redux ∙ React-Router ∙ Redux-Thunk ∙ Axios ∙ SCSS ∙ Ant Design
+    Reactjs ∙ Redux ∙ React-Redux ∙ React-Router ∙ Redux-Thunk ∙ Axios
 
 ### Server Side
 
-    Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Redis ∙ RabbitMQ ∙ MongoDB ∙ Mongoose ∙
+    Python ∙ Nodejs ∙ Expressjs ∙ RPC API ∙ Redis ∙ RabbitMQ ∙ MongoDB ∙ Mongoose ∙
     Web Scraper ∙ Tensorflow
 
 ---

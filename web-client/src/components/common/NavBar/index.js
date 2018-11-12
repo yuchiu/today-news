@@ -1,15 +1,28 @@
 import React from "react";
+import { Menu, Dropdown } from "semantic-ui-react";
 import PropTypes from "prop-types";
-import { Menu, Icon } from "antd";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
+import "./index.scss";
 import { userAction } from "@/actions";
 import { userSelector } from "@/selectors";
+import SearchInput from "./SearchInput";
 
 class NavBar extends React.Component {
-  state = {
-    current: ""
+  redirectToLanding = () => {
+    const { history } = this.props;
+    history.push("/");
+  };
+
+  redirectToSignIn = () => {
+    const { history } = this.props;
+    history.push("/signin");
+  };
+
+  redirectToSignUp = () => {
+    const { history } = this.props;
+    history.push("/signup");
   };
 
   handleClick = e => {
@@ -27,45 +40,54 @@ class NavBar extends React.Component {
   render() {
     const { isUserLoggedIn, currentUsername } = this.props;
     return (
-      <div className="navbar-container">
-        {isUserLoggedIn &&
-          currentUsername && (
-            <Menu
-              onClick={this.handleClick}
-              selectedKeys={[this.state.current]}
-              mode="horizontal"
-            >
-              <Menu.Item key="home">
-                <Link to="/">Today&apos;s News</Link>
-              </Menu.Item>
-              <Menu.SubMenu
-                style={{ float: "right" }}
-                title={<span>Hi, {currentUsername}</span>}
-              >
-                <Menu.Item key="singout">
-                  <p onClick={this.handleLogout}>Sign Out</p>
-                </Menu.Item>
-              </Menu.SubMenu>
-            </Menu>
-          )}
-        {!isUserLoggedIn && (
-          <Menu
-            onClick={this.handleClick}
-            selectedKeys={[this.state.current]}
-            mode="horizontal"
+      <Menu className="navbar-wrapper">
+        <Menu.Item className="borderless" onClick={this.redirectToLanding}>
+          <i className="fab fa-neos fa-lg brand-logo" />
+          <span className="brand-title">Today&apos;s News</span>
+        </Menu.Item>
+        <Menu.Item className="borderless " position="left">
+          <SearchInput />
+        </Menu.Item>
+
+        {isUserLoggedIn && (
+          <Menu.Item
+            position="right"
+            className="borderless "
+            id="menu-item-user-profile"
           >
-            <Menu.Item key="landing">
-              <Link to="/">Today&apos;s News</Link>
-            </Menu.Item>
-            <Menu.Item style={{ float: "right" }}>
-              <Link to="/signup">Sign Up</Link>
-            </Menu.Item>
-            <Menu.Item style={{ float: "right" }}>
-              <Link to="/signin">Sign In</Link>
-            </Menu.Item>
-          </Menu>
+            <Dropdown
+              item
+              className="borderless user-profile"
+              icon="user outline"
+              text={`Hi, ${currentUsername} `}
+            >
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={this.handleLogout}>
+                  Log Out
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Item>
         )}
-      </div>
+        {!isUserLoggedIn && (
+          <React.Fragment>
+            <Menu.Item
+              style={{ float: "right" }}
+              className="borderless"
+              onClick={this.redirectToSignIn}
+            >
+              Sign In
+            </Menu.Item>
+            <Menu.Item
+              style={{ float: "right" }}
+              className="borderless"
+              onClick={this.redirectToSignUp}
+            >
+              Sign Up
+            </Menu.Item>
+          </React.Fragment>
+        )}
+      </Menu>
     );
   }
 }
