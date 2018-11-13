@@ -2,11 +2,14 @@ const jayson = require("jayson");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
-const controller = require("./controllers")
-
+const controller = require("./controllers");
+const indexData = require("./indexData");
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
+
+// create news indices for elasticsearch
+indexData();
 
 mongoose.connect(
   process.env.MONGODB_URI_LOCAL,
@@ -22,7 +25,7 @@ mongoose.connect(
 
 // create a server
 const server = jayson.server({
-  searchNews: function(searchTerm, callback) {
+  searchNews(searchTerm, callback) {
     console.log("searchNews called");
     controller.searchNews(searchTerm, callback);
   }

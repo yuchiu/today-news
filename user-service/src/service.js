@@ -21,15 +21,15 @@ mongoose.connect(
 
 // create a server
 const server = jayson.server({
-  signUpUser: function(credentials, callback) {
+  signUpUser(credentials, callback) {
     console.log("signUpUser called");
     controller.signUpUser(credentials, callback);
   },
-  signInUser: function(credentials, callback) {
+  signInUser(credentials, callback) {
     console.log("signInUser called");
     controller.signInUser(credentials, callback);
   },
-  tryAutoSignIn: function(user, callback) {
+  tryAutoSignIn(user, callback) {
     console.log("tryAutoSignIn called");
     controller.tryAutoSignIn(user, callback);
   }

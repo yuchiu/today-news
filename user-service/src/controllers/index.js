@@ -24,8 +24,9 @@ const userSummary = user => {
 };
 
 const userController = {
-  signUpUser: async function(credentials, callback) {
+  async signUpUser(args, callback) {
     try {
+      const credentials = args;
       let response;
       const isUsernameRegistered = await User.findOne({
         username: credentials.username
@@ -73,17 +74,16 @@ const userController = {
       };
       callback(null, response);
     } catch (err) {
-      response = {
+      callback(null, {
         meta: {
           type: "error",
           status: 500,
           message: "server error"
         }
-      };
-      callback(null, response);
+      });
     }
   },
-  signInUser: async function(credentials, callback) {
+  async signInUser(credentials, callback) {
     try {
       let response;
       const user = await User.findOne({ username: credentials.username });
@@ -133,18 +133,17 @@ const userController = {
       callback(null, response);
     } catch (err) {
       console.log(err);
-      response = {
+      callback(null, {
         meta: {
           type: "error",
           status: 500,
           message: "server error"
         }
-      };
-      callback(null, response);
+      });
     }
   },
 
-  tryAutoSignIn: function(user, callback) {
+  tryAutoSignIn(user, callback) {
     const response = {
       meta: {
         type: "success",

@@ -8,7 +8,7 @@
 
 ### Server Side
 
-    Python ∙ Nodejs ∙ Expressjs ∙ RPC API ∙ Redis ∙ RabbitMQ ∙ MongoDB ∙ Mongoose ∙
+    Python ∙ Nodejs ∙ Expressjs ∙ RPC API ∙ Redis ∙ RabbitMQ ∙ ElasticSearch ∙ MongoDB ∙ Mongoose ∙
     Web Scraper ∙ Tensorflow
 
 ---

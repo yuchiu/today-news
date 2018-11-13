@@ -1,28 +1,38 @@
+const News = require("../models/News");
+
+const elasticSearchClient = require("../config/elasticSearch.client");
+
+elasticSearchClient.ping({ requestTimeout: 30000 }, error => {
+  if (error) {
+    console.error("elasticsearch cluster is down!");
+  } else {
+    console.log("Everything is ok");
+  }
+});
+
 const searchController = {
-  searchNews: async function(searchTerm, callback) {
+  async searchNews(searchTerm, callback) {
     try {
-      let response;
-      response = {
+      const response = {
         meta: {
           type: "success",
           status: 200,
           message: ""
         },
-        searchResult:{
-          title:"dads", desc:"dsada asd a"
+        searchResult: {
+          title: "dads",
+          desc: "dsada asd a"
         }
-      }
-      console.log(response)
+      };
       callback(null, response);
     } catch (err) {
-      response = {
+      callback(null, {
         meta: {
           type: "error",
           status: 500,
           message: "server error"
         }
-      };
-      callback(null, response);
+      });
     }
   }
 };
