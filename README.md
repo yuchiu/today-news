@@ -185,8 +185,8 @@ Application will be serving on http://localhost:3000
 
 #### Mobile Client(Android)
 
-- cd into directory, start Android emulator  
-  install dependencies & start application
+- start Android emulator
+- cd into directory, install dependencies & start application
 
 ```terminal
 npm install
