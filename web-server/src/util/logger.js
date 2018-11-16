@@ -1,5 +1,4 @@
-import winston from "winston";
-import { createLogger } from "winston";
+import winston, { createLogger } from "winston";
 import { NODE_ENV } from "./secrets";
 
 const logger = createLogger({

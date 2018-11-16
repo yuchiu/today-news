@@ -1,5 +1,6 @@
 import operator
 import os
+import json
 import sys
 
 from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
@@ -11,8 +12,23 @@ import mongodb_client  # pylint: disable=E0401
 
 PREFERENCE_MODEL_TABLE_NAME = "user_preference_model"
 
+NAME = "recommendation-service"
 SERVER_HOST = 'localhost'
 SERVER_PORT = 7070
+ENV = "development"
+
+
+def heartbeat():
+    """heartbeat"""
+    print("heartbeat called")
+    return (json.dumps({
+        "success": True,
+        "config": {
+            "name": NAME,
+            "url": SERVER_HOST,
+            "port": SERVER_PORT
+        }
+    }))
 
 
 def isclose(a, b, rel_tol=1e-09, abs_tol=0.0):
@@ -40,6 +56,7 @@ def getPreferenceForUser(user_id):
 
 # Threading HTTP Server
 RPC_SERVER = SimpleJSONRPCServer((SERVER_HOST, SERVER_PORT))
+RPC_SERVER.register_function(heartbeat, 'heartbeat')
 RPC_SERVER.register_function(getPreferenceForUser, 'getPreferenceForUser')
 
 print("Starting news-recommendation-service HTTP server on %s:%d" %

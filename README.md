@@ -148,6 +148,17 @@ npm start
 
 Application will be serving on http://localhost:3030
 
+#### Monitoring Service (Optional)
+
+- install dependencies & start application
+
+```terminal
+npm install
+npm start
+```
+
+This service will be monitoring all other services **except** for Web Server and services that runs in async pipeline, i.e Topic Modeling Service.
+
 #### Web Client
 
 - install dependencies & start application

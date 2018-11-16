@@ -1,11 +1,26 @@
 from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer  # pylint: disable=import-error
-
+import json
 import os
 import sys
 import operations
 
+NAME = 'news-service'
+ENV = 'development'
 SERVER_HOST = 'localhost'
 SERVER_PORT = 6060
+
+
+def heartbeat():
+    """heartbeat"""
+    print("heartbeat called")
+    return (json.dumps({
+        "success": True,
+        "config": {
+            "name": NAME,
+            "url": SERVER_HOST,
+            "port": SERVER_PORT
+        }
+    }))
 
 
 def get_one_news():
@@ -29,6 +44,7 @@ def log_news_click_for_user(user_id, news_id):
 
 # Threading RPC SimpleJSONRPCServer
 RPC_SERVER = SimpleJSONRPCServer((SERVER_HOST, SERVER_PORT))
+RPC_SERVER.register_function(heartbeat, 'heartbeat')
 RPC_SERVER.register_function(get_one_news, 'getOneNews')
 RPC_SERVER.register_function(
     get_news_summaries_for_user, 'getNewsSummariesForUser')

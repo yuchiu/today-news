@@ -1,6 +1,6 @@
 import express from "express";
 
-import { newsController } from "../controllers";
+import { newsController } from "../../controllers";
 
 const router = express.Router();
 

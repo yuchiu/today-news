@@ -9,7 +9,8 @@ import dotenv from "dotenv";
 
 // Passport configuration & middlewares
 import "./config/passport";
-import apiV1Routes from "./router";
+import apiV1Routes from "./router/apiV1";
+import heartbeat from "./router/heartbeat";
 import { simulateLatency } from "./middlewares";
 import { MONGODB_URI, SERVER_PORT, NODE_ENV } from "./util/secrets";
 
@@ -51,5 +52,6 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/api/v1", apiV1Routes);
+app.use("/heartbeat", heartbeat);
 
 export default app;

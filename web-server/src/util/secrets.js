@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
-import logger from "./logger";
 import fs from "fs";
+import logger from "./logger";
 
 if (fs.existsSync(".env")) {
   logger.debug("Using .env file to supply config environment variables");
@@ -12,29 +12,41 @@ if (fs.existsSync(".env")) {
 }
 
 // env is default to "development" unless env is specified
-export let NODE_ENV;
-process.env.NODE_ENV
-  ? (NODE_ENV = process.env.NODE_ENV)
-  : (NODE_ENV = "development");
+let node_env;
+if (process.env.NODE_ENV) {
+  node_env = process.env.NODE_ENV;
+} else {
+  node_env = "development";
+}
+export const NODE_ENV = node_env;
 
 // server url is default to "http://localhost" unless env is specified
-export let SERVER_URL;
-process.env.SERVER_URL
-  ? (SERVER_URL = process.env.SERVER_URL)
-  : (SERVER_URL = "http://localhost");
+let server_url;
+if (process.env.SERVER_URL) {
+  server_url = process.env.SERVER_URL;
+} else {
+  server_url = "http://localhost";
+}
+export const SERVER_URL = server_url;
 
 // port is default to 3030 unless env is specified
-export let SERVER_PORT;
-process.env.SERVER_PORT
-  ? (SERVER_PORT = process.env.SERVER_PORT)
-  : (SERVER_PORT = 3030);
+let server_port;
+if (process.env.SERVER_PORT) {
+  server_port = process.env.SERVER_PORT;
+} else {
+  server_port = 3030;
+}
+export const SERVER_PORT = server_port;
 
-export const JWT_SECRET = process.env["JWT_SECRET"];
+export const JWT_SECRET = process.env.JWT_SECRET;
 
-export let MONGODB_URI;
-process.env["MONGODB_URI_LOCAL"]
-  ? (MONGODB_URI = process.env["MONGODB_URI_LOCAL"])
-  : (MONGODB_URI = process.env["MONGODB_URI"]);
+let mongodb_uri;
+if (process.env.MONGODB_URI_LOCAL) {
+  mongodb_uri = process.env.MONGODB_URI_LOCAL;
+} else {
+  mongodb_uri = process.env.MONGODB_URI;
+}
+export const MONGODB_URI = mongodb_uri;
 
 if (!JWT_SECRET) {
   logger.debug("No JWT secret. Set JWT_SECRET environment variable.");

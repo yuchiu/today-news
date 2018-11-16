@@ -21,6 +21,17 @@ mongoose.connect(
 
 // create a server
 const server = jayson.server({
+  heartbeat(args, callback) {
+    console.log("heartbeat called");
+    callback(null, {
+      success: true,
+      config: {
+        name: process.env.SERVICE_NAME,
+        url: process.env.SERVER_URL,
+        port: process.env.SERVER_PORT
+      }
+    });
+  },
   signUpUser(credentials, callback) {
     console.log("signUpUser called");
     controller.signUpUser(credentials, callback);

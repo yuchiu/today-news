@@ -16,3 +16,8 @@ export const newsService = jayson.client.http({
   hostname: "localhost",
   port: 6060
 });
+
+export const recommendationService = jayson.client.http({
+  hostname: "localhost",
+  port: 7070
+});
