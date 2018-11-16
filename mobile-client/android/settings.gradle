@@ -1,0 +1,3 @@
+rootProject.name = 'today_news_mobile_client'
+
+include ':app'
