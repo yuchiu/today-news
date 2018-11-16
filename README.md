@@ -4,26 +4,39 @@
 
 ### Client Side
 
-    Reactjs ∙ Redux ∙ React-Redux ∙ React-Router ∙ Redux-Thunk ∙ Axios
+    Reactjs ∙ React Native ∙ Redux ∙ React-Redux ∙ React-Router ∙ Redux-Thunk ∙ Axios
 
 ### Server Side
 
     Python ∙ Nodejs ∙ Expressjs ∙ RPC API ∙ Redis ∙ RabbitMQ ∙ ElasticSearch ∙ MongoDB ∙ Mongoose ∙
-    Web Scraper ∙ Tensorflow
+    Web Scraper ∙ Tensorflow ∙ Docker
 
 ---
 
-## required softwares & version this project is using
+## Tools & Softwares
 
-| Softwares | Versions        |
-| --------- | --------------- |
-| npm       | 6.1.0           |
-| pip3      | 9.0.1           |
-| nodejs    | 10.7.0          |
-| python3   | 3.6.5           |
-| mongodb   | 3.6             |
-| Redis     | 4.0.11          |
-| rabbitmq  | using CloudAMQP |
+### required tools & version this project is using
+
+| Tools    | Versions        |
+| -------- | --------------- |
+| npm      | 6.1.0           |
+| pip3     | 9.0.1           |
+| nodejs   | 10.7.0          |
+| python3  | 3.6.5           |
+| mongodb  | 3.6             |
+| Redis    | 4.0.11          |
+| rabbitmq | using CloudAMQP |
+
+### Optional tools & version this project is using
+
+| Tools                    | Versions   |
+| ------------------------ | ---------- |
+| **For Mobile Client**    |
+| react-native             | 0.57.5     |
+| react-native-cli         | 2.0.1      |
+| **For Production Build** |
+| docker                   | 18.06.1-ce |
+| docker-compose           | 1.22.0     |
 
 default redis port: 6379
 default mongodb port: 27017
@@ -169,3 +182,16 @@ npm start
 ```
 
 Application will be serving on http://localhost:3000
+
+#### Mobile Client(Android)
+
+- cd into directory, start Android emulator  
+  install dependencies & start application
+
+```terminal
+npm install
+react-native run-android
+```
+
+Application will be running on Android Emulator  
+Geting started with React Native documentation [Link](https://facebook.github.io/react-native/docs/getting-started).
