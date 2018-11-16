@@ -15,7 +15,13 @@
 
 ## Tools & Softwares
 
-### required tools & version this project is using
+### Operating System this project is using during development
+
+| OS     | Version |
+| ------ | ------- |
+| ubuntu | 18.04   |
+
+### Required tools & version this project is using
 
 | Tools    | Versions        |
 | -------- | --------------- |
@@ -29,17 +35,14 @@
 
 ### Optional tools & version this project is using
 
-| Tools                    | Versions   |
-| ------------------------ | ---------- |
-| **For Mobile Client**    |
-| react-native             | 0.57.5     |
-| react-native-cli         | 2.0.1      |
-| **For Production Build** |
-| docker                   | 18.06.1-ce |
-| docker-compose           | 1.22.0     |
-
-default redis port: 6379
-default mongodb port: 27017
+| Tools                     | Versions   |
+| ------------------------- | ---------- |
+| For Mobile Client         |
+| react-native              | 0.57.5     |
+| react-native-cli          | 2.0.1      |
+| For Production Deployment |
+| docker                    | 18.06.1-ce |
+| docker-compose            | 1.22.0     |
 
 ## Development
 
@@ -161,7 +164,7 @@ npm start
 
 Application will be serving on http://localhost:3030
 
-#### Monitoring Service (Optional)
+#### Monitoring Service(Optional)
 
 - install dependencies & start application
 

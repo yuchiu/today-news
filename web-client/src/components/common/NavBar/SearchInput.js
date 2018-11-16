@@ -9,8 +9,6 @@ class SearchInput extends React.Component {
       ENTER_KEY: 13,
       text: ""
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleChange = e => {
@@ -47,6 +45,7 @@ class SearchInput extends React.Component {
   }
 }
 SearchInput.propTypes = {};
+
 const dispatchToProps = dispatch => ({});
 export default connect(
   null,
