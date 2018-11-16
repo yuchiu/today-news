@@ -3,13 +3,15 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 const controller = require("./controllers");
-// const indexData = require("./indexData");
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
 
 // create news indices for elasticsearch
-// indexData();
+const esController = require("./esController");
+
+esController.indexData();
+// esController.checkIndices();
 
 mongoose.connect(
   process.env.MONGODB_URI_LOCAL,

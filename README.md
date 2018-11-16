@@ -23,15 +23,16 @@
 
 ### Required tools & version this project is using
 
-| Tools    | Versions        |
-| -------- | --------------- |
-| npm      | 6.1.0           |
-| pip3     | 9.0.1           |
-| nodejs   | 10.7.0          |
-| python3  | 3.6.5           |
-| mongodb  | 3.6             |
-| Redis    | 4.0.11          |
-| rabbitmq | using CloudAMQP |
+| Tools         | Versions        |
+| ------------- | --------------- |
+| npm           | 6.1.0           |
+| pip3          | 9.0.1           |
+| nodejs        | 10.7.0          |
+| python3       | 3.6.5           |
+| mongodb       | 3.6             |
+| redis         | 4.0.11          |
+| elasticsearch | 2.4.6           |
+| rabbitmq      | using CloudAMQP |
 
 ### Optional tools & version this project is using
 
