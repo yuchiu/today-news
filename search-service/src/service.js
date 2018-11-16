@@ -3,24 +3,36 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 const controller = require("./controllers");
+const esController = require("./esController");
+const esTest = require("./__test__/es.test");
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
 
-// create news indices for elasticsearch
-const esController = require("./esController");
+const elasticSearchClient = require("./config/elasticSearch.client");
 
-esController.indexData();
-// esController.checkIndices();
+elasticSearchClient.ping({ requestTimeout: 30000 }, error => {
+  if (error) {
+    console.error(`Elasticsearch connection failed: ${error}`);
+  } else {
+    console.log("Elasticsearch connection success");
+  }
+});
 
+/*
+  this function will index all data from MongoDB news collection to ElasticSearch
+*/
+// esController.indexData();
+
+esTest.testSearch();
 mongoose.connect(
   process.env.MONGODB_URI_LOCAL,
   { useNewUrlParser: true },
   err => {
     if (err) {
-      console.log(`DB Connection failed:${err}`);
+      console.log(`MongoDB connection failed: ${err}`);
     } else {
-      console.log("DB Connection Success");
+      console.log("MongoDB connection success");
     }
   }
 );
