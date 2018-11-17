@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^6.1.0",
-    "elasticsearch": "^15.2.0",
+    "elasticsearch": "^11.0.1",
     "jayson": "^2.1.0",
     "mongoose": "^5.3.11"
   },

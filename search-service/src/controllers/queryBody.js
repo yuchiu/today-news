@@ -6,24 +6,15 @@ module.exports = {
       match_all: {}
     }
   }),
-  search: (searchTerm, size) => ({
+  searchTermQuery: (searchTerm, size) => ({
     size,
     from: 0,
     query: {
       multi_match: {
         query: searchTerm,
-        fuzziness: 2,
+        fuzziness: 1,
         fields: ["title", "description"]
       }
     }
   })
-  //   suggest: (text, field, size) => ({
-  //     text,
-  //     suggester: {
-  //       term: {
-  //         field,
-  //         size
-  //       }
-  //     }
-  //   })
 };

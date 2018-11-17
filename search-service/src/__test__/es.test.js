@@ -1,6 +1,5 @@
 const elasticSearchClient = require("../config/elasticSearch.client");
 
-const esController = require("../controllers/es.controller");
 const queryBody = require("../controllers/queryBody");
 
 function testIndices() {
@@ -15,8 +14,8 @@ function testIndices() {
     .catch(err => console.error(`Error connecting to the es client: ${err}`));
 }
 function testSearchAll() {
-  esController
-    .search("news", queryBody.testSearchAll)
+  elasticSearchClient
+    .search({ index: "news", body: queryBody.testSearchAll })
     .then(results => {
       console.log("|Test SearchAll|");
       console.log("-----------------------------------");
@@ -31,14 +30,14 @@ function testSearchAll() {
     .catch(console.error);
 }
 
-function testSearchTerm(searchTerm, size) {
-  esController
-    .search("news", queryBody.search(searchTerm, size))
+function testSearchTerm(term, size) {
+  elasticSearchClient
+    .search({ index: "news", body: queryBody.searchTermQuery(term, size) })
     .then(results => {
       console.log("|Test SearchTerm|");
       console.log("-----------------------------------");
       console.log("Search Term:");
-      console.log(searchTerm);
+      console.log(term);
       console.log("Response Body: ");
       console.log(results);
       console.log(`found ${results.hits.total} items in ${results.took}ms`);
@@ -49,21 +48,6 @@ function testSearchTerm(searchTerm, size) {
     })
     .catch(console.error);
 }
-// function testSuggestTerm(text, field, size) {
-//   esController
-//     .suggest("news", queryBody.suggest(text, field, size))
-//     .then(results => {
-//       console.log("|Test SuggestTerm|");
-//       console.log("-----------------------------------");
-//       console.log("Text:");
-//       console.log(text);
-//       console.log("Response Body: ");
-//       console.log(results);
-//     })
-//     .catch(console.error);
-// }
-
 testIndices();
 testSearchAll();
 testSearchTerm("trump", 10);
-// testSuggestTerm("tru", "title", 5);
