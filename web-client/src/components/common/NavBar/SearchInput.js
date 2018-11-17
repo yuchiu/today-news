@@ -1,8 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-
-import { searchAction } from "@/actions";
 
 class SearchInput extends React.Component {
   constructor(props) {
@@ -13,50 +11,53 @@ class SearchInput extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const {
+      location: { pathname }
+    } = this.props;
+    const pathPrefix = "search/";
+    const paramIndex = pathname.indexOf(pathPrefix);
+    const searchTerm = pathname.substring(paramIndex + pathPrefix.length);
+    this.setState({
+      text: searchTerm
+    });
+  }
+
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({
       [name]: value
     });
+    setTimeout(this.changeSearchParam, 500);
   };
 
-  handleSearch = () => {
+  changeSearchParam = () => {
     const { text } = this.state;
-    const { fetchSearchNews } = this.props;
+    const { fetchSearch, history, clearSearchNewsResult } = this.props;
     if (text) {
-      fetchSearchNews(text);
+      history.push(`/search/${text}`);
+    } else {
+      history.push(`/`);
+      clearSearchNewsResult();
     }
   };
 
   render() {
-    const { ENTER_KEY } = this.state;
+    const { ENTER_KEY, text } = this.state;
     return (
       <div className="searchbox">
         <input
           className="searchbox__input"
           placeholder="Search News..."
           name="text"
+          value={text}
           onChange={this.handleChange}
-          onKeyDown={e => {
-            if (e.keyCode === ENTER_KEY) this.handleSearch();
-          }}
         />
-        <i
-          className="fa fa-search fa-lg searchbox__icon"
-          onClick={this.handleSearch}
-        />
+        <i className="fa fa-search fa-lg searchbox__icon" />
       </div>
     );
   }
 }
 SearchInput.propTypes = {};
 
-const dispatchToProps = dispatch => ({
-  fetchSearchNews: searchTerm => {
-    dispatch(searchAction.fetchSearchNews(searchTerm));
-  }
-});
-export default connect(
-  null,
-  dispatchToProps
-)(SearchInput);
+export default withRouter(SearchInput);

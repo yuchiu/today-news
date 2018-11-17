@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { userAction } from "@/actions";
+import { NavBar } from "@/components/common";
 import LandingPage from "./LandingPage";
 import NotFoundPage from "./NotFoundPage";
 import SignUpPage from "./SignUpPage";
 import SignInPage from "./SignInPage";
+import SearchResultPage from "./SearchResultPage";
 
 class Router extends React.Component {
   state = {
@@ -34,10 +36,16 @@ class Router extends React.Component {
     ) : (
       <BrowserRouter>
         <React.Fragment>
+          <NavBar />
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/signin" component={SignInPage} />
             <Route exact path="/signup" component={SignUpPage} />
+            <Route
+              exact
+              path="/search/:searchTerm"
+              component={SearchResultPage}
+            />
             <Route component={NotFoundPage} />
           </Switch>
         </React.Fragment>

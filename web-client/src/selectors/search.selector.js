@@ -1,5 +1,5 @@
 /* state selectors */
-const getSearchNewsResult = state => state.newsReducer.searchNewsResult;
+const getSearchNewsResult = state => state.searchReducer.searchNewsResult;
 
 const getSearchIsLoading = state => state.searchReducer.isLoading;
 

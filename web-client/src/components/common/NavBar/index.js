@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./index.scss";
-import { userAction } from "@/actions";
+import { userAction, searchAction } from "@/actions";
 import { userSelector } from "@/selectors";
 import SearchInput from "./SearchInput";
 
@@ -38,7 +38,12 @@ class NavBar extends React.Component {
   };
 
   render() {
-    const { isUserLoggedIn, currentUsername } = this.props;
+    const {
+      isUserLoggedIn,
+      history,
+      clearSearchNewsResult,
+      currentUsername
+    } = this.props;
     return (
       <Menu className="navbar-wrapper">
         <Menu.Item className="borderless" onClick={this.redirectToLanding}>
@@ -46,7 +51,7 @@ class NavBar extends React.Component {
           <span className="brand-title">Today&apos;s News</span>
         </Menu.Item>
         <Menu.Item className="borderless " position="left">
-          <SearchInput />
+          <SearchInput clearSearchNewsResult={clearSearchNewsResult} />
         </Menu.Item>
 
         {isUserLoggedIn && (
@@ -107,6 +112,9 @@ const stateToProps = state => ({
 const dispatchToProps = dispatch => ({
   signOutUser: () => {
     dispatch(userAction.signOutUser());
+  },
+  clearSearchNewsResult: () => {
+    dispatch(searchAction.clearSearchNewsResult);
   }
 });
 

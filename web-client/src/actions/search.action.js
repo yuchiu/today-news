@@ -20,5 +20,10 @@ export default {
         payload: data.meta.message
       });
     }
+  },
+  clearSearchNewsResult: () => dispatch => {
+    dispatch({
+      type: actionTypes.SEARCH_CLEAR_RESULT
+    });
   }
 };

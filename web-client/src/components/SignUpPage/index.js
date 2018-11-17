@@ -7,7 +7,6 @@ import LoadingOverlay from "react-loading-overlay";
 import "./index.scss";
 import validateForm from "@/util/validateForm";
 import { userAction } from "@/actions";
-import { NavBar } from "@/components/common";
 import { userSelector, errorSelector } from "@/selectors";
 import SignUpForm from "./SignUpForm";
 
@@ -83,7 +82,6 @@ class SignUpPage extends React.Component {
       <LoadingOverlay active={isLoading} spinner zIndex={10} text="Loading">
         {isUserLoggedIn && <Redirect to="/" />}
         <main className="signup-page">
-          <NavBar />
           <SignUpForm
             handleRegister={this.handleRegister}
             onChange={this.handleChange}

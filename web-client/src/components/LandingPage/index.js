@@ -5,7 +5,6 @@ import LoadingOverlay from "react-loading-overlay";
 
 import "./index.scss";
 import { newsSelector } from "@/selectors";
-import { NavBar } from "@/components/common";
 import NewsBoard from "./NewsBoard";
 
 class LandingPage extends React.Component {
@@ -15,7 +14,6 @@ class LandingPage extends React.Component {
     return (
       <LoadingOverlay active={isLoading} spinner zIndex={10} text="Loading">
         <main className="landing-page">
-          <NavBar history={history} />
           <NewsBoard />
         </main>
       </LoadingOverlay>

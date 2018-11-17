@@ -13,6 +13,6 @@ class NewsImg extends React.Component {
 }
 
 NewsImg.propTypes = {
-  news: PropTypes.object.isRequired
+  thumbnailImg: PropTypes.string.isRequired
 };
 export default NewsImg;

@@ -15,7 +15,11 @@ export default (state = initialState, action) => {
 
     case actionTypes.SEARCH_FETCH_SUCCESS:
       newState.isLoading = false;
-      newState.searchNewsResult = action.payload;
+      newState.searchNewsResult = action.payload.searchResult;
+      return newState;
+
+    case actionTypes.SEARCH_CLEAR_RESULT:
+      newState.searchNewsResult = [];
       return newState;
 
     case actionTypes.ERROR_SEARCH:
