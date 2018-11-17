@@ -32,6 +32,9 @@
   &__icon {
     color: grey;
     margin-right: 10px;
+    &:hover {
+      cursor: pointer;
+    }
   }
   &__input {
     border-width: 0px;

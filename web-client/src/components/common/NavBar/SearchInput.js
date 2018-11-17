@@ -52,8 +52,14 @@ class SearchInput extends React.Component {
           name="text"
           value={text}
           onChange={this.handleChange}
+          onKeyDown={e => {
+            if (e.keyCode === ENTER_KEY) this.changeSearchParam();
+          }}
         />
-        <i className="fa fa-search fa-lg searchbox__icon" />
+        <i
+          className="fa fa-search fa-lg searchbox__icon"
+          onClick={this.changeSearchParam}
+        />
       </div>
     );
   }
