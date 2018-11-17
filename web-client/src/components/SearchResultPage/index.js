@@ -54,8 +54,8 @@ class LandingPage extends React.Component {
       <main className="landing-page">
         <div> Search result of {searchTerm}</div>
         <div>
-          {searchNewsResult.map(n => (
-            <div>{n._source.title}</div>
+          {searchNewsResult.map((n, i) => (
+            <div key={`${n._source.digest}-index-${i}`}>{n._source.title}</div>
           ))}
         </div>
       </main>

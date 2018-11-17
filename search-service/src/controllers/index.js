@@ -4,14 +4,12 @@ const elasticSearchClient = require("../config/elasticSearch.client");
 
 const searchController = {
   async searchNews(searchTerm, callback) {
-    console.log(searchTerm);
     elasticSearchClient
       .search({
         index: "news",
         body: queryBody.searchTermQuery(searchTerm.searchTerm, 10)
       })
       .then(result => {
-        console.log(result);
         const response = {
           meta: {
             type: "success",
