@@ -47,12 +47,9 @@ module.exports = {
   /*
     this function will index all data from MongoDB news collection to ElasticSearch
   */
-  indexData: async function indexData() {
+  indexAllNews: async function indexData() {
     const allNews = await News.find({}).lean();
     console.log(`${allNews.length} items parsed from database`);
     bulkIndex("news", "article", allNews);
-  },
-  search: function search(index, body) {
-    return elasticSearchClient.search({ index, body });
   }
 };

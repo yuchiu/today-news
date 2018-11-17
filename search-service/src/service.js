@@ -3,13 +3,11 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 const controller = require("./controllers");
-const esController = require("./esController");
-const esTest = require("./__test__/es.test");
+const elasticSearchClient = require("./config/elasticSearch.client");
+const indexAllData = require("./indexAllData");
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
-
-const elasticSearchClient = require("./config/elasticSearch.client");
 
 elasticSearchClient.ping({ requestTimeout: 30000 }, error => {
   if (error) {
@@ -19,12 +17,6 @@ elasticSearchClient.ping({ requestTimeout: 30000 }, error => {
   }
 });
 
-/*
-  this function will index all data from MongoDB news collection to ElasticSearch
-*/
-// esController.indexData();
-
-esTest.testSearch();
 mongoose.connect(
   process.env.MONGODB_URI_LOCAL,
   { useNewUrlParser: true },
@@ -37,7 +29,12 @@ mongoose.connect(
   }
 );
 
-// create a server
+/*
+  indexAllData.indexAllNews() will index all data from MongoDB news collection to ElasticSearch,
+  only run this function for initializing ElasticSearch database
+*/
+// indexAllData.indexAllNews();
+
 const server = jayson.server({
   heartbeat(args, callback) {
     console.log("heartbeat called");
