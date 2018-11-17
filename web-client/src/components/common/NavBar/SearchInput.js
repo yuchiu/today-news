@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+import { searchAction } from "@/actions";
+
 class SearchInput extends React.Component {
   constructor(props) {
     super(props);
@@ -20,9 +22,9 @@ class SearchInput extends React.Component {
 
   handleSearch = () => {
     const { text } = this.state;
+    const { fetchSearchNews } = this.props;
     if (text) {
-      console.log(text);
-      this.setState({ text: "" });
+      fetchSearchNews(text);
     }
   };
 
@@ -30,7 +32,6 @@ class SearchInput extends React.Component {
     const { ENTER_KEY } = this.state;
     return (
       <div className="searchbox">
-        <i className="fa fa-search fa-lg searchbox__icon" />
         <input
           className="searchbox__input"
           placeholder="Search News..."
@@ -40,13 +41,21 @@ class SearchInput extends React.Component {
             if (e.keyCode === ENTER_KEY) this.handleSearch();
           }}
         />
+        <i
+          className="fa fa-search fa-lg searchbox__icon"
+          onClick={this.handleSearch}
+        />
       </div>
     );
   }
 }
 SearchInput.propTypes = {};
 
-const dispatchToProps = dispatch => ({});
+const dispatchToProps = dispatch => ({
+  fetchSearchNews: searchTerm => {
+    dispatch(searchAction.fetchSearchNews(searchTerm));
+  }
+});
 export default connect(
   null,
   dispatchToProps

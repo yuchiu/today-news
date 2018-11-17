@@ -6,6 +6,7 @@ import {
   getUserIsLoading
 } from "./user.selector";
 import { getError } from "./error.selector";
+import { getSearchNewsResult, getSearchIsLoading } from "./search.selector";
 
 const newsSelector = {
   getNewsList: state => getNewsList(state),
@@ -20,8 +21,13 @@ const userSelector = {
   getUserIsLoading: state => getUserIsLoading(state)
 };
 
+const searchSelector = {
+  getSearchNewsResult: state => getSearchNewsResult(state),
+  getSearchIsLoading: state => getSearchIsLoading(state)
+};
+
 const errorSelector = {
   getError: state => getError(state)
 };
 
-export { newsSelector, userSelector, errorSelector };
+export { newsSelector, userSelector, searchSelector, errorSelector };
