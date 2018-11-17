@@ -84,8 +84,6 @@ def getNewsSummariesForUser(user_id, page_num):
         topPrefence = preference[0]
 
     for news in sliced_news:
-        # Remove text field to save bandwidth.
-        del news['text']
         if news['publishedAt'].date() == datetime.today().date():
             news['time'] = 'today'
         if news['class'] == topPrefence:
