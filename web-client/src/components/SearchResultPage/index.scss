@@ -1,34 +1,118 @@
 @import "../../assets/css/vars.scss";
 
 .search-result-page {
+  margin: 25px auto;
+  width: 79%;
 }
 
 .search-summary {
-  &__hint {
-  }
   &__loading {
+    font-size: 1.5em;
+  }
+  &__hint {
+    font-size: 1.3em;
   }
   &__found {
+    font-size: 1.3em;
   }
   &__unfound {
+    font-weight: 600;
+    font-size: 1.3em;
   }
 }
 
 .search-result {
 }
 .result-news-card {
-  &__title {
-  }
-  &__class {
-  }
-  &__source {
-  }
-  &__description {
-  }
-  &__url {
-  }
+  display: flex;
+  margin: 20px 0;
+  border: 1px solid $superlightgrey;
+  padding: 10px;
   &__img {
+    width: 400px;
+    margin-right: 40px;
+    &__thumbnail {
+      object-fit: cover;
+      width: 400px;
+      height: 300px;
+      box-shadow: 1px 2px 3px $superlightgrey;
+    }
   }
-  &__publishedAt {
+  &__detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__top {
+      &__title {
+        font-size: 1.3em;
+        font-weight: 600;
+      }
+      &__description {
+        font-size: 1.1em;
+      }
+    }
+    &__bottom {
+      &__class {
+        font-size: 1.2em;
+        font-weight: 600;
+      }
+      &__source {
+        font-size: 1.2em;
+      }
+      &__url {
+        color: $darkgrey;
+        font-size: 1.2em;
+      }
+      &__date {
+        color: $grey;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .search-result-page {
+    margin: 20px auto;
+  }
+  .result-news-card {
+    flex-direction: column;
+    align-items: center;
+    &__img {
+      margin-right: 0px;
+      width: 90%;
+      &__thumbnail {
+        width: 100%;
+        height: 300px;
+        margin: 10px 0px;
+      }
+    }
+    &__detail {
+      width: 90%;
+      &__top {
+        margin-bottom: 15px;
+        &__title {
+          text-align: center;
+          font-size: 1.1em;
+          margin: 10px 0px;
+        }
+        &__description {
+          font-size: 1em;
+        }
+      }
+      &__bottom {
+        &__class {
+          font-size: 1em;
+        }
+        &__source {
+          font-size: 1em;
+        }
+        &__url {
+          font-size: 1em;
+        }
+        &__date {
+          color: $grey;
+        }
+      }
+    }
   }
 }

@@ -28,7 +28,7 @@ class SearchInput extends React.Component {
     this.setState({
       [name]: value
     });
-    setTimeout(this.changeSearchParam, 500);
+    setTimeout(this.changeSearchParam, 350);
   };
 
   changeSearchParam = () => {
