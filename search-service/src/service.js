@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 
 const controller = require("./controllers");
 const elasticSearchClient = require("./config/elasticSearch.client");
-const indexAllData = require("./indexAllData");
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config();
@@ -28,12 +27,6 @@ mongoose.connect(
     }
   }
 );
-
-/*
-  indexAllData.indexAllNews() will index all data from MongoDB news collection to ElasticSearch,
-  only run this function for initializing ElasticSearch database
-*/
-// indexAllData.indexAllNews();
 
 const server = jayson.server({
   heartbeat(args, callback) {

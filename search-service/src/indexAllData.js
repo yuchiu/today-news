@@ -1,6 +1,38 @@
-const News = require("./models/News");
+/** ********************************************
+ *                   Warning!!!                *
+ *                                             *
+ * Only run this once for initializing indices *
+ *                                             *
+ * Ignore this if you know what you are doing  *
+ ********************************************** */
 
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+const News = require("./models/News");
 const elasticSearchClient = require("./config/elasticSearch.client");
+
+dotenv.config();
+
+elasticSearchClient.ping({ requestTimeout: 30000 }, error => {
+  if (error) {
+    console.error(`Elasticsearch connection failed: ${error}`);
+  } else {
+    console.log("Elasticsearch connection success");
+  }
+});
+
+mongoose.connect(
+  process.env.MONGODB_URI_LOCAL,
+  { useNewUrlParser: true },
+  err => {
+    if (err) {
+      console.log(`MongoDB connection failed: ${err}`);
+    } else {
+      console.log("MongoDB connection success");
+    }
+  }
+);
 
 const bulkIndex = function bulkIndex(index, type, data) {
   const bulkBody = [];
@@ -43,13 +75,17 @@ const bulkIndex = function bulkIndex(index, type, data) {
     .catch(console.err);
 };
 
-module.exports = {
-  /*
-    this function will index all data from MongoDB news collection to ElasticSearch
-  */
-  indexAllNews: async function indexData() {
-    const allNews = await News.find({}).lean();
-    console.log(`${allNews.length} items parsed from database`);
-    bulkIndex("news", "article", allNews);
-  }
-};
+/*
+  this function will index all data from MongoDB news collection to ElasticSearch
+*/
+async function indexAllNews() {
+  const allNews = await News.find({}).lean();
+  console.log(`${allNews.length} items parsed from database`);
+  bulkIndex("news", "article", allNews);
+}
+
+/*
+  indexAllNews() will index all data from MongoDB news collection to ElasticSearch,
+  only run this function for initializing ElasticSearch database
+*/
+indexAllNews();

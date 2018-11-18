@@ -13,6 +13,10 @@
 
 ---
 
+## System Architecture Diagram
+
+![architecture](https://i.imgur.com/GkDOkam.jpg)
+
 ## Tools & Softwares
 
 ### Operating System this project is using during development
@@ -133,6 +137,13 @@ python3 service.py
 Application will be serving on http://localhost:6060
 
 #### Search Service
+
+- for a new environment, run the following script to populate ElasticSearch indices with MongoDB's Data.  
+  do not run this multiple times, only populate ElasticSearch's indices when needed
+
+```terminal
+npm run initialize-indices
+```
 
 - install dependencies & start search service
 

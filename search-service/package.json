@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/service.js",
+    "initialize-indices": "node src/indexAllData.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
