@@ -2,10 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import "./index.scss";
 import { searchAction } from "@/actions";
 import { searchSelector } from "@/selectors";
+import SearchResultSummary from "./SearchResultSummary";
+import SearchResultNews from "./SearchResultNews";
 
-class LandingPage extends React.Component {
+class SearchResultPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,32 +47,44 @@ class LandingPage extends React.Component {
   };
 
   render() {
-    const { history, isLoading, searchNewsResult } = this.props;
+    const {
+      history,
+      isLoading,
+      searchNewsResult,
+      isSearchNotFound
+    } = this.props;
     const {
       match: {
         params: { searchTerm }
       }
     } = this.props;
     return (
-      <main className="landing-page">
-        <div> Search result of {searchTerm}</div>
-        <div>
-          {searchNewsResult.map((n, i) => (
-            <div key={`${n._source.digest}-index-${i}`}>{n._source.title}</div>
-          ))}
-        </div>
+      <main className="search-result-page">
+        <SearchResultSummary
+          isLoading={isLoading}
+          searchNewsResult={searchNewsResult}
+          isSearchNotFound={isSearchNotFound}
+          searchTerm={searchTerm}
+        />
+        <SearchResultNews searchNewsResult={searchNewsResult} />
       </main>
     );
   }
 }
 
-LandingPage.propTypes = {
+SearchResultPage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  searchNewsResult: PropTypes.array.isRequired,
+  isSearchNotFound: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired,
+
+  fetchSearchNews: PropTypes.func.isRequired
 };
 
 const stateToProps = state => ({
   isLoading: searchSelector.getSearchIsLoading(state),
+  isSearchNotFound: searchSelector.getIsSearchNotFound(state),
   searchNewsResult: searchSelector.getSearchNewsResult(state)
 });
 const dispatchToProps = dispatch => ({
@@ -80,4 +95,4 @@ const dispatchToProps = dispatch => ({
 export default connect(
   stateToProps,
   dispatchToProps
-)(LandingPage);
+)(SearchResultPage);

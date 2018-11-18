@@ -31,27 +31,25 @@ class NewsCard extends React.Component {
     const { news } = this.props;
     const { showArticle } = this.state;
     return (
-      <React.Fragment>
-        <div className="news-card">
-          <div className="news-card__top">
-            <NewsImg thumbnailImg={news.urlToImage} />
-            <NewsDetail
-              news={news}
-              showArticle={showArticle}
-              handleClickLog={this.handleClickLog}
+      <div className="news-card">
+        <div className="news-card__top">
+          <NewsImg thumbnailImg={news.urlToImage} />
+          <NewsDetail
+            news={news}
+            showArticle={showArticle}
+            handleClickLog={this.handleClickLog}
+            toggleShowArticle={this.toggleShowArticle}
+          />
+        </div>
+        <div className="news-card__top">
+          {this.state.showArticle && (
+            <NewsArticle
+              article={news.text}
               toggleShowArticle={this.toggleShowArticle}
             />
-          </div>
-          <div className="news-card__top">
-            {this.state.showArticle && (
-              <NewsArticle
-                article={news.text}
-                toggleShowArticle={this.toggleShowArticle}
-              />
-            )}
-          </div>
+          )}
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

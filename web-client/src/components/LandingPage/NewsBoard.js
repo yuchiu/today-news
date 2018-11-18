@@ -33,8 +33,12 @@ class NewsBoard extends React.Component {
     const { newsList, fetchClickLog } = this.props;
     return newsList ? (
       <div className="news-board">
-        {newsList.map((news, i) => (
-          <NewsCard key={i} news={news} fetchClickLog={fetchClickLog} />
+        {newsList.map((news, index) => (
+          <NewsCard
+            key={`${news.digest}-news-index-${index}`}
+            news={news}
+            fetchClickLog={fetchClickLog}
+          />
         ))}
       </div>
     ) : (

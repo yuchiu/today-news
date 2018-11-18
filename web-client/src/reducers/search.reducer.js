@@ -11,6 +11,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SEARCH_FETCH:
       newState.isLoading = true;
+      newState.searchNewsResult = [];
       return newState;
 
     case actionTypes.SEARCH_FETCH_SUCCESS:

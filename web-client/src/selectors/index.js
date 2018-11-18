@@ -6,7 +6,11 @@ import {
   getUserIsLoading
 } from "./user.selector";
 import { getError } from "./error.selector";
-import { getSearchNewsResult, getSearchIsLoading } from "./search.selector";
+import {
+  getSearchNewsResult,
+  getSearchIsLoading,
+  getIsSearchNotFound
+} from "./search.selector";
 
 const newsSelector = {
   getNewsList: state => getNewsList(state),
@@ -23,6 +27,7 @@ const userSelector = {
 
 const searchSelector = {
   getSearchNewsResult: state => getSearchNewsResult(state),
+  getIsSearchNotFound: state => getIsSearchNotFound(state),
   getSearchIsLoading: state => getSearchIsLoading(state)
 };
 
