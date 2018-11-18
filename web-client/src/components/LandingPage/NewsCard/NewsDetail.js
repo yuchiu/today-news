@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
 
+import { ToggleButton } from "@/components/common";
+
 class NewsCard extends React.Component {
   render() {
     const { news, showArticle, toggleShowArticle, handleClickLog } = this.props;
@@ -11,9 +13,17 @@ class NewsCard extends React.Component {
           <h4 className="news-detail__top__title">{news.title}</h4>
           <p className="news-detail__top__desc">{news.description}</p>
           {showArticle ? (
-            <button onClick={toggleShowArticle}>Hide Article</button>
+            <ToggleButton
+              className={`news-detail__top__button`}
+              text="Hide Read More"
+              onClickFunc={toggleShowArticle}
+            />
           ) : (
-            <button onClick={toggleShowArticle}>Show Article</button>
+            <ToggleButton
+              className={`news-detail__top__button`}
+              text="Read More"
+              onClickFunc={toggleShowArticle}
+            />
           )}
         </div>
         <div className="news-detail__bottom">

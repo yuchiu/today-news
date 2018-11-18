@@ -5,6 +5,12 @@
   border: 1px solid rgb(236, 236, 236);
   border-radius: 3px;
   display: flex;
+  flex-direction: column;
+  &__top {
+    display: flex;
+  }
+  &__bottom {
+  }
 }
 
 .news-img {
@@ -28,7 +34,9 @@
       font-size: 2em;
     }
     &__desc {
-      font-size: 1.5em;
+      font-size: 1.4em;
+    }
+    &__button {
     }
   }
   &__bottom {
@@ -60,10 +68,25 @@
   }
 }
 
+.news-article {
+  width: 95%;
+  padding-top: 20px;
+  margin: auto;
+  text-align: center;
+  &__text {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+  &__button {
+  }
+}
+
 @media only screen and (max-width: 1100px) {
   .news-card {
-    display: flex;
-    flex-direction: column;
+    &__top {
+      display: flex;
+      flex-direction: column;
+    }
   }
   .news-img {
     text-align: center;

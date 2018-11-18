@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { ToggleButton } from "@/components/common";
+
 class NewsArticle extends React.Component {
   render() {
     const { article, toggleShowArticle } = this.props;
     return (
-      <React.Fragment>
-        <div>{article}</div>
-        <button onClick={toggleShowArticle}>Hide Article</button>
-      </React.Fragment>
+      <div className="news-article">
+        <div className="news-article__text">{article}</div>
+        <ToggleButton
+          className={`news-article__button`}
+          text="Hide Read More"
+          onClickFunc={toggleShowArticle}
+        />
+      </div>
     );
   }
 }

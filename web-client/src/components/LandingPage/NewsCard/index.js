@@ -33,20 +33,24 @@ class NewsCard extends React.Component {
     return (
       <React.Fragment>
         <div className="news-card">
-          <NewsImg thumbnailImg={news.urlToImage} />
-          <NewsDetail
-            news={news}
-            showArticle={showArticle}
-            handleClickLog={this.handleClickLog}
-            toggleShowArticle={this.toggleShowArticle}
-          />
+          <div className="news-card__top">
+            <NewsImg thumbnailImg={news.urlToImage} />
+            <NewsDetail
+              news={news}
+              showArticle={showArticle}
+              handleClickLog={this.handleClickLog}
+              toggleShowArticle={this.toggleShowArticle}
+            />
+          </div>
+          <div className="news-card__top">
+            {this.state.showArticle && (
+              <NewsArticle
+                article={news.text}
+                toggleShowArticle={this.toggleShowArticle}
+              />
+            )}
+          </div>
         </div>
-        {this.state.showArticle && (
-          <NewsArticle
-            article={news.text}
-            toggleShowArticle={this.toggleShowArticle}
-          />
-        )}
       </React.Fragment>
     );
   }
