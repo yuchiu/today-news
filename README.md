@@ -57,12 +57,11 @@ Link: Not deployed yet
 
 ### Client Side
 
-    Reactjs ∙ React Native ∙ Redux ∙ React-Redux ∙ React-Router ∙ Redux-Thunk ∙ Axios
+    Reactjs ∙ React Native ∙ Redux ∙ React-Redux ∙ React-Router ∙ Redux-Thunk ∙ Axios ∙ SCSS
 
 ### Server Side
 
-    Python ∙ Nodejs ∙ Expressjs ∙ RPC API ∙ RabbitMQ ∙ Redis ∙ ElasticSearch ∙ MongoDB ∙ Mongoose ∙
-    Web Scraper ∙ Tensorflow ∙ Docker ∙ Kubernetes
+    Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Message Queue ∙ RabbitMQ ∙ Redis ∙ ElasticSearch ∙ Mongoose ∙ MongoDB ∙ Web Scraper ∙ Machine Learning ∙ Tensorflow ∙ Docker ∙ Kubernetes
 
 ---
 

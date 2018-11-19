@@ -1,0 +1,30 @@
+{
+  "secrets": { "JWT_SECRET": "dsadsdasadssadjwtsecretdaskdoasokasdkadso" },
+  "services": {
+    "web-server": {
+      "WEB_SERVER_NAME": "web-server",
+      "WEB_SERVER_URL": "http://localhost",
+      "WEB_SERVER_PORT": "3030"
+    },
+    "user-service": {
+      "USER_SERVICE_NAME": "user-service",
+      "USER_SERVICE_URL": "http://localhost",
+      "USER_SERVICE_PORT": "4040"
+    },
+    "search-service": {
+      "SEARCH_SERVICE_NAME": "search-service",
+      "SEARCH_SERVICE_URL": "http://localhost",
+      "SEARCH_SERVICE_PORT": "5050"
+    },
+    "news-service": {
+      "NEWS_SERVICE_NAME": "news-service",
+      "NEWS_SERVICE_URL": "http://localhost",
+      "NEWS_SERVICE_PORT": "6060"
+    },
+    "recommendation-service": {
+      "RECOMMENDATION_SERVICE_NAME": "recommendation-service",
+      "RECOMMENDATION_SERVICE_URL": "http://localhost",
+      "RECOMMENDATION_SERVICE_PORT": "7070"
+    }
+  }
+}
