@@ -49,7 +49,7 @@ Link: Not deployed yet
 
 ### Video Demo
 
-<img src="./today-gif-demo.gif?raw=true" >
+![demogif](https://github.com/yuchiu/today-news/blob/master/today-gif-demo.gif)
 
 ---
 
