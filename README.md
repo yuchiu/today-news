@@ -15,7 +15,7 @@
 
 ## System Architecture Diagram
 
-![architecture](https://i.imgur.com/GkDOkam.jpg)
+![architecture](https://i.imgur.com/bpKhOMj.jpg)
 
 ## Tools & Softwares
 
@@ -86,7 +86,7 @@ cd trainer
 python3 news_classify_trainer.py
 ```
 
-- start topic modeling service for news pipeline to classify new data
+- start Topic-Modeling-Service for news pipeline to classify new data
 
 ```terminal
 pip3 install -r requirements.txt
@@ -103,20 +103,26 @@ python3 backfill.py
 
 Application will be serving on http://localhost:8080
 
-#### Preference Log Processor
+### Serving Application
 
-- launch click log processor pipeline that process user's preference based on his/her clicks on news using time decay model and store user's preference in DB
+#### Preference Log Process Service(Optional)
+
+- process user's preference based on his/her clicks on news using time decay model  
+  user's preferences will be store in DB for News-Recommendation-Service to use  
+  preference log task is queued in RabbitMQ, therefore Preference-Log-Process-Service can be running along with services or running asynchronously during offline
+
+- install dependencies & launch Click-Log-Process-Service
 
 ```terminal
 pip3 install -r requirements.txt
-python3 preference_log_processor.py
+python3 service.py
 ```
-
-### Serving Application
 
 #### News Recommendation Service
 
-- install dependencies & start news recommendation service
+- Recommend news to News Service by user Id and news topic based on the data stored from Preference-Log-Process-Service
+
+- install dependencies & start News-Recommendation-Service
 
 ```terminal
 pip3 install -r requirements.txt
@@ -127,7 +133,7 @@ Application will be serving on http://localhost:7070
 
 #### News Service
 
-- install dependencies & start news service
+- install dependencies & start News-Service
 
 ```terminal
 pip3 install -r requirements.txt
@@ -145,7 +151,7 @@ Application will be serving on http://localhost:6060
 npm run initialize-indices
 ```
 
-- install dependencies & start search service
+- install dependencies & start Search-Service
 
 ```terminal
 npm install
@@ -156,7 +162,7 @@ Application will be serving on http://localhost:5050
 
 #### User Service
 
-- install dependencies & start user service
+- install dependencies & start User-Service
 
 ```terminal
 npm install
@@ -167,7 +173,7 @@ Application will be serving on http://localhost:4040
 
 #### Web Server
 
-- install dependencies & start application
+- install dependencies & start Web-Server
 
 ```terminal
 npm install
@@ -185,7 +191,7 @@ npm install
 npm start
 ```
 
-This service will be monitoring all other services **except** for Web Server and services that runs in async pipeline, i.e Topic Modeling Service.
+This service will be monitoring all other services **except** for services that runs in async pipeline, i.e Topic-Modeling-Service, Data-Pipeline & Click-Log-Process-Service.
 
 #### Web Client
 

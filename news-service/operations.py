@@ -26,7 +26,7 @@ NEWS_LIMIT = 100
 
 
 CLICK_LOG_TASK_QUEUE_URL = 'amqp://lnmofzhd:04BvbnZTToWYf2aLkKSNNryw4rX7lWfs@toad.rmq.cloudamqp.com/lnmofzhd'
-CLICK_LOG_TASK_QUEUE_NAME = 'preference-click-log-task-queue'
+CLICK_LOG_TASK_QUEUE_NAME = 'preference-click-log'
 
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
 cloudAMQP_client = CloudAMQPClient(
