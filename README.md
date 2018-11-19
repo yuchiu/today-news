@@ -1,4 +1,40 @@
-# Usage
+# Today News
+
+## Quick Link
+
+[Tech Stack](#tech-stack)
+
+- [Client Side](#client-side)
+- [Server Side](#server-side)
+
+[System Architecture Diagram](#system-architecture-diagram)
+
+[Tools & Softwares](#tools-&-softwares)
+
+- [Operating System & version](#operating-system-this-project-is-using-during-development)
+- [Required tools & version](#required-tools-&-version-this-project-is-using)
+- [Optional tools & version](#optional-tools-&-version-this-project-is-using)
+
+[Development Environment](#development-environment)
+
+- [Building Data Warehouse](#building-data-warehouse)
+
+  - [News Data Pipeline](#news-data-pipeline)
+  - [News Topic Modeling Service](#news-topic-modeling-service)
+
+- [Serving Application](#serving-application)
+
+  - [Preference Log Process Service](<#preference-log-process-service(optional)>)
+  - [News Recommendation Service](#news-recommendation-service)
+  - [News Service](#news-service)
+  - [Search Service](#search-service)
+  - [User Service](#user-service)
+  - [Web Server](#web-server)
+  - [Monitoring Service](<#monitoring-service(optional)>)
+  - [Web Client](#web-client)
+  - [Mobile Client](<#mobile-client(android)>)
+
+---
 
 ## Tech Stack
 
@@ -16,6 +52,8 @@
 ## System Architecture Diagram
 
 ![architecture](https://i.imgur.com/bpKhOMj.jpg)
+
+---
 
 ## Tools & Softwares
 
@@ -49,7 +87,9 @@
 | docker                    | 18.06.1-ce |
 | docker-compose            | 1.22.0     |
 
-## Development
+---
+
+## Development Environment
 
 ### Building Data Warehouse
 
@@ -216,3 +256,5 @@ react-native run-android
 
 Application will be running on Android Emulator  
 Geting started with React Native documentation [Link](https://facebook.github.io/react-native/docs/getting-started).
+
+---

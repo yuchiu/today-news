@@ -7,7 +7,8 @@ class SearchInput extends React.Component {
     super(props);
     this.state = {
       ENTER_KEY: 13,
-      text: ""
+      text: "",
+      PATHPREFIX: "search/"
     };
   }
 
@@ -15,9 +16,9 @@ class SearchInput extends React.Component {
     const {
       location: { pathname }
     } = this.props;
-    const pathPrefix = "search/";
-    const paramIndex = pathname.indexOf(pathPrefix);
-    const searchTerm = pathname.substring(paramIndex + pathPrefix.length);
+    const { PATHPREFIX } = this.state;
+    const paramIndex = pathname.indexOf(PATHPREFIX);
+    const searchTerm = pathname.substring(paramIndex + PATHPREFIX.length);
     this.setState({
       text: searchTerm
     });
@@ -28,12 +29,12 @@ class SearchInput extends React.Component {
     this.setState({
       [name]: value
     });
-    setTimeout(this.changeSearchParam, 350);
+    setTimeout(this.changeSearchParam, 300);
   };
 
   changeSearchParam = () => {
     const { text } = this.state;
-    const { fetchSearch, history, clearSearchNewsResult } = this.props;
+    const { history, clearSearchNewsResult } = this.props;
     if (text) {
       history.push(`/search/${text}`);
     } else {
@@ -64,6 +65,11 @@ class SearchInput extends React.Component {
     );
   }
 }
-SearchInput.propTypes = {};
+SearchInput.propTypes = {
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+
+  clearSearchNewsResult: PropTypes.func.isRequired
+};
 
 export default withRouter(SearchInput);

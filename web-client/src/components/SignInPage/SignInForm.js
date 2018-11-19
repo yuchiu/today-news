@@ -42,7 +42,7 @@ const SignInForm = ({
       />
     </Form.Item>
     <Button
-      type="primary"
+      type="default"
       htmlType="submit"
       className=""
       size="large"

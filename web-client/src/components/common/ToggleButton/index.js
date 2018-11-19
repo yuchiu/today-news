@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.scss";
 
@@ -7,5 +8,12 @@ const ToggleButton = ({ text, cssClass, onClickFunc }) => (
     {text}
   </button>
 );
+
+ToggleButton.propTypes = {
+  text: PropTypes.string,
+  cssClass: PropTypes.string,
+
+  onClickFunc: PropTypes.func
+};
 
 export default ToggleButton;
