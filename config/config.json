@@ -1,30 +1,99 @@
 {
-  "secrets": { "JWT_SECRET": "dsadsdasadssadjwtsecretdaskdoasokasdkadso" },
+  "jwt": { "SECRET": "dsadsdasadssadjwtsecretdaskdoasokasdkadso" },
+  "api": {
+    "news_api": {
+      "API_ENDPOINT": "https://newsapi.org/v1/",
+      "API_KEY": "76c1515740924551909bf3f80d20421f",
+      "ARTICLES_API": "articles"
+    }
+  },
+  "databases": {
+    "cache_DB": {
+      "REDIS_HOST": "localhost",
+      "REDIS_PORT": 6379
+    },
+    "search_DB": {
+      "ELASTICSEARCH_HOST": "localhost",
+      "ELASTICSEARCH_PORT": 9200,
+      "ELASTICSEARCH_LOG": "error"
+    },
+    "news_DB": {
+      "MONGODB_URI_LOCAL": "mongodb://localhost:27017/todays-news",
+      "HOST": "localhost",
+      "PORT": 27017,
+      "DB_NAME": "todays-news",
+      "NEWS_TABLE_NAME": "news"
+    },
+    "user_DB": {
+      "MONGODB_URI_LOCAL": "mongodb://localhost:27017/todays-news",
+      "HOST": "localhost",
+      "PORT": 27017,
+      "DB_NAME": "todays-news",
+      "USER_TABLE_NAME": "users"
+    },
+    "preference_DB": {
+      "MONGODB_URI_LOCAL": "mongodb://localhost:27017/todays-news",
+      "HOST": "localhost",
+      "PORT": 27017,
+      "DB_NAME": "todays-news",
+      "PREFERENCE_MODEL_TABLE_NAME": "user_preference_model"
+    },
+    "click_log_queue": {
+      "QUEUE_HOST": "amqp://lnmofzhd:04BvbnZTToWYf2aLkKSNNryw4rX7lWfs@toad.rmq.cloudamqp.com/lnmofzhd",
+      "QUEUE_NAME": "preference-click-log"
+    },
+    "monitor_news_queue": {
+      "QUEUE_HOST": "amqp://rutjjghd:azj53edQjx1lCSpICxmnKrhc0cE9OFOW@lion.rmq.cloudamqp.com/rutjjghdd",
+      "QUEUE_NAME": "latest_news_scrape_news_task_queue"
+    },
+    "fetch_news_queue": {
+      "QUEUE_HOST": "amqp://rutjjghd:azj53edQjx1lCSpICxmnKrhc0cE9OFOW@lion.rmq.cloudamqp.com/rutjjghd",
+      "QUEUE_NAME": "latest_news_scrape_news_task_queue"
+    },
+    "dedupe_news_queue": {
+      "QUEUE_HOST": "amqp://dfedscrp:vDyPnfzqBTLo8f80vo7DI8RZztmOHlPG@lion.rmq.cloudamqp.com/dfedscrp",
+      "QUEUE_NAME": "latest_news_dedupe_news_task_queue"
+    }
+  },
   "services": {
-    "web-server": {
-      "WEB_SERVER_NAME": "web-server",
-      "WEB_SERVER_URL": "http://localhost",
-      "WEB_SERVER_PORT": "3030"
+    "data_pipeline": {
+      "SERVICE_NAME": "data-pipeline"
     },
-    "user-service": {
-      "USER_SERVICE_NAME": "user-service",
-      "USER_SERVICE_URL": "http://localhost",
-      "USER_SERVICE_PORT": "4040"
+    "topic_modeling_service": {
+      "SERVICE_NAME": "topic-modeling-service",
+      "SERVICE_HOST": "localhost",
+      "SERVICE_PORT": "8080"
     },
-    "search-service": {
-      "SEARCH_SERVICE_NAME": "search-service",
-      "SEARCH_SERVICE_URL": "http://localhost",
-      "SEARCH_SERVICE_PORT": "5050"
+    "preference_log_process_service": {
+      "SERVICE_NAME": "preference-log-process-service"
     },
-    "news-service": {
-      "NEWS_SERVICE_NAME": "news-service",
-      "NEWS_SERVICE_URL": "http://localhost",
-      "NEWS_SERVICE_PORT": "6060"
+    "recommendation_service": {
+      "SERVICE_NAME": "recommendation-service",
+      "SERVICE_HOST": "localhost",
+      "SERVICE_PORT": "7070"
     },
-    "recommendation-service": {
-      "RECOMMENDATION_SERVICE_NAME": "recommendation-service",
-      "RECOMMENDATION_SERVICE_URL": "http://localhost",
-      "RECOMMENDATION_SERVICE_PORT": "7070"
+    "news_service": {
+      "SERVICE_NAME": "news-service",
+      "SERVICE_HOST": "localhost",
+      "SERVICE_PORT": "6060"
+    },
+    "search_service": {
+      "SERVICE_NAME": "search-service",
+      "SERVICE_HOST": "localhost",
+      "SERVICE_PORT": "5050"
+    },
+    "user_service": {
+      "SERVICE_NAME": "user-service",
+      "SERVICE_HOST": "localhost",
+      "SERVICE_PORT": "4040"
+    },
+    "web_server": {
+      "SERVER_NAME": "web-server",
+      "SERVER_HOST": "localhost",
+      "SERVER_PORT": "3030"
+    },
+    "monitoring_service": {
+      "SERVICE_NAME": "monitoring-service"
     }
   }
 }

@@ -6,7 +6,7 @@ from datetime import datetime
 import pickle  # convert dictionary or json into string that redis can process
 
 # import config package in parent directory
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'config'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 
 from bson.json_util import dumps  # pylint: disable=E0401
 

@@ -61,7 +61,7 @@ Reactjs ∙ React Native ∙ Redux ∙ React-Redux ∙ React-Router ∙ Redux-Th
 
 ### Server Side
 
-Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Message Queue ∙ RabbitMQ ∙ Redis ∙ ElasticSearch ∙ Mongoose ∙ MongoDB ∙ Web Scraper ∙ Machine Learning ∙ Tensorflow ∙ Docker ∙ Kubernetes
+Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Message Broker ∙ RabbitMQ ∙ Redis ∙ ElasticSearch ∙ Mongoose ∙ MongoDB ∙ Web Scraper ∙ Machine Learning ∙ Tensorflow ∙ Docker ∙ Kubernetes
 
 ---
 
@@ -248,7 +248,7 @@ Application will be serving on http://localhost:3030
 
 #### Monitoring Service(Optional)
 
-- This service will be monitoring all other services **except** for services that runs in async pipeline, i.e Topic-Modeling-Service, Data-Pipeline & Click-Log-Process-Service.
+- This service will be monitoring all other services through Web-Server, **except** for services that runs in async pipeline, i.e Topic-Modeling-Service, Data-Pipeline & Click-Log-Process-Service.
 
 - install dependencies & start application
 

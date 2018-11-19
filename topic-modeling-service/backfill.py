@@ -2,7 +2,7 @@ import os
 import sys
 
 # import config package in parent directory
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'config'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 
 import mongodb_client  # pylint: disable=E0401
 import news_topic_modeling_service_client  # pylint: disable=E0401

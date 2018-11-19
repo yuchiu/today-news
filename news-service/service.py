@@ -51,6 +51,6 @@ RPC_SERVER.register_function(
 RPC_SERVER.register_function(
     log_news_click_for_user, 'logNewsClickForUser')
 
-print("Starting backend RPC server on %s:%d" %
+print("Starting news RPC server on %s:%d" %
       (SERVER_HOST, SERVER_PORT))  # pylint: disable=superfluous-parens
 RPC_SERVER.serve_forever()
