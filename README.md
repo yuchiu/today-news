@@ -2,6 +2,11 @@
 
 ## Quick Link
 
+[Demo](#demo)
+
+- [Live Site Demo](#live-site-demo)
+- [Video Demo](#video-demo)
+
 [Tech Stack](#tech-stack)
 
 - [Client Side](#client-side)
@@ -33,6 +38,18 @@
   - [Monitoring Service](<#monitoring-service(optional)>)
   - [Web Client](#web-client)
   - [Mobile Client](<#mobile-client(android)>)
+
+---
+
+## Demo
+
+### Live Site Demo
+
+Link: [Not deploy yet](https://github.com/yuchiu/today-news)
+
+### Video Demo
+
+![demogif](https://i.imgur.com/EClzhK5.gif)
 
 ---
 
