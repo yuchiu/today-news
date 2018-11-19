@@ -67,7 +67,7 @@ Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Message Queue �
 
 ## System Architecture Diagram
 
-![architecture](https://i.imgur.com/PMSwUvb.jpg)
+![architecture](https://i.imgur.com/GdqAMOr.jpg)
 
 ---
 
