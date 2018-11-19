@@ -45,11 +45,11 @@
 
 ### Live Site Demo
 
-Link: [Not deploy yet](https://github.com/yuchiu/today-news)
+Link: Not deployed yet
 
 ### Video Demo
 
-![demogif](https://i.imgur.com/EClzhK5.gif)
+![demogif](https://i.imgur.com/brnfeLh.gif)
 
 ---
 
