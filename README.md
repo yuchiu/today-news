@@ -49,7 +49,7 @@ Link: Not deployed yet
 
 ### Video Demo
 
-![demogif](https://i.imgur.com/brnfeLh.gif)
+<img src="./today-gif-demo.gif?raw=true" >
 
 ---
 
