@@ -61,14 +61,14 @@ Link: Not deployed yet
 
 ### Server Side
 
-    Python ∙ Nodejs ∙ Expressjs ∙ RPC API ∙ Redis ∙ RabbitMQ ∙ ElasticSearch ∙ MongoDB ∙ Mongoose ∙
-    Web Scraper ∙ Tensorflow ∙ Docker
+    Python ∙ Nodejs ∙ Expressjs ∙ RPC API ∙ RabbitMQ ∙ Redis ∙ ElasticSearch ∙ MongoDB ∙ Mongoose ∙
+    Web Scraper ∙ Tensorflow ∙ Docker ∙ Kubernetes
 
 ---
 
 ## System Architecture Diagram
 
-![architecture](https://i.imgur.com/bpKhOMj.jpg)
+![architecture](https://i.imgur.com/PMSwUvb.jpg)
 
 ---
 
@@ -119,6 +119,8 @@ pip3 install -r requirements.txt
 python3 news_monitor.py
 ```
 
+Application will be fetching tasks to message queue channel "latest_news_scrape_news_task_queue" in the terminal
+
 - scrape news from tasks send by news_monitor, send the fetched news to another channel of queue for deduper
 
 ```terminal
@@ -126,12 +128,16 @@ pip3 install -r requirements.txt
 python3 news_fetcher.py
 ```
 
+Application will be receiving tasks from message queue channel "latest_news_scrape_news_task_queue", and fetching tasks to message queue channel "latest_news_dedupe_news_task_queue" in the terminal
+
 - dedupe fetched news by news_fetcher, use TF-IDF to remove duplicate news, use news topic modeling service to classify news, then store the clean dataset(news) in MongoDB.(News could be saved in DB without topic modeling, the data can be backfill in later process using news topic modeling service)
 
 ```terminal
 pip3 install -r requirements.txt
 python3 news_deduper.py
 ```
+
+Application will be receiving tasks to message queue channel "latest_news_dedupe_news_task_queue" in the terminal, then store deduped news data in news-database(MongoDB)
 
 #### News Topic Modeling Service
 
@@ -165,8 +171,8 @@ Application will be serving on http://localhost:8080
 #### Preference Log Process Service(Optional)
 
 - process user's preference based on his/her clicks on news using time decay model  
-  user's preferences will be store in DB for News-Recommendation-Service to use  
-  preference log task is queued in RabbitMQ, therefore Preference-Log-Process-Service can be running along with services or running asynchronously during offline
+  user's preferences will be store in preference-DB(MongoDB) for News-Recommendation-Service to use  
+  preference log tasks is queued in RabbitMQ by News-Service, therefore Preference-Log-Process-Service can be running along with services or running asynchronously offline
 
 - install dependencies & launch Click-Log-Process-Service
 
@@ -174,6 +180,8 @@ Application will be serving on http://localhost:8080
 pip3 install -r requirements.txt
 python3 service.py
 ```
+
+Application will be receiving tasks from message queue channel "preference-click-log" in the terminal, then store user's preference in preference-database(MongoDB)
 
 #### News Recommendation Service
 
@@ -241,6 +249,8 @@ Application will be serving on http://localhost:3030
 
 #### Monitoring Service(Optional)
 
+- This service will be monitoring all other services **except** for services that runs in async pipeline, i.e Topic-Modeling-Service, Data-Pipeline & Click-Log-Process-Service.
+
 - install dependencies & start application
 
 ```terminal
@@ -248,7 +258,7 @@ npm install
 npm start
 ```
 
-This service will be monitoring all other services **except** for services that runs in async pipeline, i.e Topic-Modeling-Service, Data-Pipeline & Click-Log-Process-Service.
+Services's hearbeat/status will be looping and displaying in the terminal.
 
 #### Web Client
 

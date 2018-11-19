@@ -67,12 +67,18 @@ const bulkIndex = function bulkIndex(index, type, data) {
           console.log(item.create.error);
         }
       });
+      console.log("-----------------------------------------");
       console.log(
         `Successfully indexed ${response.items.length - errorCount}
        out of ${data.length} items`
       );
+      process.exit(0);
     })
-    .catch(console.err);
+    .catch(err => {
+      console.log("-----------------------------------------");
+      console.log(err);
+      process.exit(0);
+    });
 };
 
 /*
