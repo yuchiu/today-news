@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '../', 'scrapers'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scrapers'))
 
 import cnn_scraper as scraper  # pylint: disable=E0401
 

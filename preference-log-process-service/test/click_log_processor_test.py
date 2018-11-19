@@ -1,11 +1,11 @@
 from datetime import datetime
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import click_log_processor  # pylint: disable=E0401
 
 # import config package in parent directory
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'config'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 
 import mongodb_client  # pylint: disable=E0401
 
