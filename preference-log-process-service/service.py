@@ -23,20 +23,28 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 import mongodb_client  # pylint: disable=E0401
 from cloudAMQP_client import CloudAMQPClient  # pylint: disable=E0401
 
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path)
+
+MQ_CLICK_LOG_QUEUE_HOST = os.environ.get("MQ_CLICK_LOG_QUEUE_HOST")
+MQ_CLICK_LOG_QUEUE_NAME = os.environ.get("MQ_CLICK_LOG_QUEUE_NAME")
+
+DB_PREFERENCE_MODEL_TABLE_NAME = os.environ.get(
+    "DB_PREFERENCE_MODEL_TABLE_NAME")
+DB_NEWS_TABLE_NAME = os.environ.get("DB_NEWS_TABLE_NAME")
+
 NUM_OF_CLASS = 8
 INITIAL_P = 1.0 / NUM_OF_CLASS
 ALPHA = 0.1
 
 SLEEP_TIME_IN_SECONDS = 3
 
-CLICK_LOG_TASK_QUEUE_URL = "amqp://lnmofzhd:04BvbnZTToWYf2aLkKSNNryw4rX7lWfs@toad.rmq.cloudamqp.com/lnmofzhd"
-CLICK_LOG_TASK_QUEUE_NAME = "preference-click-log"
-
-PREFERENCE_MODEL_TABLE_NAME = "user_preference_model"
-NEWS_TABLE_NAME = "news"
 
 cloudAMQP_client = CloudAMQPClient(
-    CLICK_LOG_TASK_QUEUE_URL, CLICK_LOG_TASK_QUEUE_NAME)
+    MQ_CLICK_LOG_QUEUE_HOST, MQ_CLICK_LOG_QUEUE_NAME)
 
 
 def handle_message(msg):
@@ -53,7 +61,7 @@ def handle_message(msg):
 
     # Update user's preference
     db = mongodb_client.get_db()
-    model = db[PREFERENCE_MODEL_TABLE_NAME].find_one({'userId': userId})
+    model = db[DB_PREFERENCE_MODEL_TABLE_NAME].find_one({'userId': userId})
 
     # If model not exists, create a new one
     if model is None:
@@ -68,7 +76,7 @@ def handle_message(msg):
     print("Update prefernce model for user: %s" % userId)
 
     # Update model using time decay method.
-    news = db[NEWS_TABLE_NAME].find_one({'digest': newsId})
+    news = db[DB_NEWS_TABLE_NAME].find_one({'digest': newsId})
     if (news is None or
         'class' not in news or
             news['class'] not in news_class.classes):
@@ -86,7 +94,7 @@ def handle_message(msg):
             old_p = model['preference'][i]
             model['preference'][i] = float((1 - ALPHA) * old_p)
 
-    db[PREFERENCE_MODEL_TABLE_NAME].replace_one(
+    db[DB_PREFERENCE_MODEL_TABLE_NAME].replace_one(
         {'userId': userId}, model, upsert=True)
 
 

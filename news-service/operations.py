@@ -40,7 +40,6 @@ def get_one_news():
 
 
 def logNewsClickForUser(user_id, news_id):
-    print("running")
     # Send log task to machine learning service for prediction
     message = {'userId': user_id, 'newsId': news_id,
                'timestamp': str(datetime.utcnow())}
