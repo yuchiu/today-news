@@ -2,9 +2,9 @@ import dotenv from "dotenv";
 import fs from "fs";
 import logger from "./logger";
 
-if (fs.existsSync(".env")) {
+if (fs.existsSync("../.env")) {
   logger.debug("Using .env file to supply config environment variables");
-  dotenv.config();
+  dotenv.config({ path: "../.env" });
 } else {
   logger.debug(
     "No .env file. Create an .env file to supply config environment variables"
