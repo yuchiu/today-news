@@ -9,3 +9,4 @@ sklearn
 numpy
 scipy
 pymongo
+python-dotenv

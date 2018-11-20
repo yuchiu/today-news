@@ -2,3 +2,4 @@ jsonrpclib-pelix
 pymongo
 pika
 redis
+python-dotenv

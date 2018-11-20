@@ -3,9 +3,17 @@ import requests
 
 from json import loads
 
-NEWS_API_ENDPOINT = 'https://newsapi.org/v1/'
-NEWS_API_KEY = "76c1515740924551909bf3f80d20421f"
-ARTICLES_API = 'articles'
+import os
+import sys
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path)
+
+API_NEWS_API_ENDPOINT = os.environ.get("API_NEWS_API_ENDPOINT")
+API_NEWS_API_KEY = os.environ.get("API_NEWS_API_KEY")
+API_NEWS_ARTICLES_API = os.environ.get("API_NEWS_ARTICLES_API")
 
 
 CNN = 'cnn'
@@ -13,7 +21,7 @@ DEFAULT_SOURCE = [CNN]
 SORT_BY_TOP = 'top'
 
 
-def _buildUrl(endpoint=NEWS_API_ENDPOINT, apiName=ARTICLES_API):
+def _buildUrl(endpoint=API_NEWS_API_ENDPOINT, apiName=API_NEWS_ARTICLES_API):
     return endpoint + apiName
 
 
@@ -21,7 +29,7 @@ def getNewsListFromSources(sources=DEFAULT_SOURCE, sortBy=SORT_BY_TOP):
     articles = []
 
     for source in sources:
-        payload = {'apiKey': NEWS_API_KEY,
+        payload = {'apiKey': API_NEWS_API_KEY,
                    'source': source,
                    'sortBy': sortBy}
         response = requests.get(_buildUrl(), params=payload)
