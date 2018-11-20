@@ -11,14 +11,22 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 import news_api_client   # pylint: disable=E0401
 from cloudAMQP_client import CloudAMQPClient   # pylint: disable=E0401
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path)
+
+MQ_SCRAPE_NEWS_QUEUE_HOST = os.environ.get("MQ_SCRAPE_NEWS_QUEUE_HOST")
+MQ_CLICK_LOG_QUEUE_NAME = os.environ.get("MQ_CLICK_LOG_QUEUE_NAME")
+
+print(MQ_SCRAPE_NEWS_QUEUE_HOST, MQ_CLICK_LOG_QUEUE_NAME)
+
+DB_CACHE_REDIS_HOST = os.environ.get("DB_CACHE_REDIS_HOST")
+DB_CACHE_REDIS_PORT = os.environ.get("DB_CACHE_REDIS_PORT")
 
 SLEEP_TIME_IN_SECONDS = 60 * 60
 NEWS_TIME_OUT_IN_SECONDS = 3600 * 24 * 3
-
-SCRAPE_NEWS_TASK_QUEUE_URL = "amqp://rutjjghd:azj53edQjx1lCSpICxmnKrhc0cE9OFOW@lion.rmq.cloudamqp.com/rutjjghd"
-SCRAPE_NEWS_TASK_QUEUE_NAME = 'latest_news_scrape_news_task_queue'
 
 NEWS_SOURCES = {
     'bbc-news',
@@ -34,9 +42,9 @@ NEWS_SOURCES = {
     'the-washington-post'
 }
 
-redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT)
+redis_client = redis.StrictRedis(DB_CACHE_REDIS_HOST, DB_CACHE_REDIS_PORT)
 cloudAMQP_client = CloudAMQPClient(
-    SCRAPE_NEWS_TASK_QUEUE_URL, SCRAPE_NEWS_TASK_QUEUE_NAME)
+    MQ_SCRAPE_NEWS_QUEUE_HOST, MQ_CLICK_LOG_QUEUE_NAME)
 
 
 def run():

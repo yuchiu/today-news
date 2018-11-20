@@ -11,8 +11,14 @@ import mongodb_client   # pylint: disable=E0401
 from cloudAMQP_client import CloudAMQPClient   # pylint: disable=E0401
 import news_topic_modeling_service_client  # pylint: disable=E0401
 
-DEDUPE_NEWS_TASK_QUEUE_URL = "amqp://dfedscrp:vDyPnfzqBTLo8f80vo7DI8RZztmOHlPG@lion.rmq.cloudamqp.com/dfedscrp"
-DEDUPE_NEWS_TASK_QUEUE_NAME = "latest_news_dedupe_news_task_queue"
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path)
+
+MQ_DEDUPE_NEWS_QUEUE_HOST = os.environ.get("MQ_DEDUPE_NEWS_QUEUE_HOST")
+MQ_DEDUPE_NEWS_QUEUE_NAME = os.environ.get("MQ_DEDUPE_NEWS_QUEUE_NAME")
 
 SLEEP_TIME_IN_SECONDS = 1
 
@@ -21,7 +27,7 @@ NEWS_TABLE_NAME = "news"
 SAME_NEWS_SIMILARITY_THRESHOLD = 0.9
 
 cloudAMQP_client = CloudAMQPClient(
-    DEDUPE_NEWS_TASK_QUEUE_URL, DEDUPE_NEWS_TASK_QUEUE_NAME)
+    MQ_DEDUPE_NEWS_QUEUE_HOST, MQ_DEDUPE_NEWS_QUEUE_NAME)
 
 
 def handle_message(msg):
