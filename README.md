@@ -81,33 +81,33 @@ Link: Not deployed yet
 
 ### Operating System this project is using during development
 
-    | OS     | Version |
-    | ------ | ------- |
-    | ubuntu | 18.04   |
+| OS     | Version |
+| ------ | ------- |
+| ubuntu | 18.04   |
 
 ### Required tools & version this project is using
 
-    | Tools         | Versions        |
-    | ------------- | --------------- |
-    | npm           | 6.1.0           |
-    | pip3          | 9.0.1           |
-    | nodejs        | 10.7.0          |
-    | python3       | 3.6.5           |
-    | mongodb       | 3.6             |
-    | redis         | 4.0.11          |
-    | elasticsearch | 2.4.6           |
-    | rabbitmq      | using CloudAMQP |
+| Tools         | Versions        |
+| ------------- | --------------- |
+| npm           | 6.1.0           |
+| pip3          | 9.0.1           |
+| nodejs        | 10.7.0          |
+| python3       | 3.6.5           |
+| mongodb       | 3.6             |
+| redis         | 4.0.11          |
+| elasticsearch | 2.4.6           |
+| rabbitmq      | using CloudAMQP |
 
 ### Optional tools & version this project is using
 
-    | Tools                     | Versions   |
-    | ------------------------- | ---------- |
-    | For Mobile Client         |
-    | react-native              | 0.57.5     |
-    | react-native-cli          | 2.0.1      |
-    | For Production Deployment |
-    | docker                    | 18.06.1-ce |
-    | docker-compose            | 1.22.0     |
+| Tools                     | Versions   |
+| ------------------------- | ---------- |
+| For Mobile Client         |
+| react-native              | 0.57.5     |
+| react-native-cli          | 2.0.1      |
+| For Production Deployment |
+| docker                    | 18.06.1-ce |
+| docker-compose            | 1.22.0     |
 
 ---
 
