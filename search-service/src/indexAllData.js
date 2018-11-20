@@ -22,7 +22,7 @@ elasticSearchClient.ping({ requestTimeout: 30000 }, error => {
 });
 
 mongoose.connect(
-  process.env.MONGODB_URI_LOCAL,
+  process.env.DB_DEFAULT_MONGODB_DB_URI_LOCAL,
   { useNewUrlParser: true },
   err => {
     if (err) {
