@@ -3,3 +3,4 @@ numpy
 pandas
 watchdog
 sklearn
+python-dotenv

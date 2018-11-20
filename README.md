@@ -14,8 +14,9 @@
 
 [System Architecture Diagram](#system-architecture-diagram)
 
-[Tools & Softwares](#tools-&-softwares)
+[Tools & Requirements](#tools-&-requirements)
 
+- [Environment Variable Setup](#environment-variable-setup)
 - [Operating System & version](#operating-system-this-project-is-using-during-development)
 - [Required tools & version](#required-tools-&-version-this-project-is-using)
 - [Optional tools & version](#optional-tools-&-version-this-project-is-using)
@@ -57,11 +58,11 @@ Link: Not deployed yet
 
 ### Client Side
 
-Reactjs ∙ React Native ∙ Redux ∙ React-Redux ∙ React-Router ∙ Redux-Thunk ∙ Axios ∙ SCSS
+- Reactjs ∙ React Native ∙ Redux ∙ React-Redux ∙ React-Router ∙ Redux-Thunk ∙ Axios ∙ SCSS
 
 ### Server Side
 
-Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Message Broker ∙ RabbitMQ ∙ Redis ∙ ElasticSearch ∙ Mongoose ∙ MongoDB ∙ Web Scraper ∙ Machine Learning ∙ Tensorflow ∙ Docker ∙ Kubernetes
+- Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Message Broker ∙ RabbitMQ ∙ Redis ∙ ElasticSearch ∙ Mongoose ∙ MongoDB ∙ Web Scraper ∙ Machine Learning ∙ Tensorflow ∙ Docker ∙ Kubernetes
 
 ---
 
@@ -71,37 +72,42 @@ Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Message Broker �
 
 ---
 
-## Tools & Softwares
+## Tools & Requirements
+
+### Environment Variable Setup
+
+- **!important** .env file is required for setting up environment variables for this project  
+  an example of .env file is located at ./.env
 
 ### Operating System this project is using during development
 
-| OS     | Version |
-| ------ | ------- |
-| ubuntu | 18.04   |
+    | OS     | Version |
+    | ------ | ------- |
+    | ubuntu | 18.04   |
 
 ### Required tools & version this project is using
 
-| Tools         | Versions        |
-| ------------- | --------------- |
-| npm           | 6.1.0           |
-| pip3          | 9.0.1           |
-| nodejs        | 10.7.0          |
-| python3       | 3.6.5           |
-| mongodb       | 3.6             |
-| redis         | 4.0.11          |
-| elasticsearch | 2.4.6           |
-| rabbitmq      | using CloudAMQP |
+    | Tools         | Versions        |
+    | ------------- | --------------- |
+    | npm           | 6.1.0           |
+    | pip3          | 9.0.1           |
+    | nodejs        | 10.7.0          |
+    | python3       | 3.6.5           |
+    | mongodb       | 3.6             |
+    | redis         | 4.0.11          |
+    | elasticsearch | 2.4.6           |
+    | rabbitmq      | using CloudAMQP |
 
 ### Optional tools & version this project is using
 
-| Tools                     | Versions   |
-| ------------------------- | ---------- |
-| For Mobile Client         |
-| react-native              | 0.57.5     |
-| react-native-cli          | 2.0.1      |
-| For Production Deployment |
-| docker                    | 18.06.1-ce |
-| docker-compose            | 1.22.0     |
+    | Tools                     | Versions   |
+    | ------------------------- | ---------- |
+    | For Mobile Client         |
+    | react-native              | 0.57.5     |
+    | react-native-cli          | 2.0.1      |
+    | For Production Deployment |
+    | docker                    | 18.06.1-ce |
+    | docker-compose            | 1.22.0     |
 
 ---
 

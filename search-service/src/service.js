@@ -6,7 +6,7 @@ const controller = require("./controllers");
 const elasticSearchClient = require("./config/elasticSearch.client");
 
 // Load environment variables from .env file, where API keys and passwords are configured
-dotenv.config();
+dotenv.config({ path: "../.env" });
 
 elasticSearchClient.ping({ requestTimeout: 30000 }, error => {
   if (error) {
@@ -16,27 +16,15 @@ elasticSearchClient.ping({ requestTimeout: 30000 }, error => {
   }
 });
 
-mongoose.connect(
-  process.env.MONGODB_URI_LOCAL,
-  { useNewUrlParser: true },
-  err => {
-    if (err) {
-      console.log(`MongoDB connection failed: ${err}`);
-    } else {
-      console.log("MongoDB connection success");
-    }
-  }
-);
-
 const server = jayson.server({
   heartbeat(args, callback) {
     console.log("heartbeat called");
     callback(null, {
       success: true,
       config: {
-        name: process.env.SERVICE_NAME,
-        url: process.env.SERVER_URL,
-        port: process.env.SERVER_PORT
+        name: process.env.SERVICE_SEARCH_NAME,
+        url: process.env.SERVICE_SEARCH_URL,
+        port: process.env.SERVICE_SEARCH_PORT
       }
     });
   },
@@ -48,6 +36,8 @@ const server = jayson.server({
 
 server
   .http()
-  .listen(process.env.SERVER_PORT, () =>
-    console.log(`search service listenning on port ${process.env.SERVER_PORT}`)
+  .listen(process.env.SERVICE_SEARCH_PORT, () =>
+    console.log(
+      `search service listenning on port ${process.env.SERVICE_SEARCH_PORT}`
+    )
   );

@@ -5,10 +5,10 @@ const dotenv = require("dotenv");
 const controller = require("./controllers");
 
 // Load environment variables from .env file, where API keys and passwords are configured
-dotenv.config();
+dotenv.config({ path: "../.env" });
 
 mongoose.connect(
-  process.env.MONGODB_URI_LOCAL,
+  process.env.DB_USER_MONGODB_URI_LOCAL,
   { useNewUrlParser: true },
   err => {
     if (err) {
@@ -26,9 +26,9 @@ const server = jayson.server({
     callback(null, {
       success: true,
       config: {
-        name: process.env.SERVICE_NAME,
-        url: process.env.SERVER_URL,
-        port: process.env.SERVER_PORT
+        name: process.env.SERVICE_USER_NAME,
+        url: process.env.SERVICE_USER_URL,
+        port: process.env.SERVICE_USER_PORT
       }
     });
   },
@@ -48,6 +48,8 @@ const server = jayson.server({
 
 server
   .http()
-  .listen(process.env.SERVER_PORT, () =>
-    console.log(`user service listenning on port ${process.env.SERVER_PORT}`)
+  .listen(process.env.SERVICE_USER_PORT, () =>
+    console.log(
+      `user service listenning on port ${process.env.SERVICE_USER_PORT}`
+    )
   );

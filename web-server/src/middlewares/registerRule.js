@@ -14,7 +14,7 @@ export default (req, res, next) => {
           meta: {
             type: "error",
             status: 403,
-            message: `email address is not valid`
+            message: "email address is not valid"
           }
         });
         break;

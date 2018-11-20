@@ -15,7 +15,7 @@ import { simulateLatency } from "./middlewares";
 import { MONGODB_URI, SERVER_PORT, NODE_ENV } from "./util/secrets";
 
 // Load environment variables from .env file, where API keys and passwords are configured
-dotenv.config();
+dotenv.config({ path: "../.env" });
 
 const app = express();
 

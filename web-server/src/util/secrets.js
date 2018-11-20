@@ -22,8 +22,8 @@ export const NODE_ENV = node_env;
 
 // server url is default to "http://localhost" unless env is specified
 let server_url;
-if (process.env.SERVER_URL) {
-  server_url = process.env.SERVER_URL;
+if (process.env.WEB_SERVER_URL) {
+  server_url = process.env.WEB_SERVER_URL;
 } else {
   server_url = "http://localhost";
 }
@@ -31,8 +31,8 @@ export const SERVER_URL = server_url;
 
 // port is default to 3030 unless env is specified
 let server_port;
-if (process.env.SERVER_PORT) {
-  server_port = process.env.SERVER_PORT;
+if (process.env.WEB_SERVER_PORT) {
+  server_port = process.env.WEB_SERVER_PORT;
 } else {
   server_port = 3030;
 }
@@ -41,10 +41,10 @@ export const SERVER_PORT = server_port;
 export const JWT_SECRET = process.env.JWT_SECRET;
 
 let mongodb_uri;
-if (process.env.MONGODB_URI_LOCAL) {
-  mongodb_uri = process.env.MONGODB_URI_LOCAL;
+if (process.env.DB_DEFAULT_MONGODB_DB_URI_LOCAL) {
+  mongodb_uri = process.env.DB_DEFAULT_MONGODB_DB_URI_LOCAL;
 } else {
-  mongodb_uri = process.env.MONGODB_URI;
+  mongodb_uri = "mongodb://localhost:27017/todays-news";
 }
 export const MONGODB_URI = mongodb_uri;
 
@@ -55,7 +55,7 @@ if (!JWT_SECRET) {
 
 if (!MONGODB_URI) {
   logger.debug(
-    "No mongo connection string. Set MONGODB_URI or MONGODB_URI_LOCAL environment variable."
+    "No mongo connection string. Set DB_DEFAULT_MONGODB_DB_URI_LOCAL environment variable."
   );
   process.exit(1);
 }

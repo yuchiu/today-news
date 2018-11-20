@@ -14,23 +14,30 @@ import mongodb_client  # pylint: disable=E0401
 from cloudAMQP_client import CloudAMQPClient   # pylint: disable=E0401
 import news_recommendation_service_client  # pylint: disable=E0401
 
+from os.path import join, dirname
+from dotenv import load_dotenv
 
-REDIS_HOST = "localhost"
-REDIS_PORT = 6379
+dotenv_path = join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path)
 
-NEWS_TABLE_NAME = "news"
+DB_CACHE_REDIS_HOST = os.environ.get("DB_CACHE_REDIS_HOST")
+DB_CACHE_REDIS_PORT = os.environ.get("DB_CACHE_REDIS_PORT")
+
+DB_NEWS_TABLE_NAME = os.environ.get("DB_NEWS_TABLE_NAME")
+
+MQ_CLICK_LOG_QUEUE_HOST = os.environ.get("MQ_CLICK_LOG_QUEUE_HOST")
+MQ_CLICK_LOG_QUEUE_NAME = os.environ.get("MQ_CLICK_LOG_QUEUE_NAME")
+
 
 USER_NEWS_TIME_OUT_IN_SECONDS = 300
 NEWS_LIST_BATCH_SIZE = 10
 NEWS_LIMIT = 100
 
 
-CLICK_LOG_TASK_QUEUE_URL = 'amqp://lnmofzhd:04BvbnZTToWYf2aLkKSNNryw4rX7lWfs@toad.rmq.cloudamqp.com/lnmofzhd'
-CLICK_LOG_TASK_QUEUE_NAME = 'preference-click-log'
-
-redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
+redis_client = redis.StrictRedis(
+    DB_CACHE_REDIS_HOST, DB_CACHE_REDIS_PORT, db=0)
 cloudAMQP_client = CloudAMQPClient(
-    CLICK_LOG_TASK_QUEUE_URL, CLICK_LOG_TASK_QUEUE_NAME)
+    MQ_CLICK_LOG_QUEUE_HOST, MQ_CLICK_LOG_QUEUE_NAME)
 
 
 def get_one_news():
@@ -40,7 +47,6 @@ def get_one_news():
 
 
 def logNewsClickForUser(user_id, news_id):
-    print("running")
     # Send log task to machine learning service for prediction
     message = {'userId': user_id, 'newsId': news_id,
                'timestamp': str(datetime.utcnow())}
@@ -62,11 +68,11 @@ def getNewsSummariesForUser(user_id, page_num):
         # will return all remaining news ids.
         sliced_news_digests = total_news_digests[begin_index:end_index]
         db = mongodb_client.get_db()
-        sliced_news = list(db[NEWS_TABLE_NAME].find(
+        sliced_news = list(db[DB_NEWS_TABLE_NAME].find(
             {'digest': {'$in': sliced_news_digests}}))
     else:
         db = mongodb_client.get_db()
-        total_news = list(db[NEWS_TABLE_NAME].find().sort(
+        total_news = list(db[DB_NEWS_TABLE_NAME].find().sort(
             [('publishedAt', -1)]).limit(NEWS_LIMIT))
         total_news_digests = [x['digest'] for x in total_news]
 

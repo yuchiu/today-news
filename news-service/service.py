@@ -4,10 +4,17 @@ import os
 import sys
 import operations
 
-NAME = 'news-service'
-ENV = 'development'
-SERVER_HOST = 'localhost'
-SERVER_PORT = 6060
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path)
+
+SERVICE_NEWS_NAME = os.environ.get("SERVICE_NEWS_NAME")
+SERVICE_NEWS_HOST = os.environ.get("SERVICE_NEWS_HOST")
+SERVICE_NEWS_PORT = os.environ.get("SERVICE_NEWS_PORT")
+
+SERVICE_NEWS_PORT = 6060
 
 
 def heartbeat():
@@ -16,9 +23,9 @@ def heartbeat():
     return (json.dumps({
         "success": True,
         "config": {
-            "name": NAME,
-            "url": SERVER_HOST,
-            "port": SERVER_PORT
+            "name": SERVICE_NEWS_NAME,
+            "url": SERVICE_NEWS_HOST,
+            "port": SERVICE_NEWS_PORT
         }
     }))
 
@@ -43,7 +50,7 @@ def log_news_click_for_user(user_id, news_id):
 
 
 # Threading RPC SimpleJSONRPCServer
-RPC_SERVER = SimpleJSONRPCServer((SERVER_HOST, SERVER_PORT))
+RPC_SERVER = SimpleJSONRPCServer((SERVICE_NEWS_HOST, SERVICE_NEWS_PORT))
 RPC_SERVER.register_function(heartbeat, 'heartbeat')
 RPC_SERVER.register_function(get_one_news, 'getOneNews')
 RPC_SERVER.register_function(
@@ -52,5 +59,5 @@ RPC_SERVER.register_function(
     log_news_click_for_user, 'logNewsClickForUser')
 
 print("Starting news RPC server on %s:%d" %
-      (SERVER_HOST, SERVER_PORT))  # pylint: disable=superfluous-parens
+      (SERVICE_NEWS_HOST, SERVICE_NEWS_PORT))  # pylint: disable=superfluous-parens
 RPC_SERVER.serve_forever()

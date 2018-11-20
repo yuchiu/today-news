@@ -1,4 +1,3 @@
-const News = require("../models/News");
 const queryBody = require("./queryBody");
 const elasticSearchClient = require("../config/elasticSearch.client");
 
