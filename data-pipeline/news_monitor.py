@@ -18,9 +18,7 @@ dotenv_path = join(os.path.dirname(__file__), '..', '.env')
 load_dotenv(dotenv_path)
 
 MQ_SCRAPE_NEWS_QUEUE_HOST = os.environ.get("MQ_SCRAPE_NEWS_QUEUE_HOST")
-MQ_CLICK_LOG_QUEUE_NAME = os.environ.get("MQ_CLICK_LOG_QUEUE_NAME")
-
-print(MQ_SCRAPE_NEWS_QUEUE_HOST, MQ_CLICK_LOG_QUEUE_NAME)
+MQ_SCRAPE_NEWS_QUEUE_NAME = os.environ.get("MQ_SCRAPE_NEWS_QUEUE_NAME")
 
 DB_CACHE_REDIS_HOST = os.environ.get("DB_CACHE_REDIS_HOST")
 DB_CACHE_REDIS_PORT = os.environ.get("DB_CACHE_REDIS_PORT")
@@ -44,7 +42,7 @@ NEWS_SOURCES = {
 
 redis_client = redis.StrictRedis(DB_CACHE_REDIS_HOST, DB_CACHE_REDIS_PORT)
 cloudAMQP_client = CloudAMQPClient(
-    MQ_SCRAPE_NEWS_QUEUE_HOST, MQ_CLICK_LOG_QUEUE_NAME)
+    MQ_SCRAPE_NEWS_QUEUE_HOST, MQ_SCRAPE_NEWS_QUEUE_NAME)
 
 
 def run():
