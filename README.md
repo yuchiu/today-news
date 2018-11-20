@@ -68,7 +68,7 @@ Link: Not deployed yet
 
 ## System Architecture Diagram
 
-![architecture](https://i.imgur.com/uS4vS3t.jpg)
+![architecture](https://i.imgur.com/AAmP07P.jpg)
 
 ---
 
