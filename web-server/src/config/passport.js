@@ -4,7 +4,7 @@ import { ExtractJwt, Strategy } from "passport-jwt";
 
 import { JWT_SECRET } from "../util/secrets";
 
-const User = mongoose.model("User", new mongoose.Schema({}));
+const User = mongoose.model("users", new mongoose.Schema({}));
 
 passport.use(
   new Strategy(

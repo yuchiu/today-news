@@ -9,10 +9,9 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
-const News = require("./models/News");
 const elasticSearchClient = require("./config/elasticSearch.client");
 
-dotenv.config();
+dotenv.config({ path: "../.env" });
 
 elasticSearchClient.ping({ requestTimeout: 30000 }, error => {
   if (error) {
@@ -33,6 +32,8 @@ mongoose.connect(
     }
   }
 );
+
+const News = mongoose.model("news", new mongoose.Schema({}));
 
 const bulkIndex = function bulkIndex(index, type, data) {
   const bulkBody = [];
