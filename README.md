@@ -12,7 +12,7 @@
 - [Client Side](#client-side)
 - [Server Side](#server-side)
 
-[System Architecture Diagram](#system-architecture-diagram)
+[System Design Diagram](#system-design-diagram)
 
 [Tools & Requirements](#tools-&-requirements)
 
@@ -66,9 +66,9 @@ Link: Not deployed yet
 
 ---
 
-## System Architecture Diagram
+## System Design Diagram
 
-![architecture](https://i.imgur.com/AAmP07P.jpg)
+![system-design](https://i.imgur.com/AAmP07P.jpg)
 
 ---
 
