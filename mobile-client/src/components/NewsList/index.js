@@ -13,22 +13,20 @@ export default class FetchExample extends React.Component {
 
   fetchNews = async () => {
     try {
-      const response = await fetch("http://localhost:3030/api/v1/news/0");
-      console.log(response);
-      this.setState(
-        {
-          isLoading: false,
-          newsList: response.newsList
-        },
-        function() {}
-      );
+      const rawResponse = await fetch("http://10.0.2.2:3030/api/v1/news/0");
+      const response = await rawResponse.json();
+      this.setState({
+        newsList: response.news,
+        isLoading: false
+      });
     } catch (err) {
       console.log(err);
     }
   };
 
   render() {
-    if (this.state.isLoading) {
+    const { isLoading, newsList } = this.state;
+    if (isLoading) {
       return (
         <View style={{ flex: 1, padding: 20 }}>
           <ActivityIndicator />
@@ -38,7 +36,11 @@ export default class FetchExample extends React.Component {
 
     return (
       <View style={{ flex: 1, paddingTop: 20 }}>
-        <Text>dasds</Text>
+        {newsList.map((news, i) => (
+          <View key={"news-list-index-" + i}>
+            <Text>{news.title}</Text>
+          </View>
+        ))}
       </View>
     );
   }
