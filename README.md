@@ -19,7 +19,6 @@
 - [Environment Variable Setup](#environment-variable-setup)
 - [Operating System & version](#operating-system-this-project-is-using-during-development)
 - [Required tools & version](#required-tools-&-version-this-project-is-using)
-- [Optional tools & version](#optional-tools-&-version-this-project-is-using)
 
 [Development Environment](#development-environment)
 
@@ -62,7 +61,7 @@ Link: Not deployed yet
 
 ### Server Side
 
-- Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Message Broker ∙ RabbitMQ ∙ Redis ∙ ElasticSearch ∙ Mongoose ∙ MongoDB ∙ Web Scraper ∙ Machine Learning ∙ Tensorflow ∙ Docker ∙ Kubernetes
+- Python ∙ Nodejs ∙ Expressjs ∙ RESTful API ∙ RPC API ∙ Message Broker ∙ RabbitMQ ∙ Redis ∙ ElasticSearch ∙ Mongoose ∙ MongoDB ∙ Web Scraper ∙ Machine Learning ∙ Tensorflow
 
 ---
 
@@ -97,19 +96,6 @@ Link: Not deployed yet
 | redis         | 4.0.11          |
 | elasticsearch | 2.4.6           |
 | rabbitmq      | using CloudAMQP |
-
-### Optional tools & version this project is using
-
-| Tools                     | Versions   |
-| ------------------------- | ---------- |
-| For Mobile Client         |
-| react-native              | 0.57.5     |
-| react-native-cli          | 2.0.1      |
-| For Production Deployment |
-| docker                    | 18.06.1-ce |
-| docker-compose            | 1.22.0     |
-
----
 
 ## Development Environment
 
