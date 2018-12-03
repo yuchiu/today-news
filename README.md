@@ -45,7 +45,7 @@
 
 ### Live Site Demo
 
-Link: Not deployed yet
+[Link](http:today-news.surge.sh)
 
 ### Video Demo
 
