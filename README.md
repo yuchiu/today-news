@@ -99,9 +99,9 @@
 
 ## Development Environment
 
-### Building Data Warehouse
+### Building Data Pipeline
 
-#### News Data Pipeline
+#### News Pipeline
 
 - monitor recent published news from News API, send the tasks to a channel of message queue
 
