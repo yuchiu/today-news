@@ -22,9 +22,9 @@
 
 [Development Environment](#development-environment)
 
-- [Building Data Warehouse](#building-data-warehouse)
+- [Building Data Pipeline](#building-data-pipeline)
 
-  - [News Data Pipeline](#news-data-pipeline)
+  - [News Pipeline](#news-pipeline)
   - [News Topic Modeling Service](#news-topic-modeling-service)
 
 - [Serving Application](#serving-application)
