@@ -4,3 +4,4 @@ pandas
 watchdog
 sklearn
 python-dotenv
+jsonrpclib-pelix

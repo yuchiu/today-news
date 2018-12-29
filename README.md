@@ -182,7 +182,7 @@ Application will be receiving tasks from message queue channel "preference-click
 
 ```terminal
 pip3 install -r requirements.txt
-python3 recommendation.py
+python3 service.py
 ```
 
 Application will be serving on http://localhost:7070
